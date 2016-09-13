@@ -78,7 +78,8 @@ On Debian, run:
 
 **NOTE**: We ship the FileSender tarball with `config_sample.php` rather than `config.php` to make life easier when building RPMs and DEBs.
 
-**NOTE**: If you use NFS storage for user files on RedHat/CentOS, mount it with the following option: `context=system_u:object_r:httpd_sys_rw_content_t:s0`. **DO NOT** enable `httpd_use_nfs`. If you did so before, roll back using `setsebool httpd_use_nfs off`.
+**NOTE**: If you use NFS storage for user files on RedHat/CentOS, mount it with the following option: `context=system_u:object_r:httpd_sys_rw_content_t:s0`.
+**DO NOT** enable `httpd_use_nfs`. If you did so before, roll back using `setsebool httpd_use_nfs off`.
 
 # Step 3 - Install and configure SimpleSAMLphp
 
@@ -248,7 +249,11 @@ Run:
 
 # Step 9 - Configure the FileSender clean-up cron job
 
-	tee /etc/cron.daily/filesender <<EOF #!/bin/sh php -q /opt/filesender/filesender/scripts/task/cron.php EOF chmod +x /etc/cron.daily/filesender
+	tee /etc/cron.daily/filesender <<EOF
+	#!/bin/sh
+	php -q /opt/filesender/filesender/scripts/task/cron.php
+	EOF
+	chmod +x /etc/cron.daily/filesender
 
 # Step 10 - Start using FileSender
 
