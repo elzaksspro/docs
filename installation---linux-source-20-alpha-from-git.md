@@ -51,7 +51,7 @@ Or install the Git package on Debian:
 Install the FileSender 2.0-alpha branch from the GIT repository:
 
 	cd /opt/filesender/
-	git clone https://git.assembla.com/file_sender.git filesender-2.0
+	git clone https://github.com/filesender/filesender.git filesender-2.0
 	ln -s filesender-2.0/ filesender
 
 Initialise config file and set permissions right. Make the files, tmp and log directories writable by the web daemon user (`apache` on RedHat/CentOS, `www-data` on Debian), copy the config file in place from the template and allow the web daemon user to read the config.php configuration file:
