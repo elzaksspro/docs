@@ -27,39 +27,40 @@ See https://www.assembla.com/wiki/show/file_sender/Requirements for all requirem
 
 On RedHat/CentOS, run:
 
-    # RedHat/CentOS    yum install -y httpd mod_ssl php php-mbstring php-xml
+	# RedHat/CentOS
+	yum install -y httpd mod_ssl php php-mbstring php-xml
 
 On Debian, run:
 
- # Debian apt-get install -y apache2 php5 libapache2-mod-php5
+	# Debian apt-get install -y apache2 php5 libapache2-mod-php5
 
 # Step 2 - Install the FileSender package
 
 Install the Git package on RedHat/CentOS:
 
- yum install -y git
+	yum install -y git
 
 Or install the Git package on Debian:
 
- apt-get install -y git
+	apt-get install -y git
 
 Install the FileSender 2.0-alpha branch from the GIT repository:
 
- cd /opt/filesender/ git clone https://git.assembla.com/file_sender.git filesender-2.0 ln -s filesender-2.0/ filesender
+	cd /opt/filesender/ git clone https://git.assembla.com/file_sender.git filesender-2.0 ln -s filesender-2.0/ filesender
 
 Initialise config file and set permissions right. Make the files, tmp and log directories writable by the web daemon user (`apache` on RedHat/CentOS, `www-data` on Debian), copy the config file in place from the template and allow the web daemon user to read the config.php configuration file:
 
 On RedHat/CentOS/Debian, run:
 
- cd /opt/filesender/filesender cp config/config_sample.php config/config.php chmod o-rwx tmp files log config/config.php
+	cd /opt/filesender/filesender cp config/config_sample.php config/config.php chmod o-rwx tmp files log config/config.php
 
 On RedHat/CentOS, run:
 
- chown apache:apache tmp files log chgrp apache config/config.php semanage fcontext -a -t httpd_sys_content_t '/opt/filesender(/.*)?' semanage fcontext -a -t httpd_sys_rw_content_t '/opt/filesender/(log|tmp|files)(/.*)?' setsebool httpd_can_sendmail on restorecon -R /opt/filesender
+	chown apache:apache tmp files log chgrp apache config/config.php semanage fcontext -a -t httpd_sys_content_t '/opt/filesender(/.*)?' semanage fcontext -a -t httpd_sys_rw_content_t '/opt/filesender/(log|tmp|files)(/.*)?' setsebool httpd_can_sendmail on restorecon -R /opt/filesender
 
 On Debian, run:
 
- chown www-data:www-data tmp files log chgrp www-data config/config.php
+	chown www-data:www-data tmp files log chgrp www-data config/config.php
 
 **NOTE**: We ship the FileSender tarball with `config_sample.php` rather than `config.php` to make life easier when building RPMs and DEBs.
 
@@ -71,23 +72,23 @@ SimpleSAMLphp helps you use nearly any authentication mechanism you can imagine.
 
 [Download SimpleSamlPhp 1.14.2](https://simplesamlphp.org/res/downloads/simplesamlphp-1.14.2.tar.gz). Other [(later or older) versions](https://simplesamlphp.org/archive) will probably work but we tested with version 1.14.2.
 
- cd /root mkdir filesender cd filesender wget https://simplesamlphp.org/res/downloads/simplesamlphp-1.14.2.tar.gz
+	cd /root mkdir filesender cd filesender wget https://simplesamlphp.org/res/downloads/simplesamlphp-1.14.2.tar.gz
 
 **NOTE**: you will of course remember to check [the sha1 hash of the tar file](https://simplesamlphp.org/archive), right?
 
 Extract it in a suitable directory and create symlink:
 
- mkdir /opt/filesender/ cd /opt/filesender tar xvzf /root/filesender/simplesamlphp-1.14.2.tar.gz ln -s simplesamlphp-1.14.2/ simplesaml
+	mkdir /opt/filesender/ cd /opt/filesender tar xvzf /root/filesender/simplesamlphp-1.14.2.tar.gz ln -s simplesamlphp-1.14.2/ simplesaml
 
 **SECURITY NOTE**: we only want *the user interface files* to be directly accessible for the world through the web server, not any of the other files. We will not extract the SimpleSAMLphp package in the `/var/www` directory (the standard Apache document root) but rather in a specific `/opt` tree. We'll point to the SimpleSAML web root with a web server alias.
 
 Copy standard configuration files to the right places:
 
- cd /opt/filesender/simplesaml cp -r config-templates/*.php config/ cp -r metadata-templates/*.php metadata/
+	cd /opt/filesender/simplesaml cp -r config-templates/*.php config/ cp -r metadata-templates/*.php metadata/
 
 To tailor your [SimpleSAMLphp](http://simplesamlphp.org/) installation to match your local site's needs please check its [installation and configuration documentation](http://simplesamlphp.org/docs). When connecting to an Identity provider make sure all the required attributes are sent by the identity provider. See the section on [IdP attributes](https://www.assembla.com/wiki/show/file_sender/Administrator_reference_manual#idp_attributes) in the Reference Manual for details.
 
-**NOTE**: It’s outside the scope of this document to explain how to configure an authentication backend. The software has built-in support for [SAML](https://simplesamlphp.org/docs/stable/ldap:ldap), [LDAP](https://simplesamlphp.org/docs/stable/ldap:ldap), [Radius](https://simplesamlphp.org/docs/stable/radius:radius) and [many more](https://simplesamlphp.org/docs/stable/simplesamlphp-idp#section_2).
+**NOTE**: It's outside the scope of this document to explain how to configure an authentication backend. The software has built-in support for [SAML](https://simplesamlphp.org/docs/stable/ldap:ldap), [LDAP](https://simplesamlphp.org/docs/stable/ldap:ldap), [Radius](https://simplesamlphp.org/docs/stable/radius:radius) and [many more](https://simplesamlphp.org/docs/stable/simplesamlphp-idp#section_2).
 
 # Step 4 - Configure Apache
 
@@ -97,13 +98,13 @@ Create a configuration file for FileSender. This file is located in one of these
 
 The contents of the file must be as follows:
 
- Alias /simplesaml /opt/filesender/simplesaml/www <Directory "/opt/filesender/simplesaml/www"> Options None AllowOverride None Require all granted </Directory>
+	Alias /simplesaml /opt/filesender/simplesaml/www <Directory "/opt/filesender/simplesaml/www"> Options None AllowOverride None Require all granted </Directory>
 
- Alias /filesender /opt/filesender/filesender/www <Directory "/opt/filesender/filesender/"> Options SymLinksIfOwnerMatch AllowOverride None Require all granted </Directory>
+	Alias /filesender /opt/filesender/filesender/www <Directory "/opt/filesender/filesender/"> Options SymLinksIfOwnerMatch AllowOverride None Require all granted </Directory>
 
 On Debian you must enable your configuration, run:
 
- a2enmod alias headers ssl a2ensite default-ssl filesender
+	a2enmod alias headers ssl a2ensite default-ssl filesender
 
 # Step 5 - Install and configure database
 
@@ -111,43 +112,43 @@ On Debian you must enable your configuration, run:
 
 On RedHat/CentOS, run:
 
- yum install -y php-pgsql
+	yum install -y php-pgsql
 
 On Debian, run:
 
- apt-get install -y postgresql php5-pgsql
+	apt-get install -y postgresql php5-pgsql
 
 FileSender uses password based database logins and by default assumes that PostgreSQL is configured to accept password based sessions on 'localhost'. You should check and when needed change the relevant settings in the PostgreSQL pg_hba.conf configuration file. This file should have the following entries with **md5** listed as METHOD for local IPv4 and IPv6 connections:
 
- # Database administrative login by UNIX sockets local all postgres peer # TYPE DATABASE USER CIDR-ADDRESS METHOD # "local" is for Unix domain socket connections only local all all peer # IPv4 local connections: host all all 127.0.0.1/32 md5 # IPv6 local connections: host all all ::1/128 md5
+	# Database administrative login by UNIX sockets local all postgres peer # TYPE DATABASE USER CIDR-ADDRESS METHOD # "local" is for Unix domain socket connections only local all all peer # IPv4 local connections: host all all 127.0.0.1/32 md5 # IPv6 local connections: host all all ::1/128 md5
 
 On Debian based systems this file will be in `/etc/postgresql/<version>/main/pg_hba.conf`. On Red Hat/Fedora based systems this file will be in `/var/lib/pgsql/data/pg_hba.conf`. When changing the pg_hba.conf file you'll have to restart the database server with (version number may be different or not needed depending on your system):
 
- service postgresql reload
+	service postgresql reload
 
 Now create the database user `filesender` without special privileges and with a password. The command will prompt you to specify and confirm a password for the new database user. *This is the password you need to configure in the FileSender configuration file later on*.
 
- $ postgres createuser -S -D -R -P filesender Enter password for new role: <secret> Enter it again: <secret>
+	$ postgres createuser -S -D -R -P filesender Enter password for new role: <secret> Enter it again: <secret>
 
 This will create a database user **filesender** without special privileges, and with a password. This password you will have to configure in the filesender config.php later on.
 
 Create the filesender database with UTF8 encoding owned by the newly created filesender user:
 
- postgres createdb -E UTF8 -O filesender filesender
+	postgres createdb -E UTF8 -O filesender filesender
 
 ## Option b - MySQL
 
 On RedHat/CentOS, run:
 
- yum install -y mariadb php-mysql mysql_secure_installation
+	yum install -y mariadb php-mysql mysql_secure_installation
 
 On Debian, run:
 
- apt-get install -y mysql-server php5-mysql dpkg-reconfigure mysql-server
+	apt-get install -y mysql-server php5-mysql dpkg-reconfigure mysql-server
 
 Create the filesender database:
 
- mysql -u root -p CREATE DATABASE `filesender` DEFAULT CHARACTER SET utf8; GRANT USAGE ON *.* TO 'filesender'@'localhost' IDENTIFIED BY '<your password>'; GRANT CREATE, ALTER, SELECT, INSERT, UPDATE, DELETE ON `filesender`.* TO 'filesender'@'localhost'; FLUSH PRIVILEGES; exit
+	mysql -u root -p CREATE DATABASE `filesender` DEFAULT CHARACTER SET utf8; GRANT USAGE ON *.* TO 'filesender'@'localhost' IDENTIFIED BY '<your password>'; GRANT CREATE, ALTER, SELECT, INSERT, UPDATE, DELETE ON `filesender`.* TO 'filesender'@'localhost'; FLUSH PRIVILEGES; exit
 
 **Change from FileSender 1.x: you now configure FileSender first and then use a FileSender script to initialise the database. See step 8 for initialising the database. Make sure you configure the correct database in the config file. =)**
 
@@ -159,49 +160,49 @@ A sample settings file is provided with FileSender in **config-templates/filesen
 
 On **RedHat/CentOS**, run:
 
- service httpd reload
+	service httpd reload
 
 On **Debian**, run:
 
- service apache2 reload
+	service apache2 reload
 
 ## Manual
 
 To allow for max. 2 GB Flash uploads change these settings to the values indicated:
 
- max_input_time = 3600 ; in seconds upload_max_filesize = 2047M ; in M, the default value is 2MB post_max_size = 2146446312 ; in M, 2047M + 10K
+	max_input_time = 3600 ; in seconds upload_max_filesize = 2047M ; in M, the default value is 2MB post_max_size = 2146446312 ; in M, 2047M + 10K
 
 **NOTE**: when you edit your FileSender config.php remember to change `$config['max_flash_upload_size']` to match your `upload_max_filesize`. If they are not the same FileSender will use the lowest value as the actual maximum upload size for Flash uploads.
 
 Ensure the php temporary upload directory points to a location with enough space:
 
- upload_tmp_dir = /tmp
+	upload_tmp_dir = /tmp
 
 **NOTE**: You probably want to point this to the same directory you will use as your HTML5 upload temp directory (`$config['site_temp_filestore']`).**NOTE**: that this setting is for all PHP-apps, not only for filesender.
 
 Turn on logging:
 
- log_errors = on error_log = syslog
+	log_errors = on error_log = syslog
 
 Enable secure cookie handling to protect sessions:
 
- session.cookie_secure = On session.cookie_httponly = On
+	session.cookie_secure = On session.cookie_httponly = On
 
 Reload your Apache server to activate the changes to your php.ini.
 
 On **RedHat/CentOS**, run:
 
- service httpd reload
+	service httpd reload
 
 On **Debian**, run:
 
- service apache2 reload
+	service apache2 reload
 
 # Step 7 - Configure your FileSender installation
 
 Copy the configuration template and edit it to match your site settings.
 
- cd /opt/filesender/filesender/config cp config{_sample,}.php $EDITOR config.php
+	cd /opt/filesender/filesender/config cp config{_sample,}.php $EDITOR config.php
 
 Be sure to at least set `$config['site_url']`, contact details, database settings and authentication configuration. The configuration file is self-explanatory.
 
@@ -209,17 +210,17 @@ Be sure to at least set `$config['site_url']`, contact details, database setting
 
 Run:
 
- php /opt/filesender/filesender/scripts/upgrade/database.php
+	php /opt/filesender/filesender/scripts/upgrade/database.php
 
 # Step 9 - Configure the FileSender clean-up cron job
 
- tee /etc/cron.daily/filesender <<EOF #!/bin/sh php -q /opt/filesender/filesender/scripts/task/cron.php EOF chmod +x /etc/cron.daily/filesender
+	tee /etc/cron.daily/filesender <<EOF #!/bin/sh php -q /opt/filesender/filesender/scripts/task/cron.php EOF chmod +x /etc/cron.daily/filesender
 
 # Step 10 - Start using FileSender
 
 Visit the URL to your FileSender instance.
 
- https://<your site>/filesender/
+	https://<your site>/filesender/
 
 **NOTE**: If you want your site to be available on https://<your site>/, without the /filesender, set `DocumentRoot /opt/filesender/filesender/www` in Apache and remember to update your `$config['site_url']` accordingly.
 
@@ -231,25 +232,25 @@ If you use RedHat/CentOS, you have SElinux installed. SElinux protects your syst
 
 If you want to store files on another location, set the context of this location to `httpd_sys_rw_content_t`, otherwise FileSender will fail trying to write there. If the other location is on an NFS share, be sure to set the following mount flag:
 
- context=system_u:object_r:httpd_sys_rw_content_t:s0
+	context=system_u:object_r:httpd_sys_rw_content_t:s0
 
 Example `/etc/fstab` line:
 
- nfs.filesender.org:/var/lib/filesender /var/lib/filesender nfs noexec,nolock,nfsvers=3,context=system_u:object_r:httpd_sys_rw_content_t:s0 0 0
+	nfs.filesender.org:/var/lib/filesender /var/lib/filesender nfs noexec,nolock,nfsvers=3,context=system_u:object_r:httpd_sys_rw_content_t:s0 0 0
 
 ### SEbooleans
 
 #### httpd_can_sendmailMUST be on for Apache to be able to send mail.
 
- setsebool httpd_can_sendmail on
+	setsebool httpd_can_sendmail on
 
 #### httpd_use_nfsMUST be off, use `context=system_u:object_r:httpd_sys_rw_content_t:s0` as a mount option instead if you use NFS.
 
- setsebool httpd_use_nfs off
+	setsebool httpd_use_nfs off
 
 #### httpd_can_network_connect_dbMAY be on, if you do not run the database on the local host.
 
- setsebool httpd_can_network_connect_db on setsebool httpd_can_network_connect_db off
+	setsebool httpd_can_network_connect_db on setsebool httpd_can_network_connect_db off
 
 ## HTTPS Only
 
@@ -259,21 +260,21 @@ Its good practice to disallow plain HTTP traffic and allow HTTPS only. Make a fi
 
 Add the following:
 
- <VirtualHost *:80> Redirect / https://filesender.example.org/ </VirtualHost>
+	<VirtualHost *:80> Redirect / https://filesender.example.org/ </VirtualHost>
 
 On **RedHat/CentOS**, run:
 
- service httpd reload
+	service httpd reload
 
 On **Debian**, run:
 
- a2ensite 000-forcehttps a2dissite 000-default service apache2 reload
+	a2ensite 000-forcehttps a2dissite 000-default service apache2 reload
 
 ## FileSender as main page
 
 If you don’t want your users to have to type `/filesender` after the hostname, you can add the following line to your filesender Apache configuration:
 
- RedirectMatch ^/(?!filesender/|simplesaml/)(.*) https://filesender.example.org/filesender/$1
+	RedirectMatch ^/(?!filesender/|simplesaml/)(.*) https://filesender.example.org/filesender/$1
 
 # Support and Feedback
 
