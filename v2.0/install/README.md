@@ -139,7 +139,8 @@ The contents of the file must be as follows:
 
 On Debian you must enable your configuration, run:
 
-	a2enmod alias headers ssl a2ensite default-ssl filesender
+	a2enmod alias headers ssl
+	a2ensite default-ssl filesender
 
 # Step 5 - Install and configure database
 
@@ -155,7 +156,11 @@ On Debian, run:
 
 FileSender uses password based database logins and by default assumes that PostgreSQL is configured to accept password based sessions on 'localhost'. You should check and when needed change the relevant settings in the PostgreSQL pg_hba.conf configuration file. This file should have the following entries with **md5** listed as METHOD for local IPv4 and IPv6 connections:
 
-	# Database administrative login by UNIX sockets local all postgres peer # TYPE DATABASE USER CIDR-ADDRESS METHOD # "local" is for Unix domain socket connections only local all all peer # IPv4 local connections: host all all 127.0.0.1/32 md5 # IPv6 local connections: host all all ::1/128 md5
+	# Database administrative login by UNIX sockets local all postgres peer
+	# TYPE DATABASE USER CIDR-ADDRESS METHOD
+	# "local" is for Unix domain socket connections only local all all peer
+	# IPv4 local connections: host all all 127.0.0.1/32 md5
+	# IPv6 local connections: host all all ::1/128 md5
 
 On Debian based systems this file will be in `/etc/postgresql/<version>/main/pg_hba.conf`. On Red Hat/Fedora based systems this file will be in `/var/lib/pgsql/data/pg_hba.conf`. When changing the pg_hba.conf file you'll have to restart the database server with (version number may be different or not needed depending on your system):
 
@@ -163,7 +168,9 @@ On Debian based systems this file will be in `/etc/postgresql/<version>/main/pg_
 
 Now create the database user `filesender` without special privileges and with a password. The command will prompt you to specify and confirm a password for the new database user. *This is the password you need to configure in the FileSender configuration file later on*.
 
-	$ postgres createuser -S -D -R -P filesender Enter password for new role: <secret> Enter it again: <secret>
+	$ postgres createuser -S -D -R -P filesender
+	Enter password for new role: <secret>
+	Enter it again: <secret>
 
 This will create a database user **filesender** without special privileges, and with a password. This password you will have to configure in the filesender config.php later on.
 
@@ -183,7 +190,11 @@ On Debian, run:
 
 Create the filesender database:
 
-	mysql -u root -p CREATE DATABASE `filesender` DEFAULT CHARACTER SET utf8; GRANT USAGE ON *.* TO 'filesender'@'localhost' IDENTIFIED BY '<your password>'; GRANT CREATE, ALTER, SELECT, INSERT, UPDATE, DELETE ON `filesender`.* TO 'filesender'@'localhost'; FLUSH PRIVILEGES; exit
+	mysql -u root -p CREATE DATABASE `filesender` DEFAULT CHARACTER SET utf8;
+	GRANT USAGE ON *.* TO 'filesender'@'localhost' IDENTIFIED BY '<your password>';
+	GRANT CREATE, ALTER, SELECT, INSERT, UPDATE, DELETE ON `filesender`.* TO 'filesender'@'localhost';
+	FLUSH PRIVILEGES;
+	exit
 
 **Change from FileSender 1.x: you now configure FileSender first and then use a FileSender script to initialise the database. See step 8 for initialising the database. Make sure you configure the correct database in the config file. =)**
 
@@ -205,7 +216,9 @@ On **Debian**, run:
 
 To allow for max. 2 GB Flash uploads change these settings to the values indicated:
 
-	max_input_time = 3600 ; in seconds upload_max_filesize = 2047M ; in M, the default value is 2MB post_max_size = 2146446312 ; in M, 2047M + 10K
+	max_input_time = 3600 ; in seconds
+	upload_max_filesize = 2047M ; in M, the default value is 2MB
+	post_max_size = 2146446312 ; in M, 2047M + 10K
 
 **NOTE**: when you edit your FileSender config.php remember to change `$config['max_flash_upload_size']` to match your `upload_max_filesize`. If they are not the same FileSender will use the lowest value as the actual maximum upload size for Flash uploads.
 
@@ -238,7 +251,9 @@ On **Debian**, run:
 
 Copy the configuration template and edit it to match your site settings.
 
-	cd /opt/filesender/filesender/config cp config{_sample,}.php $EDITOR config.php
+	cd /opt/filesender/filesender/config
+	cp config{_sample,}.php
+	$EDITOR config.php
 
 Be sure to at least set `$config['site_url']`, contact details, database settings and authentication configuration. The configuration file is self-explanatory.
 
@@ -305,7 +320,9 @@ Its good practice to disallow plain HTTP traffic and allow HTTPS only. Make a fi
 
 Add the following:
 
-	<VirtualHost *:80> Redirect / https://filesender.example.org/ </VirtualHost>
+	<VirtualHost *:80>
+		Redirect / https://filesender.example.org/
+	</VirtualHost>
 
 On **RedHat/CentOS**, run:
 
@@ -313,7 +330,9 @@ On **RedHat/CentOS**, run:
 
 On **Debian**, run:
 
-	a2ensite 000-forcehttps a2dissite 000-default service apache2 reload
+	a2ensite 000-forcehttps
+	a2dissite 000-default
+	service apache2 reload
 
 ## FileSender as main page
 
