@@ -75,10 +75,9 @@ On Debian, run:
 	chown www-data:www-data tmp files log
 	chgrp www-data config/config.php
 
-**NOTE**: We ship the FileSender tarball with `config_sample.php` rather than `config.php` to make life easier when building RPMs and DEBs.
-
-**NOTE**: If you use NFS storage for user files on RedHat/CentOS, mount it with the following option: `context=system_u:object_r:httpd_sys_rw_content_t:s0`.
-**DO NOT** enable `httpd_use_nfs`. If you did so before, roll back using `setsebool httpd_use_nfs off`.
+* **NOTE**: We ship the FileSender tarball with `config_sample.php` rather than `config.php` to make life easier when building RPMs and DEBs.
+* **NOTE**: If you use NFS storage for user files on RedHat/CentOS, mount it with the following option: `context=system_u:object_r:httpd_sys_rw_content_t:s0`.
+* **DO NOT** enable `httpd_use_nfs`. If you did so before, roll back using `setsebool httpd_use_nfs off`.
 
 # Step 3 - Install and configure SimpleSAMLphp
 
@@ -91,7 +90,7 @@ SimpleSAMLphp helps you use nearly any authentication mechanism you can imagine.
 	cd filesender
 	wget https://simplesamlphp.org/res/downloads/simplesamlphp-1.14.2.tar.gz
 
-**NOTE**: you will of course remember to check [the sha1 hash of the tar file](https://simplesamlphp.org/archive), right?
+* **NOTE**: you will of course remember to check [the sha1 hash of the tar file](https://simplesamlphp.org/archive), right?
 
 Extract it in a suitable directory and create symlink:
 
@@ -100,7 +99,7 @@ Extract it in a suitable directory and create symlink:
 	tar xvzf /root/filesender/simplesamlphp-1.14.2.tar.gz
 	ln -s simplesamlphp-1.14.2/ simplesaml
 
-**SECURITY NOTE**: we only want *the user interface files* to be directly accessible for the world through the web server, not any of the other files. We will not extract the SimpleSAMLphp package in the `/var/www` directory (the standard Apache document root) but rather in a specific `/opt` tree. We'll point to the SimpleSAML web root with a web server alias.
+* **SECURITY NOTE**: we only want *the user interface files* to be directly accessible for the world through the web server, not any of the other files. We will not extract the SimpleSAMLphp package in the `/var/www` directory (the standard Apache document root) but rather in a specific `/opt` tree. We'll point to the SimpleSAML web root with a web server alias.
 
 Copy standard configuration files to the right places:
 
@@ -110,7 +109,7 @@ Copy standard configuration files to the right places:
 
 To tailor your [SimpleSAMLphp](http://simplesamlphp.org/) installation to match your local site's needs please check its [installation and configuration documentation](http://simplesamlphp.org/docs). When connecting to an Identity provider make sure all the required attributes are sent by the identity provider. See the section on [IdP attributes](../admin/reference/README.md#idp_attributes) in the Reference Manual for details.
 
-**NOTE**: It's outside the scope of this document to explain how to configure an authentication backend. The software has built-in support for [SAML](https://simplesamlphp.org/docs/stable/ldap:ldap), [LDAP](https://simplesamlphp.org/docs/stable/ldap:ldap), [Radius](https://simplesamlphp.org/docs/stable/radius:radius) and [many more](https://simplesamlphp.org/docs/stable/simplesamlphp-idp#section_2).
+* **NOTE**: It's outside the scope of this document to explain how to configure an authentication backend. The software has built-in support for [SAML](https://simplesamlphp.org/docs/stable/ldap:ldap), [LDAP](https://simplesamlphp.org/docs/stable/ldap:ldap), [Radius](https://simplesamlphp.org/docs/stable/radius:radius) and [many more](https://simplesamlphp.org/docs/stable/simplesamlphp-idp#section_2).
 
 # Step 4 - Configure Apache
 
@@ -194,7 +193,7 @@ Create the filesender database:
 	FLUSH PRIVILEGES;
 	exit
 
-**Change from FileSender 1.x: you now configure FileSender first and then use a FileSender script to initialise the database. See step 8 for initialising the database. Make sure you configure the correct database in the config file. =)**
+**Change from FileSender 1.x:** you now configure FileSender first and then use a FileSender script to initialise the database. See step 8 for initialising the database. Make sure you configure the correct database in the config file.
 
 # Step 6 - Configure PHP5
 
@@ -218,14 +217,14 @@ To allow for max. 2 GB Flash uploads change these settings to the values indicat
 	upload_max_filesize = 2047M ; in M, the default value is 2MB
 	post_max_size = 2146446312 ; in M, 2047M + 10K
 
-**NOTE**: when you edit your FileSender config.php remember to change `$config['max_flash_upload_size']` to match your `upload_max_filesize`. If they are not the same FileSender will use the lowest value as the actual maximum upload size for Flash uploads.
+* **NOTE**: when you edit your FileSender config.php remember to change `$config['max_flash_upload_size']` to match your `upload_max_filesize`. If they are not the same FileSender will use the lowest value as the actual maximum upload size for Flash uploads.
 
 Ensure the php temporary upload directory points to a location with enough space:
 
 	upload_tmp_dir = /tmp
 
-**NOTE**: You probably want to point this to the same directory you will use as your HTML5 upload temp directory (`$config['site_temp_filestore']`).
-**NOTE**: that this setting is for all PHP-apps, not only for filesender.
+* **NOTE**: You probably want to point this to the same directory you will use as your HTML5 upload temp directory (`$config['site_temp_filestore']`).
+* **NOTE**: that this setting is for all PHP-apps, not only for filesender.
 
 Turn on logging:
 
@@ -275,7 +274,7 @@ Visit the URL to your FileSender instance.
 
 	https://<your site>/filesender/
 
-**NOTE**: If you want your site to be available on https://<your site>/, without the /filesender, set `DocumentRoot /opt/filesender/filesender/www` in Apache and remember to update your `$config['site_url']` accordingly.
+* **NOTE**: If you want your site to be available on https://<your site>/, without the /filesender, set `DocumentRoot /opt/filesender/filesender/www` in Apache and remember to update your `$config['site_url']` accordingly.
 
 # Perfection
 
