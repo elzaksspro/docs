@@ -2,8 +2,8 @@
 #How to read this document
 ---
 * This document is a work in progress.  If you are keen on seeing FileSender 2.0 released offer to help with (testing) the documentation.
-* mandatory configuration settings are <span style="background-color:red">marked in red</style>
-* sections <span style="background-color:orange">marked in orange</style> need to be double checked.
+* mandatory configuration settings are <span style="background-color:red">marked in red</span>
+* sections <span style="background-color:orange">marked in orange</span> need to be double checked.
 
 
 
@@ -158,7 +158,7 @@
 ###admin_email
 * __description:__ email address of FileSender administrator(s).  Separate multiple addresses with a comma (',').  
 Emails regarding disk full etc. are sent here. You should use a role-address here.
-* <span style="background-color:red">__mandatory:__ yes.  There must be at least one email address defined.</style>
+* <span style="background-color:red">__mandatory:__ yes.  There must be at least one email address defined.</span>
 * __type:__ string.
 * __default:__ -
 * __available:__ since version 1.0
@@ -166,7 +166,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 		
 ###admin
 * __description:__ UIDs (as per the configured saml_uid_attribute) of FileSender administrators. Accounts with these UIDs can access the Admin page through the web UI.  <span style="background-color:orange">Separate multiple entries with a comma (',').</span>
-* <span style="background-color:red">__mandatory:__ yes.  Can be empty but then no-one has access to the admin page.</style>
+* <span style="background-color:red">__mandatory:__ yes.  Can be empty but then no-one has access to the admin page.</span>
 * __type:__ string
 * __default:__ -
 * __available:__ since version 1.0
@@ -181,7 +181,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ###force_ssl
 * __description:__ enforce use of SSL. Set this to true and FileSender won't work if the user doesn't have a SSL session. Useful to retain security in case of web server misconfigurations.
-* __mandatory:__ no. <span style="background-color:orange">if you don't set it it will be evaluated to false?  What about the default of 'true'?)</style>
+* __mandatory:__ no. <span style="background-color:orange">if you don't set it it will be evaluated to false?  What about the default of 'true'?)</span>
 * __type:__ boolean
 * __default:__ true
 * __available:__ since version 1.0
@@ -207,7 +207,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __available:__ since version 2.0
 
 ###default_timezone
-* __description:__ used to set default timezone of PHP. Used to convert dates. Dates are loaded from database and converted to PHP timestamps on the fly. Times in database are stored in GMT dates. Used to present localised time information. <span style="background-color:orange">Audit logs use time?  Also: include link to PHP timezone values</style>
+* __description:__ used to set default timezone of PHP. Used to convert dates. Dates are loaded from database and converted to PHP timestamps on the fly. Times in database are stored in GMT dates. Used to present localised time information. <span style="background-color:orange">Audit logs use time?  Also: include link to PHP timezone values</span>
 * __mandatory:__ yes (<span style="background-color:orange">doublecheck</span>)
 * __type:__ string
 * __default:__ Europe/London
@@ -225,20 +225,20 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ###site_url
 * __description:__ Site URL. Used in emails, to build URLs for logging in, logging out, build URL for upload endpoint for web workers, to include scripts etc.
-* <span style="background-color:red">__mandatory:__ yes</style>
+* <span style="background-color:red">__mandatory:__ yes</span>
 * __type:__ string
 * __default:__ -
 * __available:__ since version 1.0
 
 ###site_logouturl
 * __description:__ $_GET parameters for the logout page;  this is where user gets redirected to after logout. Is given to the SP logout end-point.
-* __mandatory:__ <span style="background-color:orange">?</style>
+* __mandatory:__ <span style="background-color:orange">?</span>
 * __type:__ string
 * __default:__ $config['site_url'].'?s=logout'
 * __available:__ since version 1.6
 
 ###about_url
-* __description:__ if set to "", a modal inline popup dialogue is shown with the contents of _ABOUT_TEXT from the relevant language file. Alternatively a URL can be used to point to a specific (local or external) HTML page. <span style="background-color:orange">check if this is a modal inline popup</style>
+* __description:__ if set to "", a modal inline popup dialogue is shown with the contents of _ABOUT_TEXT from the relevant language file. Alternatively a URL can be used to point to a specific (local or external) HTML page. <span style="background-color:orange">check if this is a modal inline popup</span>
 * __mandatory:__ no
 * __type:__ string
 * __default:__ not set = empty string = popup
@@ -246,13 +246,13 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ aboutURL
 
 ###help_url
-* __description:__ if set to "", a modal inline popup dialogue is shown with the contents of _HELP_TEXT from the relevant language file. If set to an URL it will open the referenced (local or external) HTML page in a new tab. <span style="background-color:orange">check if this is a modal inline popup</style>
-* __mandatory:__ no <span style="background-color:orange">doublecheck</style>
+* __description:__ if set to "", a modal inline popup dialogue is shown with the contents of _HELP_TEXT from the relevant language file. If set to an URL it will open the referenced (local or external) HTML page in a new tab. <span style="background-color:orange">check if this is a modal inline popup</span>
+* __mandatory:__ no <span style="background-color:orange">doublecheck</span>
 * __type:__ string
 * __default:__ not set = empty string = popup
 * __available:__ since version 1.0
 * __1.x name:__ helpURL
-* __comment:__ when configured with a mailto: address that points to e.g. support@yourdomain.dom the email bounce handler will use this address to send unprocessable email bounces to. <span style="background-color:orange">include link to email bounce handling config directives/help</style>
+* __comment:__ when configured with a mailto: address that points to e.g. support@yourdomain.dom the email bounce handler will use this address to send unprocessable email bounces to. <span style="background-color:orange">include link to email bounce handling config directives/help</span>
 
 
 ---
@@ -313,7 +313,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__
 * __comment:__ not tested
 * __comment:__ basically integer. use fileUID (which is used to create name on hard drive) + as many characters as the hashing value (if you set hashing to 2 you take the 2 first letters of the fileUID (big random string) and use these two characters to create a directory structure under the storage path. This avoids having all files in the same directory. If you set this to 1 you have 16 possible different values for the directory structure under the storage root. You'll have 16 folders under your storage root under which you'll have the files. This allows you to spread files over different file systems / hard drives. You can aggregate storage space without using things like LVM. If you set this to two you have 2 levels of subdirectories. For directory naming: first level, directory names has one letter. Second level has two: letter from upper level + own level. Temporary chunks are stored directly in the final file. No temp folder (!!) Benchmarking between writing small file in potentially huge directory and opening big file and seeking in it was negligable. Can just open final file, seek to location of chunk offset and write data. Removes need to move file in the end.  It can also be "callable". We call the function giving it the file object which hold all properties of the file. Reference to the transfer as well. The function has to return a path under the storage root. This is a path related to storage root. For example: if you want to store small files in a small file directory and big files in big directory. F.ex. if file->size < 100 MB store on fast small disk, if > 100 MB store on big slow disk. Can also be used for functions to store new files on new storage while the existing files remain on existing storage. Note: we need contributions for useful functions here :) 
-</style>
+</span>
 
 
 ---
@@ -322,9 +322,9 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 ---
 ###db_type
 * __description:__ type of database
-* __mandatory:__ <span style="background-color:red">yes</style>
+* __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string, keyword
-* __permissible values__: mysql, pgsql, sqlite (<span style="background-color:orange">taken from PDO drivers documentation, need to check with Etienne)</style>
+* __permissible values__: mysql, pgsql, sqlite (<span style="background-color:orange">taken from PDO drivers documentation, need to check with Etienne)</span>
 * __default:__ pgsql
 * __available:__ since version 1.0
 * __1.x name:__ 
@@ -332,7 +332,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ###db_host
 * __description:__ database host address or name. Typically 127.0.0.1 or localhost.
-* __mandatory:__ <span style="background-color:red">yes</style>
+* __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
 * __default:__ -
 * __available:__ since version 1.0
@@ -341,7 +341,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ###db_port
 * __description:__ port used by database server 
-* __mandatory:__  <span style="background-color:red">yes</style>
+* __mandatory:__  <span style="background-color:red">yes</span>
 * __type:__ string
 * __default:__ -
 * __available:__ since version 1.0
@@ -350,7 +350,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ###db_username
 * __description:__ database username 
-* __mandatory:__ <span style="background-color:red">yes</style>
+* __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
 * __default:__ -
 * __available:__ since version 1.0
@@ -359,7 +359,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ###db_password
 * __description:__ database password 
-* __mandatory:__ <span style="background-color:red">yes</style>
+* __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
 * __default:__ -
 * __available:__ since version 1.0
@@ -423,8 +423,8 @@ User language detection is done in the following order:
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ requires lang_url_enabled to be true.
-* __comment:__ <span style="background-color:orange">if the lang_selector is disabled a user can still select different translations in the email translation page</style>
-* __comment:__ <span style="background-color:orange">how is determined which language the lang selector defaults to when a user enters a page?  Browser setting?  Order in locale.php? </style>
+* __comment:__ <span style="background-color:orange">if the lang_selector is disabled a user can still select different translations in the email translation page</span>
+* __comment:__ <span style="background-color:orange">how is determined which language the lang selector defaults to when a user enters a page?  Browser setting?  Order in locale.php? </span>
 
 ###lang_save_url_switch_in_userpref
 * __description:__ save language switching in user preferences on change (requires lang_url_enabled = true and lang_userpref_enabled = true)
@@ -441,7 +441,7 @@ User language detection is done in the following order:
 ##Email
 ---
 ###email_from
-* __description:__ <span style="background-color:orange">sets the email From: header to either an explicit value or fills it with the sender's email address as received from the identity service provider in the "mail" attribute.  Is this the body From:?</style>
+* __description:__ <span style="background-color:orange">sets the email From: header to either an explicit value or fills it with the sender's email address as received from the identity service provider in the "mail" attribute.  Is this the body From:?</span>
 * __mandatory:__ no
 * __type:__ string or keyword. Permissible value for keyword: "sender"
 * __default:__ -
@@ -459,7 +459,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ###email_reply_to
-* __description:__ <span style="background-color:orange">adds a reply-to: header to emails sent by FileSender.  When users reply to such an email usually the reply is then sent to the reply_to address.  A user would typically reply to an email to ask a question about a file transfer which should go directly to the sender as the sender is the only one who knows.</style>
+* __description:__ <span style="background-color:orange">adds a reply-to: header to emails sent by FileSender.  When users reply to such an email usually the reply is then sent to the reply_to address.  A user would typically reply to an email to ask a question about a file transfer which should go directly to the sender as the sender is the only one who knows.</span>
 * __mandatory:__ no
 * __type:__ string or keyword.  Permissible values for keyword: "sender"
 * __default:__ - 
@@ -477,14 +477,14 @@ User language detection is done in the following order:
 * __comment:__
 
 ###email_return_path
-* __description:__ <span style="background-color:orange">sets the return_path email header to either an explicit value or fills it with the sender's email address as received from the identity service provider in the "mail" attribute. Is this the envelope from??</style>
-* __mandatory:__ <span style="background-color:orange">no</style>
+* __description:__ <span style="background-color:orange">sets the return_path email header to either an explicit value or fills it with the sender's email address as received from the identity service provider in the "mail" attribute. Is this the envelope from??</span>
+* __mandatory:__ <span style="background-color:orange">no</span>
 * __type:__ string or keyword. Permissible value for keyword: "sender"
 * __default:__ -
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ To be SPF compliant set this to an address like "filesender-bounces@yourdomain.dom" and use the bounce-handler script to deal with email bounces.
-</style>
+</span>
 
 ###email_subject_prefix
 * __description:__ the string specified here will be prepended to the subject of all emails sent out.
@@ -500,7 +500,7 @@ User language detection is done in the following order:
 * __mandatory:__ no
 * __type:__ boolean
 * __default:__ true
-* __available:__ <span style="background-color:orange">since version 2.0 (?)</style>
+* __available:__ <span style="background-color:orange">since version 2.0 (?)</span>
 * __1.x name:__
 * __comment:__
 
@@ -522,7 +522,7 @@ User language detection is done in the following order:
 * __default:__ "sender"
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ <span style="background-color:orange">this parameter will get a different name</style>
+* __comment:__ <span style="background-color:orange">this parameter will get a different name</span>
 
 ##General UI
 ###autocomplete
@@ -547,13 +547,13 @@ User language detection is done in the following order:
 * __description:__ how many characters the user needs to type in an email address field to trigger the autocomplete popup.
 * __mandatory:__ no
 * __type:__ int
-* __default:__ 3 <span style="background-color:orange">(might 2 be better?)</style>
+* __default:__ 3 <span style="background-color:orange">(might 2 be better?)</span>
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
 
 ###upload_display_bits_per_sec
-* __description:__ <span style="background-color:orange">if true display upload speed in MBps (megabytes/second).  If false display upload speeds as Mbps (megabits/second) Need to test, reality seems different from documentation</style>
+* __description:__ <span style="background-color:orange">if true display upload speed in MBps (megabytes/second).  If false display upload speeds as Mbps (megabits/second) Need to test, reality seems different from documentation</span>
 * __mandatory:__ no
 * __type:__ boolean
 * __default:__ false
@@ -594,7 +594,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ###chunk_upload_security
-* <span style="background-color:orange">this entire parameter needs to be checked with Etienne</style>
+* <span style="background-color:orange">this entire parameter needs to be checked with Etienne</span>
 * __description:__ controls how FileSender behaves when an upload lasts longer than an authenticated user session.  If set to "key" the web client will use FileUID as a transfer session key.  This transfer session key is valid for as long as the upload lasts independent from the user's login session.  So if a user logs in at some identity provider and that session expires after e.g. 8 hours but the upload lasts for 10 hours, the upload will complete.  If set to "auth" the user will be required to re-logon if their logon session has expired before an upload completed.  __If set to "key" and the user's login session expires before the upload is completed, the user will need to be logged on before redirected to their "My Transfers" page.__
 * __mandatory:__ no
 * __type:__ string keyword
@@ -659,10 +659,10 @@ User language detection is done in the following order:
 * __default:__ 5.  Setting this to 0 is not a wise choice as it will make the timer refresh every millisecond (the min. value for a JavaScript timer)
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ Normally FileSender will use the browser's HTML5 FileAPI functionality for uploading, splitting files in chunks and uploading these chunks.  This allows for uploads of any size.  Older browsers which you may find in a locked-down environment do not support the necessary HTML5 functionality.  For these browsers a legacy fallback upload method is provided.  Before version 2.0 a flash component was used for legacy uploads.  As of version 2.0 this is replaced by a native HTML upload with a limit of 2GB per file.  A user **can** select multiple files but in a less smooth way than with the HTML5 drag & drop box.  The upload progress for legacy uploads is polled from the server (via PHP) based on what has arrived (how many bytes) server side.  <span style="background-color:orange">This only became possible as of PHP version 5.x, released in x</style>
+* __comment:__ Normally FileSender will use the browser's HTML5 FileAPI functionality for uploading, splitting files in chunks and uploading these chunks.  This allows for uploads of any size.  Older browsers which you may find in a locked-down environment do not support the necessary HTML5 functionality.  For these browsers a legacy fallback upload method is provided.  Before version 2.0 a flash component was used for legacy uploads.  As of version 2.0 this is replaced by a native HTML upload with a limit of 2GB per file.  A user **can** select multiple files but in a less smooth way than with the HTML5 drag & drop box.  The upload progress for legacy uploads is polled from the server (via PHP) based on what has arrived (how many bytes) server side.  <span style="background-color:orange">This only became possible as of PHP version 5.x, released in x</span>
 
 ###max_legacy_file_size
-* __description:__ maximum size per file for a legacy upload.  <span style="background-color:orange">With a legacy upload users can upload x files per transfer.</style>.     
+* __description:__ maximum size per file for a legacy upload.  <span style="background-color:orange">With a legacy upload users can upload x files per transfer.</span>.     
 * __mandatory:__ no
 * __type:__ int
 * __default:__ 2147483648 (2GB)
@@ -754,7 +754,7 @@ User language detection is done in the following order:
 * __default:__ 0
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ user quote can be implemented in a much more flexible way as well.  As we're doing lazy loading of configuration parameters we can change this value (and max. file size) based on user profile.  In stead of defining this config parameter with a number you can give a function to it.  The value returned by this function is cached for a login session.  For example a function that uses eduPersonAffiliation can give a "student" 10 GB and "faculty" 1 TB.  You could also change max. days valid based on user profile.  The function can use the current application state and user session to compute the value for a logged in user, because the function would run after everything else.  <span style="background-color:orange">Calculated maximum values should have its own chapter to explain, with examples especially for using eduPersonAffiliation.</style>
+* __comment:__ user quote can be implemented in a much more flexible way as well.  As we're doing lazy loading of configuration parameters we can change this value (and max. file size) based on user profile.  In stead of defining this config parameter with a number you can give a function to it.  The value returned by this function is cached for a login session.  For example a function that uses eduPersonAffiliation can give a "student" 10 GB and "faculty" 1 TB.  You could also change max. days valid based on user profile.  The function can use the current application state and user session to compute the value for a logged in user, because the function would run after everything else.  <span style="background-color:orange">Calculated maximum values should have its own chapter to explain, with examples especially for using eduPersonAffiliation.</span>
 
 
 
@@ -787,7 +787,7 @@ User language detection is done in the following order:
 * __default:__ 6
 * __available:__ since version 1.6
 * __1.x name:__ terasender_workerCount
-* __comment:__ <span style="background-color:orange">we need to check maximum webworker counts for standard browsers and possibly increase the default number</style>
+* __comment:__ <span style="background-color:orange">we need to check maximum webworker counts for standard browsers and possibly increase the default number</span>
 
 ###terasender_start_mode
 * __description:__ progress sequentially or parallel through the file list.
@@ -798,7 +798,7 @@ User language detection is done in the following order:
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ when looking for a file to put a worker on in multiple mode we look at file which has compbination of least worker and least progress.  Try to put available worker on file that is the slowest.  In multiple-mode we try to make all files progress at about the same speed.
-<span style="background-color:orange">when set to "single" uploads don't work?  Bug?</style>
+<span style="background-color:orange">when set to "single" uploads don't work?  Bug?</span>
 
 ###stalling_detection
 * __description:__ detect whether an upload stalls
@@ -813,7 +813,7 @@ User language detection is done in the following order:
 ##Download
 ---
 ###download_chunk_size
-* __description:__ the maximum amount of data that will be read into <span style="background-color:orange">(server or client side?)</style> memory at once during multi-file downloads (not single file?)
+* __description:__ the maximum amount of data that will be read into <span style="background-color:orange">(server or client side?)</span> memory at once during multi-file downloads (not single file?)
 * __mandatory:__ <span style="background-color:orange">?<span style="background-color:orange">
 * __type:__ int
 * __default:__ 5242880 (5MB)
@@ -822,8 +822,8 @@ User language detection is done in the following order:
 * __comment:__
 
 ###mac_unzip_name
-* __description:__ <span style="background-color:orange">per oktober 2014 the default Mac built-in unzip client is still 32 bits. This leads to problems if the zip file that's downloaded when downloading multiple-files-as-an-archive is larger than 2 GB: a user can click on the zip file but it won't expand into a folder. To prevent help desk calls we alert a user to this problem and give them a place where they can go for the solution. (need double check for Yosemite)</style>
-* __mandatory:__ <span style="background-color:orange">? Should be?)</style>
+* __description:__ <span style="background-color:orange">per oktober 2014 the default Mac built-in unzip client is still 32 bits. This leads to problems if the zip file that's downloaded when downloading multiple-files-as-an-archive is larger than 2 GB: a user can click on the zip file but it won't expand into a folder. To prevent help desk calls we alert a user to this problem and give them a place where they can go for the solution. (need double check for Yosemite)</span>
+* __mandatory:__ <span style="background-color:orange">? Should be?)</span>
 * __type:__ string
 * __default:__ The Unarchiver
 * __available:__ since version 2.0
@@ -832,7 +832,7 @@ User language detection is done in the following order:
 
 ###mac_unzip_link
 * __description:__ link in download form where user can download a 64 bit unzip utility for Mac OS-X
-* __mandatory:__ <span style="background-color:orange">? </style>
+* __mandatory:__ <span style="background-color:orange">? </span>
 * __type:__ string
 * __default:__ http://unarchiver.c3.cx/unarchiver
 * __available:__ since version 2.0
@@ -845,7 +845,7 @@ User language detection is done in the following order:
 ##Guest use
 ---
 ###guest_options
-* __description:__ <span style="background-color:orange">are transfer options for guest invitations inherited from transfer_options?</style>this parameter controls which options a user has available in the Guest form to control the behaviour of guest invitations.  Options show up in the right hand side block in the Guest form. Options appear in the order they are specified in the config file. See below for details.
+* __description:__ <span style="background-color:orange">are transfer options for guest invitations inherited from transfer_options?</span>this parameter controls which options a user has available in the Guest form to control the behaviour of guest invitations.  Options show up in the right hand side block in the Guest form. Options appear in the order they are specified in the config file. See below for details.
 * __mandatory:__ no
 * __type:__ array
 * __default:__ 
@@ -923,7 +923,7 @@ User language detection is done in the following order:
 * __default:__ saml
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ <span style="background-color:orange">to use type "fake" you need ...</style>
+* __comment:__ <span style="background-color:orange">to use type "fake" you need ...</span>
 
 ###session_cookie_path
 * __description:__ Explicitly sets the session.cookie.path parameter for the authentication cookies.  You typically need this if you use SimpleSAMLphp for authentication and have multiple FileSender instances using the same SimpleSAMLphp installation.  Shibboleth has its own session identifier mechanism and you probably won't need to change the session_cookie_path when using Shibboleth. 
@@ -941,7 +941,7 @@ User language detection is done in the following order:
 * __default:__ false
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ <span style="background-color:orange">is this still in use?  There is no code associated with it as far as I can tell</style>
+* __comment:__ <span style="background-color:orange">is this still in use?  There is no code associated with it as far as I can tell</span>
 
 ##Authentication: SimpleSAMLphp
 ---
@@ -1119,9 +1119,9 @@ User language detection is done in the following order:
 *__*Available targets:*__ 
 	* __'type' => 'file'__ logs to a file.  You must specify a path.  You can optionally specify log file rotation with 'rotate' => '<value>', where value can be hourly, daily, weekly, monthly, yearly. 
 	* __'type' => 'syslog'__ logs to syslog.  
-	* __'type' => 'errror_log'__ logs to the default PHP log facility as defined in your webserver's PHP module.</style>
+	* __'type' => 'errror_log'__ logs to the default PHP log facility as defined in your webserver's PHP module.</span>
 	
-<span style="background-color:orange">* __*Examples:*__</style>
+<span style="background-color:orange">* __*Examples:*__</span>
 examples for tpye file with different log rotations
 examles for type syslog
 
@@ -1146,7 +1146,7 @@ type syslog.  indent, facility.  Facility sets the syslog facility used.  Standa
 
 callable (advanced): "I give you something you can call to log".  There is one mandatory parameter "callback" which must be a php function.  That will be called every time you want to log something. Level and process can be set as well.  When it's called it will get the message to log and the current process.  1st argument will be message, 2nd argument process type.  Can name them A and B.  CAn be useful if you're searching for a particular error or for example use remote log facility.  Search for particular error: write specific function to catch specific errors and drop an email when it happens.
 
-different options for different types.</style>
+different options for different types.</span>
 	
 ###maintenance
 * __description:__ when true, switches the FileSender instance in maintenance mode.  This allows to interrupt the service for a database upgrade or webserver restart without breaking ongoing uploads.
@@ -1166,7 +1166,7 @@ different options for different types.</style>
 * __comment:__
 	
 ###statlog_lifetime
-* __description:__ The statlog is kept in the database and contains everything needed to produce usage statistics.  This directive defines maximum lifetime of statslog entries (in days) after which they get deleted.  <span style="background-color:orange">point to more text detailing what is actuallly logged in the statlog!</style>
+* __description:__ The statlog is kept in the database and contains everything needed to produce usage statistics.  This directive defines maximum lifetime of statslog entries (in days) after which they get deleted.  <span style="background-color:orange">point to more text detailing what is actuallly logged in the statlog!</span>
 * __mandatory:__ no
 * __type:__ int (days)
 * __default:__ 0
@@ -1184,7 +1184,7 @@ final name to raw attribute name pair or final name to callable getter pair
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
-* __example:__ <span style="background-color:orange">need an example here!</style>
+* __example:__ <span style="background-color:orange">need an example here!</span>
 
 ###auth_sp_save_user_additional_attributes
 * __description:__ if set to true, the additional user attributes are saved in the userpreferences table.  
@@ -1193,7 +1193,7 @@ final name to raw attribute name pair or final name to callable getter pair
 * __default:__ false
 * __available:__ since version 2.0
 * __1.x name:__ 
-* __comment:__ <span style="background-color:orange">what was the point of this again?</style>
+* __comment:__ <span style="background-color:orange">what was the point of this again?</span>
 * __example:__ ...
 
 ###statlog_log_user_additional_attributes
@@ -1215,7 +1215,7 @@ only)
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
-* __example:__ <span style="background-color:orange">needs example!</style>
+* __example:__ <span style="background-color:orange">needs example!</span>
 
 ###auditlog_lifetime
 * __description:__ The auditlog is kept in the database and contains all events for a transfer.  This information can be used to tell the user what happened to their transfer when.  This directive specifies the maximum lifetime of auditlog entries (in days).  If set to 0 we remove data when the transfer is closed, after sending reports (if user indicated they wanted).  As long as transfer is live you have this data, as soon as transfer expires the log disappears.  If you set it to "false" we don't log anything and a user can't even see the logs when a transfer is live.
@@ -1247,7 +1247,7 @@ only)
 * __default:__ false (not explicit)
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ <span style="background-color:orange">needs to be elaborated more.  Consequences of setting to true</style>
+* __comment:__ <span style="background-color:orange">needs to be elaborated more.  Consequences of setting to true</span>
 
 ###remote_applications
 * __description:__  list of remote applications.  This is an array where each entry includes an authentication secret, whether or not the application has admin rights and what methods the application is allowed to use: 
@@ -1257,10 +1257,10 @@ only)
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ <span style="background-color:orange">needs more work.  Example:
-array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boolean OU array (pair de nom de méthode et de valeurs d'accès.  ex: get => TRUE, post => FALSE      Explained in more detail in API documentation page.</style>
+array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boolean OU array (pair de nom de méthode et de valeurs d'accès.  ex: get => TRUE, post => FALSE      Explained in more detail in API documentation page.</span>
 
 ###auth_remote_user_autogenerate_secret
-* __description:__ <span style="background-color:orange">ask etienne how this works</style>
+* __description:__ <span style="background-color:orange">ask etienne how this works</span>
 * __mandatory:__ no
 * __type:__ boolean
 * __default:__ false
@@ -1276,7 +1276,7 @@ array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boo
 * __available:__ since version 2
 * __1.x name:__
 * __comment:__ the parameter needs an array of strings.  The strings are configuration parameters you want to appear in the "info" webservice endpoint.  You can also give it static strings that have a specific meaning for you, like "version 2.0".
-* __example:__ <span style="background-color:orange">example comes here.</style>
+* __example:__ <span style="background-color:orange">example comes here.</span>
 
 ###rest_allow_jsonp
 * __description:__ Define additional REST-API end points JSONP can be called upon. JSONP is typically used when using FileSender in an iframe. We limit which API end points you can reach in such a scenario but give you the option of enlarging that set of API end points in case you need this.  
@@ -1317,7 +1317,7 @@ $config['rest_allow_jsonp'] = array(
 
 ###config_overrides
 * experimental feature in 2.0, not tested
-* __description:__ <span style="background-color:orange">In version 2.0 you can create virtual FileSender instances (see the administrator guide.  Todo: write how to do this in the admin guide!)</style>.  With the config_overrides directive you specify the list of parameters an admin for a virtual FileSender instance you can override from admin interface.  When you set this parameter a "Config" tab becomes visible in the Admin tab in your FileSender UI. If you have one instance you can use this to separate roles between system admin and filesender admin.  You can also use this to automate FileSender virtual instance deployment.
+* __description:__ <span style="background-color:orange">In version 2.0 you can create virtual FileSender instances (see the administrator guide.  Todo: write how to do this in the admin guide!)</span>.  With the config_overrides directive you specify the list of parameters an admin for a virtual FileSender instance you can override from admin interface.  When you set this parameter a "Config" tab becomes visible in the Admin tab in your FileSender UI. If you have one instance you can use this to separate roles between system admin and filesender admin.  You can also use this to automate FileSender virtual instance deployment.
 * __mandatory:__ no
 * __type:__ array of key-value pairs
 * __default:__ 0, null, empty string: you won't get the config tab in the admin interface.  Any previously done override will be ignored.  They're not lost but no longer applied.
