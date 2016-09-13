@@ -334,7 +334,7 @@ On **Debian**, run:
 
 ## FileSender as main page
 
-If you don’t want your users to have to type `/filesender` after the hostname, you can add the following line to your filesender Apache configuration:
+If you don't want your users to have to type `/filesender` after the hostname, you can add the following line to your filesender Apache configuration:
 
 	RedirectMatch ^/(?!filesender/|simplesaml/)(.*) https://filesender.example.org/filesender/$1
 
