@@ -15,11 +15,15 @@ This is the installation documentation for installing the **FileSender 2.0-alpha
 
 ### This documentation was tested with:
 
-* RedHat/CentOS (7)* Debian (8, Jessie)
+* RedHat/CentOS (7)
+* Debian (8, Jessie)
 
 ### FileSender depends on:
 
-* SimpleSamlPhp 1.13 or newer.* Apache and PHP from your distribution.* A PostgreSQL or MySQL database.* A big filesystem.
+* SimpleSamlPhp 1.13 or newer.
+* Apache and PHP from your distribution.
+* A PostgreSQL or MySQL database.
+* A big filesystem.
 
 See https://www.assembla.com/wiki/show/file_sender/Requirements for all requirements.
 
@@ -46,21 +50,31 @@ Or install the Git package on Debian:
 
 Install the FileSender 2.0-alpha branch from the GIT repository:
 
-	cd /opt/filesender/ git clone https://git.assembla.com/file_sender.git filesender-2.0 ln -s filesender-2.0/ filesender
+	cd /opt/filesender/
+	git clone https://git.assembla.com/file_sender.git filesender-2.0
+	ln -s filesender-2.0/ filesender
 
 Initialise config file and set permissions right. Make the files, tmp and log directories writable by the web daemon user (`apache` on RedHat/CentOS, `www-data` on Debian), copy the config file in place from the template and allow the web daemon user to read the config.php configuration file:
 
 On RedHat/CentOS/Debian, run:
 
-	cd /opt/filesender/filesender cp config/config_sample.php config/config.php chmod o-rwx tmp files log config/config.php
+	cd /opt/filesender/filesender
+	cp config/config_sample.php config/config.php
+	chmod o-rwx tmp files log config/config.php
 
 On RedHat/CentOS, run:
 
-	chown apache:apache tmp files log chgrp apache config/config.php semanage fcontext -a -t httpd_sys_content_t '/opt/filesender(/.*)?' semanage fcontext -a -t httpd_sys_rw_content_t '/opt/filesender/(log|tmp|files)(/.*)?' setsebool httpd_can_sendmail on restorecon -R /opt/filesender
+	chown apache:apache tmp files log
+	chgrp apache config/config.php
+	semanage fcontext -a -t httpd_sys_content_t '/opt/filesender(/.*)?'
+	semanage fcontext -a -t httpd_sys_rw_content_t '/opt/filesender/(log|tmp|files)(/.*)?'
+	setsebool httpd_can_sendmail on
+	restorecon -R /opt/filesender
 
 On Debian, run:
 
-	chown www-data:www-data tmp files log chgrp www-data config/config.php
+	chown www-data:www-data tmp files log
+	chgrp www-data config/config.php
 
 **NOTE**: We ship the FileSender tarball with `config_sample.php` rather than `config.php` to make life easier when building RPMs and DEBs.
 
@@ -72,19 +86,27 @@ SimpleSAMLphp helps you use nearly any authentication mechanism you can imagine.
 
 [Download SimpleSamlPhp 1.14.2](https://simplesamlphp.org/res/downloads/simplesamlphp-1.14.2.tar.gz). Other [(later or older) versions](https://simplesamlphp.org/archive) will probably work but we tested with version 1.14.2.
 
-	cd /root mkdir filesender cd filesender wget https://simplesamlphp.org/res/downloads/simplesamlphp-1.14.2.tar.gz
+	cd /root
+	mkdir filesender
+	cd filesender
+	wget https://simplesamlphp.org/res/downloads/simplesamlphp-1.14.2.tar.gz
 
 **NOTE**: you will of course remember to check [the sha1 hash of the tar file](https://simplesamlphp.org/archive), right?
 
 Extract it in a suitable directory and create symlink:
 
-	mkdir /opt/filesender/ cd /opt/filesender tar xvzf /root/filesender/simplesamlphp-1.14.2.tar.gz ln -s simplesamlphp-1.14.2/ simplesaml
+	mkdir /opt/filesender/
+	cd /opt/filesender
+	tar xvzf /root/filesender/simplesamlphp-1.14.2.tar.gz
+	ln -s simplesamlphp-1.14.2/ simplesaml
 
 **SECURITY NOTE**: we only want *the user interface files* to be directly accessible for the world through the web server, not any of the other files. We will not extract the SimpleSAMLphp package in the `/var/www` directory (the standard Apache document root) but rather in a specific `/opt` tree. We'll point to the SimpleSAML web root with a web server alias.
 
 Copy standard configuration files to the right places:
 
-	cd /opt/filesender/simplesaml cp -r config-templates/*.php config/ cp -r metadata-templates/*.php metadata/
+	cd /opt/filesender/simplesaml
+	cp -r config-templates/*.php config/
+	cp -r metadata-templates/*.php metadata/
 
 To tailor your [SimpleSAMLphp](http://simplesamlphp.org/) installation to match your local site's needs please check its [installation and configuration documentation](http://simplesamlphp.org/docs). When connecting to an Identity provider make sure all the required attributes are sent by the identity provider. See the section on [IdP attributes](https://www.assembla.com/wiki/show/file_sender/Administrator_reference_manual#idp_attributes) in the Reference Manual for details.
 
@@ -94,13 +116,24 @@ To tailor your [SimpleSAMLphp](http://simplesamlphp.org/) installation to match 
 
 Create a configuration file for FileSender. This file is located in one of these locations:
 
-* /etc/httpd/conf.d/filesender.conf (RedHat/CentOS)* /etc/apache2/sites-available/filesender.conf (Debian)
+* /etc/httpd/conf.d/filesender.conf (RedHat/CentOS)
+* /etc/apache2/sites-available/filesender.conf (Debian)
 
 The contents of the file must be as follows:
 
-	Alias /simplesaml /opt/filesender/simplesaml/www <Directory "/opt/filesender/simplesaml/www"> Options None AllowOverride None Require all granted </Directory>
+	Alias /simplesaml /opt/filesender/simplesaml/www
+	<Directory "/opt/filesender/simplesaml/www">
+		Options None
+		AllowOverride None
+		Require all granted
+	</Directory>
 
-	Alias /filesender /opt/filesender/filesender/www <Directory "/opt/filesender/filesender/"> Options SymLinksIfOwnerMatch AllowOverride None Require all granted </Directory>
+	Alias /filesender /opt/filesender/filesender/www
+	<Directory "/opt/filesender/filesender/">
+		Options SymLinksIfOwnerMatch
+		AllowOverride None
+		Require all granted
+	</Directory>
 
 On Debian you must enable your configuration, run:
 
@@ -178,7 +211,8 @@ Ensure the php temporary upload directory points to a location with enough space
 
 	upload_tmp_dir = /tmp
 
-**NOTE**: You probably want to point this to the same directory you will use as your HTML5 upload temp directory (`$config['site_temp_filestore']`).**NOTE**: that this setting is for all PHP-apps, not only for filesender.
+**NOTE**: You probably want to point this to the same directory you will use as your HTML5 upload temp directory (`$config['site_temp_filestore']`).
+**NOTE**: that this setting is for all PHP-apps, not only for filesender.
 
 Turn on logging:
 
@@ -240,23 +274,28 @@ Example `/etc/fstab` line:
 
 ### SEbooleans
 
-#### httpd_can_sendmailMUST be on for Apache to be able to send mail.
+#### httpd_can_sendmail
+MUST be on for Apache to be able to send mail.
 
 	setsebool httpd_can_sendmail on
 
-#### httpd_use_nfsMUST be off, use `context=system_u:object_r:httpd_sys_rw_content_t:s0` as a mount option instead if you use NFS.
+#### httpd_use_nfs
+MUST be off, use `context=system_u:object_r:httpd_sys_rw_content_t:s0` as a mount option instead if you use NFS.
 
 	setsebool httpd_use_nfs off
 
-#### httpd_can_network_connect_dbMAY be on, if you do not run the database on the local host.
+#### httpd_can_network_connect_db
+MAY be on, if you do not run the database on the local host.
 
-	setsebool httpd_can_network_connect_db on setsebool httpd_can_network_connect_db off
+	setsebool httpd_can_network_connect_db on
+	setsebool httpd_can_network_connect_db off
 
 ## HTTPS Only
 
 Its good practice to disallow plain HTTP traffic and allow HTTPS only. Make a file in one of the following locations:
 
-* /etc/httpd/conf.d/000-forcehttps.conf (**RedHat/CentOS**)* /etc/apache2/sites-available/000-forcehttps.conf (**Debian**)
+* /etc/httpd/conf.d/000-forcehttps.conf (**RedHat/CentOS**)
+* /etc/apache2/sites-available/000-forcehttps.conf (**Debian**)
 
 Add the following:
 
