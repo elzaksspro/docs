@@ -36,7 +36,8 @@ On RedHat/CentOS, run:
 
 On Debian, run:
 
-	# Debian apt-get install -y apache2 php5 libapache2-mod-php5
+	# Debian
+	apt-get install -y apache2 php5 libapache2-mod-php5
 
 # Step 2 - Install the FileSender package
 
