@@ -1,12 +1,11 @@
 # Summary
 
 * [Home](README.md)
-* [Documentation v2.0-alpha](documentation-v20-alpha.md)
-    * [Installation - Linux Source 2.0-alpha from Git](installation---linux-source-20-alpha-from-git.md)
-    * [Development upgrade notes](development-upgrade-notes.md)
-    * [Admin - Configuration directives](admin---configuration-directives.md)
-    * Admin - Reference guide
-    * [RESTful API](restful-api-v20.md)
-    * [Language handling and localisation reference](language-handling-and-localisation-reference-20.md)
-    * Detailed feature list
-
+* [Documentation v2.0-alpha](v2.0/README.md)
+	* [Installation - Linux Source 2.0-alpha from Git](v2.0/install/README.md)
+	* [Development upgrade notes](v2.0/development-upgrade-notes/README.md)
+	* [Admin - Configuration directives](v2.0/admin/configuration/README.md)
+	* [Admin - Reference guide](v2.0/admin/reference/README.md)
+	* [RESTful API](v2.0/rest/README.md)
+	* [Language handling and localisation reference](v2.0/i38n/README.md)
+	* [Detailed feature list](v2.0/features/README.md)
