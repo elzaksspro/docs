@@ -31,12 +31,10 @@ See https://www.assembla.com/wiki/show/file_sender/Requirements for all requirem
 
 On RedHat/CentOS, run:
 
-	# RedHat/CentOS
 	yum install -y httpd mod_ssl php php-mbstring php-xml
 
 On Debian, run:
 
-	# Debian
 	apt-get install -y apache2 php5 libapache2-mod-php5
 
 # Step 2 - Install the FileSender package
@@ -118,8 +116,8 @@ To tailor your [SimpleSAMLphp](http://simplesamlphp.org/) installation to match 
 
 Create a configuration file for FileSender. This file is located in one of these locations:
 
-* /etc/httpd/conf.d/filesender.conf (RedHat/CentOS)
-* /etc/apache2/sites-available/filesender.conf (Debian)
+* **/etc/httpd/conf.d/filesender.conf** (RedHat/CentOS)
+* **/etc/apache2/sites-available/filesender.conf** (Debian)
 
 The contents of the file must be as follows:
 
@@ -202,7 +200,7 @@ Create the filesender database:
 
 ## Automatic
 
-A sample settings file is provided with FileSender in **config-templates/filesender-php.ini**. If you don't feel like manually editing your php.ini file, copy the filesender-php.ini file to your **/etc/php.d/** (**RedHat/CentOS**) or **/etc/php5/apache2/conf.d/** (**Debian**) directory to activate those settings.
+A sample settings file is provided with FileSender in **config-templates/filesender-php.ini**. If you don't feel like manually editing your php.ini file, copy the filesender-php.ini file to your **/etc/php.d/** (RedHat/CentOS) or **/etc/php5/apache2/conf.d/** (Debian) directory to activate those settings.
 
 On **RedHat/CentOS**, run:
 
@@ -315,8 +313,8 @@ MAY be on, if you do not run the database on the local host.
 
 Its good practice to disallow plain HTTP traffic and allow HTTPS only. Make a file in one of the following locations:
 
-* /etc/httpd/conf.d/000-forcehttps.conf (**RedHat/CentOS**)
-* /etc/apache2/sites-available/000-forcehttps.conf (**Debian**)
+* **/etc/httpd/conf.d/000-forcehttps.conf** (RedHat/CentOS)
+* **/etc/apache2/sites-available/000-forcehttps.conf** (Debian)
 
 Add the following:
 
