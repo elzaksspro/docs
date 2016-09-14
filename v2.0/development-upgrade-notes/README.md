@@ -4,7 +4,6 @@ Development notes on all changes that happened in version 2.0.  These will be ta
 
 * The 2.0 database initialisation script populates the filesender database with tables based on the class definitions.  This means the database initialisation script and FileSender can now detect whether the database contains the appropriate tables and fields.  This also means you do the database initialisation after the FileSender configuration
 
-
 # Config directives that no longer exist
 
 * customCSS: overrides in skin directory.  Override by add default.css or style.css in skin directory.  In order to lib_  jquery_ui.css (font awesome), css_default.css, skin_styles.css.  Have to create a styles.css under skin directory. (can be named otherwise).  In future can also add scripts.js to skin directory to allow for local extra javascripts.  If there is a logo.png file in skin directory it will be used as backdrop.  Otherwise use logo file in image directory.  Allows customise filesender and not lose things when update.  Document purpose of skin directory.  And need to document templates.

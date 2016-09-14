@@ -142,8 +142,6 @@ Checks to ensure file integrity
 
 Each template uses "Foundation".  There are template overrides.
 
-
-
 When you want to override css or add script, like for Fonts: create skin directory in www/skin and put it there.  CSS must be named "styles.css".  In skin: skin/script.js and styles.css are immediately interpreted by FileSender.  Can have other scripts, but must include them in your files or tweak templates/header.php to include them.  Can copy it in config/templates/header.php and tweak there.  Start of page with HTML headers etc.  Can add scripts and styles you want there.
 
 ## html template engine
@@ -155,9 +153,7 @@ examples of sendmail and postfix
 
 Add possibility to forward feedback with non-detectable type but identified related target (recipient, guest) to person of choice.
 
-
 Related config parameter is "relay_unknown_feedbacks" (string, defaults to "sender") :
-
 
 - "sender" : relay to recipient's transfer owner or guest owner
 
@@ -166,7 +162,6 @@ Related config parameter is "relay_unknown_feedbacks" (string, defaults to "send
 - "support" : relay to help_url if it is in the form of "mailto:someaddress@domain.tld"
 
 - "someaddress@domain.tld" : choosen email address
-
 
 Received feedback is forwarded as a message/rfc822 attachment.
 
@@ -216,7 +211,6 @@ In debug, why do I see error reports about simplesaml classes not being found?
 8. It finds it
 
 9. PHP is happy
-
 
 PHP cannot magically consider a class to be part of a software from its name, not reliable enough, so it tries to resolve it using its default classpaths and provided autoloaders.
 

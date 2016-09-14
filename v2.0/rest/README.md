@@ -14,7 +14,6 @@ Accessible to : [users](#user).
 
 Returns an `array of Transfer`, see [Transfer](#transfer).
 
-
 ### GET /transfer/@all
 
 List of all available transfers (admin only).
@@ -22,7 +21,6 @@ List of all available transfers (admin only).
 Accessible to : [admin](#admin).
 
 Returns an `array of Transfer`, see [Transfer](#transfer).
-
 
 ### GET /transfer/{id}
 
@@ -93,7 +91,6 @@ Response example :
 		]
 	}
 
-
 ### GET /transfer/{id}/options
 
 Get the options of a specific [Transfer](#transfer).
@@ -105,7 +102,6 @@ Parameters :
 * `id` (`integer`) transfer unique identifier
 
 Returns an `array of string`, see [Transfer](#transfer).
-
 
 ### GET /transfer/{id}/auditlog
 
@@ -121,7 +117,6 @@ Returns an `array of Audit log`, see [Audit log](#audit_log).
 
 Returned array will be empty if the audit logging is turned off.
 
-
 ### GET /transfer/{id}/auditlog/mail
 
 Sends the [Audit logs](#audit_log) of a specific [Transfer](#transfer) to the current user by email.
@@ -133,7 +128,6 @@ Parameters :
 * `id` (`integer`) transfer unique identifier
 
 Returns `true`.
-
 
 ### POST /transfer
 
@@ -238,7 +232,6 @@ Response example :
 		]
 	}
 
-
 ### POST /transfer/{id}/recipient
 
 Add a recipient to a specific [Transfer](#transfer).
@@ -256,7 +249,6 @@ Request body fields :
 Returns a [Recipient](#recipient) object.
 
 Returns a `Location` HTTP header giving the path to the new [Recipient](#recipient).
-
 
 ### PUT /transfer/{id}
 
@@ -288,7 +280,6 @@ Response example :
 
 	true
 
-
 ### DELETE /transfer/{id}
 
 Close a specific [Transfer](#transfer).
@@ -300,7 +291,6 @@ Parameters :
 * `id` (`integer`) transfer unique identifier
 
 Returns `true`.
-
 
 ## File
 
@@ -315,7 +305,6 @@ Parameters :
 * `id` (`integer`) file unique identifier
 
 Returns a [File](#file).
-
 
 ### POST /file/{id}/whole
 
@@ -334,7 +323,6 @@ The request body can also contain a field whose name is the same as the server's
 Returns the [File](#file).
 
 Returns a `Location` HTTP header giving the path to the [File](#file).
-
 
 ### PUT /file/{id}/chunk/{offset}
 
@@ -379,7 +367,6 @@ Response example :
 		"sha1": null
 	}
 
-
 ### PUT /file/{id}
 
 Update a [File](#file).
@@ -395,7 +382,6 @@ Request body fields :
 * `complete` : (`boolean`) if set to `true` this signals the server that all chunks for the file have been uploaded
 
 Returns `true`.
-
 
 ### DELETE /file/{id}
 
@@ -413,7 +399,6 @@ If the [Transfer](#transfer) only had the current [File](#file) it will be close
 
 Returns `true`.
 
-
 ## Recipient
 
 ### GET /recipient/{id}
@@ -427,7 +412,6 @@ Parameters :
 * `id` (`integer`) recipient unique identifier
 
 Returns a [Recipient](#recipient).
-
 
 ### DELETE /recipient/{id}
 
@@ -445,7 +429,6 @@ If the [Transfer](#transfer) only had the current [Recipient](#recipient) it wil
 
 Returns `true`.
 
-
 ## Guest
 
 ### GET /guest
@@ -456,7 +439,6 @@ Accessible to : [users](#user).
 
 Returns an `array of Guest`, see [Guest](#guest).
 
-
 ### GET /guest/@all
 
 List of all available [Guests](#guest).
@@ -464,7 +446,6 @@ List of all available [Guests](#guest).
 Accessible to : [admin](#admin).
 
 Returns an `array of Guest`, see [Guest](#guest).
-
 
 ### GET /guest/{id}
 
@@ -477,7 +458,6 @@ Parameters :
 * `id` (`integer`) guest unique identifier
 
 Returns a [Guest](#guest).
-
 
 ### POST /guest
 
@@ -538,7 +518,6 @@ Response example :
 		"errors": []
 	}
 
-
 ### PUT /guest/{id}
 
 Update a specific [Guest](#guest).
@@ -567,7 +546,6 @@ Response example :
 
 	true
 
-
 ### DELETE /guest/{id}
 
 Delete a [Guest](#guest).
@@ -582,7 +560,6 @@ The [Guest](#guest) will be notified.
 
 Returns `true`.
 
-
 ## User
 
 ### GET /user/@me/frequent_recipients
@@ -594,7 +571,6 @@ Accessible to : [users](#user).
 This endpoint can filter its response with the `filterOp[contains]` filter, example : `GET /user/@me/frequent_recipients?filterOp[contains]=foo`.
 
 Returns an `array of string`.
-
 
 ### GET /user/{id}/frequent_recipients
 
@@ -610,7 +586,6 @@ This endpoint can filter its response with the `filterOp[contains]` filter, exam
 
 Returns an `array of string`.
 
-
 ### PUT /user
 
 Set current user preferences.
@@ -622,7 +597,6 @@ Request body fields :
 * `lang` : (`string`) lang code of user's prefered language
 
 Returns `true`.
-
 
 ### PUT /user/{id}
 
@@ -640,7 +614,6 @@ Request body fields :
 
 Returns `true`.
 
-
 ## Misc endpoints
 
 ### GET /info
@@ -656,7 +629,6 @@ The set of returned informations depends on the `disclose` configuration paramet
 At the very least the `url` property is set and contains the URL of the FileSender instance.
 
 This enpoint may be queried in order to know useful configuration parameters for uploading like `upload_chunk_size`, `default_transfer_days_valid` or more when they are disclosed.
-
 
 ### PUT /config
 
@@ -675,13 +647,11 @@ Returns an `object` :
 * `start_time` (`integer`) UNIX timestamp of when the server started receiving data
 * `bytes_processed` (`integer`) number of bytes already received
 
-
 ### GET /lang
 
 Get translations (merged between default language, configured language and maybe user preference or browser language).
 
 Returns an `object` whose keys are string identifiers and values are the translation related to them.
-
 
 ### GET /echo
 
@@ -697,7 +667,6 @@ Returns `object` :
 * `auth` : (`object`)
 	* `remote` : (`boolean`) is the detected authentication a [Remote Application](#remote_application) or a [Remote User](#remote_user)
 	* `attr` : (`object`) authentication attributes
-
 
 # Errors
 
@@ -722,7 +691,6 @@ Example :
 		"uid": "57gf523gsdfg3"
 	}
 
-
 # Objects fields definition
 
 ## Transfer
@@ -738,7 +706,6 @@ Example :
 * `files` : (`array of File`) see [File](#file)
 * `recipients` : (`array of Recipient`) see [Recipient](#recipient)
 
-
 ## File
 
 * `id` : (`integer`) file unique identifier
@@ -747,7 +714,6 @@ Example :
 * `name` : (`string`) file original name
 * `size` : (`integer`) file size in bytes
 * `sha1` : (`string`) file hash, unused, unset @TODO should we remove it until we have a viable technical solution ?
-
 
 ## Recipient
 
@@ -760,7 +726,6 @@ Example :
 * `options` : (`null`) unused, unset @TODO what was it for ?
 * `download_url` : (`string`) Download page URL
 * `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
-
 
 ## Guest
 
@@ -778,13 +743,11 @@ Example :
 * `expires` : (`Date`) expiry [Date](#date)
 * `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
 
-
 ## Tracking error
 
 * `type` : (`string`) error type (values defined in `classes/constants/TrackingEventTypes.class.php`)
 * `date` : (`Date`) error [Date](#date)
 * `details` : (`string`) technical details about what hapenned
-
 
 ## Audit log
 
@@ -802,12 +765,10 @@ Example :
 	* `size` : (`integer`) size in bytes if `type` is `File` (not provided otherwise)
 	* `email` : (`string`) email address if `type` is `Recipient` (not provided otherwise)
 
-
 ## Date
 
 * `raw` : (`integer`) unix timestamp
 * `formatted` : (`string`) human readable version according to lang configuration
-
 
 # Authentication
 
@@ -819,16 +780,13 @@ Anybody authenticated through a Service provider, a [Remote User](#remote_user) 
 
 Authentication through using [Recipient](#recipient) token is not considered as beeing a user.
 
-
 ### Owner
 
 An authenticated user who is owner of the current resource ([Admin](#admin) is considered as owner of everything).
 
-
 ### Admin
 
 An authenticated user whose `id` is listed in the `admin` configuration parameter, or a [Remote Application](#remote_application) whose configuration include the `isAdmin` entry set to `true`.
-
 
 ## Authentication evaluation workflow
 
@@ -839,18 +797,15 @@ The servers look up for authentication in this order and stops on the first dete
 3. [Remote application](#remote_application) (if enabled)
 4. [Remote user](#remote_user) (if enabled)
 
-
 ## Guest token
 
 This mode requires a `vid` URL argument corresponding to an existing [Guest](#guest).
 
 This mode has restricted rights in most of the application.
 
-
 ## Service Provider
 
 This mode requires the configured service provider to return a valid authentication.
-
 
 ## Remote application
 
@@ -860,13 +815,11 @@ This mode expects a [signed request](#signed_request) and a `remote_application`
 
 Additionnaly if a `remote_user` argument is provided all opérations will be conducted with this identity.
 
-
 ## Remote user
 
 This mode is intended to give users to possibility to create a trust between another of their application and their "account" on FileSender, like a mail client beeing able to send big attachments through FileSender.
 
 This mode expects a [signed request](#signed_request) and a `remote_user` URL argument.
-
 
 ## Signed request
 
@@ -925,11 +878,9 @@ Sample PHP code :
 
 	// Send request with curl with $method to $url and $body content
 
-
 ### More information
 
 You will find an sample client under `scripts/client/FilesenderRestClient.class.php`.
-
 
 ## Chunk upload security
 
@@ -942,7 +893,6 @@ In this mode you may send the chunk's related [File](#file)'s `uid` property alo
 In a [Transfer](#transfer) context any `uid` property from any [File](#file) related to the [Transfer](#transfer) will be accepted.
 
 Note that this mecanism is a fallback in the case your client lost all other kind of authentication, this is not necessary under [Remote Application](#remote_application) or [Remote User](#remote_user) as they are always valid as long as the [signature](#signed_request) is right.
-
 
 # The upload process
 

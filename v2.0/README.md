@@ -3,7 +3,6 @@ FileSender 2.0-alpha is a work in progress, so is
 this documentation.  If you find anything you'd like to improve, please improve it and send
 the new text to filesender-dev@filesender.org</span>
 
-
 ## Overview
 * Features
 * Requirements

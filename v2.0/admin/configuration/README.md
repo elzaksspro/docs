@@ -5,9 +5,6 @@
 * mandatory configuration settings are <span style="background-color:red">marked in red</span>
 * sections <span style="background-color:orange">marked in orange</span> need to be double checked.
 
-
-
-
 # Table of contents
 ---
 ## General settings
@@ -63,7 +60,6 @@
 * [autocomplete_min_characters](#autocomplete_min_characters)
 * [upload_display_bits_per_sec](#upload_display_bits_per_sec)
 
-
 ## Transfers
 * [aup_default](#aup_default)
 * [aup_enabled](#aup_enabled)
@@ -93,7 +89,6 @@
 * [download_chunk_size](#download_chunk_size)
 * [mac_unzip_name](#mac_unzip_name)
 * [mac_unzip_link)(#mac_unzip_link)
-
 
 ## Guest use
 * [guest_options](#guest_options)
@@ -141,11 +136,9 @@
 * [auth_remote_user_autogenerate_secret](#auth_remote_user_autogenerate_secret)
 * [rest_allow_jsonp](#rest_allow_jsonp)
 
-
 ## Other
 * [host_quota](#host_quota)
 * [config_overrides (experimental feature, not tested)](#config_overrides)
-
 
 ---
 ---
@@ -178,7 +171,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __default:__ FileSender
 * __available:__ since version 1.0
 
-
 ### force_ssl
 * __description:__ enforce use of SSL. Set this to true and FileSender won't work if the user doesn't have a SSL session. Useful to retain security in case of web server misconfigurations.
 * __mandatory:__ no. <span style="background-color:orange">if you don't set it it will be evaluated to false?  What about the default of 'true'?)</span>
@@ -197,7 +189,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__ Testing, ticket #1198
 * __comment:__ Be careful to include the entire URL path, like http://yourdomain.dom/!
 * __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: http://yourdomain.dom/filesender-beta and http://yourdomain.dom/simplesamlphp.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example "http://yourdomain.dom/".  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
-
 
 ### auth_remote_signature_algorithm
 * __description:__ <span style="background-color:orange">which remote signature algorithm to use.  Used in API? Should be in API section probably?  Which other permissible values?</span>
@@ -254,7 +245,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ helpURL
 * __comment:__ when configured with a mailto: address that points to e.g. support@yourdomain.dom the email bounce handler will use this address to send unprocessable email bounces to. <span style="background-color:orange">include link to email bounce handling config directives/help</span>
 
-
 ---
 ---
 ## Backend storage
@@ -303,7 +293,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ server_drivespace_warning
 * __comment:__
 
-
 ### <span style="background-color:orange">storage_filesystem_hashing
 * __description:__ Aggregate several directories into a virtual FileSender file store without using LVM.  Directories can be on different file systems which can be on different block devices and hard drives.  Allows you to pool several hard drives into one virtual FileSender file store without any external software.
 * __mandatory:__ no
@@ -314,7 +303,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__ not tested
 * __comment:__ basically integer. use fileUID (which is used to create name on hard drive) + as many characters as the hashing value (if you set hashing to 2 you take the 2 first letters of the fileUID (big random string) and use these two characters to create a directory structure under the storage path. This avoids having all files in the same directory. If you set this to 1 you have 16 possible different values for the directory structure under the storage root. You'll have 16 folders under your storage root under which you'll have the files. This allows you to spread files over different file systems / hard drives. You can aggregate storage space without using things like LVM. If you set this to two you have 2 levels of subdirectories. For directory naming: first level, directory names has one letter. Second level has two: letter from upper level + own level. Temporary chunks are stored directly in the final file. No temp folder (!!) Benchmarking between writing small file in potentially huge directory and opening big file and seeking in it was negligable. Can just open final file, seek to location of chunk offset and write data. Removes need to move file in the end.  It can also be "callable". We call the function giving it the file object which hold all properties of the file. Reference to the transfer as well. The function has to return a path under the storage root. This is a path related to storage root. For example: if you want to store small files in a small file directory and big files in big directory. F.ex. if file->size < 100 MB store on fast small disk, if > 100 MB store on big slow disk. Can also be used for functions to store new files on new storage while the existing files remain on existing storage. Note: we need contributions for useful functions here :)
 </span>
-
 
 ---
 ---
@@ -375,7 +363,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__
 * __comment:__
 
-
 ---
 ---
 ## Language and internationalisation
@@ -434,7 +421,6 @@ User language detection is done in the following order:
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
-
 
 ---
 ---
@@ -561,7 +547,6 @@ User language detection is done in the following order:
 * __1.x name:__
 * __comment:__ does this actually work?
 
-
 ---
 ---
 ## Transfers
@@ -626,7 +611,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __1.x name:__ default_daysvalid
 * __comment:__ experience shows the vast majority of users simply go with the default expiry time.  For some users having a maximum value a long time in the future makes sense, e.g. papers sent out to a research proposal evaluation committee that need to be evaluated by a certain date.  Downloads typically start not too long before the due date, but the actual due date can be over a month in the future.
 
-
 ### allow_transfer_expiry_date_extension
 * __description:__ allows a user to extend the expiry date.
 * __mandatory:__
@@ -637,12 +621,10 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 * __Examples:__
 
-
 	$config['allow_transfer_expiry_date_extension'] = array(5); // Allows a single extension of 5 days
 	$config['allow_transfer_expiry_date_extension'] = 5; // Same as above
 	$config['allow_transfer_expiry_date_extension'] = array(5, 3); // Allows 2 successive extensions, the first is by 5 days the second is by 3 days
 	$config['allow_transfer_expiry_date_extension'] = array(5, 3, 1, true); // Allows infinite extensions, the first is by 5 days the second is by 3 days, the third and above are by 1 day
-
 
 ## force_legacy_mode
 * __description:__ Force FileSender into legacy non-HTML5 mode. Multi-file uploads are still possible, but each file is limited to max. 2GB.  The help file and certain text labels change as well. The max. number of files and total transfer size limit is the same as for HTML5 mode.  This function is available for testing purposes: FileSender will detect automatically if a user's browser supports the necessary HTML5 functionality or not.
@@ -697,8 +679,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __available:__ since version 1.0
 * __1.x name:__ max_email_recipients
 * __comment:__
-
-
 
 ### transfer_options
 * __description:__ this parameter controls which transfer options are available to the user in the Upload form and how these options behave.  Options show up in the right hand side block in the Upload form.  Options appear in the order they are specified in the config file.  Most options control which email receipts are sent out when and to whom.  See below for details.
@@ -756,8 +736,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ user quote can be implemented in a much more flexible way as well.  As we're doing lazy loading of configuration parameters we can change this value (and max. file size) based on user profile.  In stead of defining this config parameter with a number you can give a function to it.  The value returned by this function is cached for a login session.  For example a function that uses eduPersonAffiliation can give a "student" 10 GB and "faculty" 1 TB.  You could also change max. days valid based on user profile.  The function can use the current application state and user session to compute the value for a logged in user, because the function would run after everything else.  <span style="background-color:orange">Calculated maximum values should have its own chapter to explain, with examples especially for using eduPersonAffiliation.</span>
-
-
 
 ---
 ---
@@ -840,7 +818,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __1.x name:__
 * __comment:__
 
-
 ---
 ---
 ## Guest use
@@ -867,7 +844,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 	* __email_guest_created_receipt:__ send the guest an email when the guest voucher is created.
 	* __email_guest_expired:__ send the guest an email when the guest voucher is expired.
 
-
 * __*Configuration example:*__
 <PRE>
 	$config['guest_options'] = array(
@@ -882,7 +858,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 			'default' => false
 		);
 </PRE>
-
 
 ### default_guest_days_valid
 * __description:__ specifies the default expiry date value in the "Expiry date" date picker in the Guest form.  If a user doesn't do anything this becomes the expiry date for the guest invitation.  If this value is not configured, it is set to default_transfer_days_valid
@@ -910,7 +885,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
-
 
 ---
 ---
@@ -1000,7 +974,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __1.x name:__ saml_name_attribute
 * __comment:__
 
-
 ## Authentication: Shibboleth
 ---
 ### auth_sp_shibboleth_uid_attribute
@@ -1087,7 +1060,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __1.x name:__
 * __comment:__
 
-
 ---
 ---
 ## Maintenance and logging
@@ -1109,7 +1081,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
-
 
 <span style="background-color:orange">if you define your own log_facilities, you will overwrite the default setting.  Make sure to include all log targets you wish to log to.
 * __*General format of log target:*__ array(('type' => string, <attribute1 => <value>, <attribute2> => <value>
@@ -1139,9 +1110,6 @@ array (
 'process' => CLI, GUI or REST (can ask to only get logs from specific parts of FileSender, so you can separate your logs between different componentes.  Maybe hourly logs with REST service (they get huge)
 
 mandatory parameter is 'type'.  Permissible values file, syslog, error_log
-
-
-
 
 type syslog.  indent, facility.  Facility sets the syslog facility used.  Standard PHP syslog function parameters
 
@@ -1300,7 +1268,6 @@ $config['rest_allow_jsonp'] = array(
 '/transfer/[0-9]+/auditlog'
 );
 
-
 ---
 ---
 ## Other
@@ -1329,8 +1296,6 @@ $config['rest_allow_jsonp'] = array(
 
 Changes are saved in config_overrides.json in the config directory.  The config.php file is NOT modified.  This keeps overrides separated from the site config.  is_string, is_numeric (standard php validators) or a function of your own which returns a boolean indicating if the value is good or not.
 
-
-
 ### 
 * __description:__
 * __mandatory:__
@@ -1339,7 +1304,6 @@ Changes are saved in config_overrides.json in the config directory.  The config.
 * __available:__
 * __1.x name:__
 * __comment:__
-
 
 ---
 ### 
@@ -1350,7 +1314,6 @@ Changes are saved in config_overrides.json in the config directory.  The config.
 * __available:__
 * __1.x name:__
 * __comment:__
-
 
 <span style="background-color:orange">
 
@@ -1363,7 +1326,6 @@ terasender_chunksize: chunksize is now consolidated in 1 parameter for all uploa
 terasender_jobsPerWorker: didn't have any practical meaning (doublecheck with Etienne)
 
 webWorkersLimit: renamed to terasender_worker_count.  before you could launch several workers and each worker would request jobs.  There were # jobs per worker.  Testing showed having more than 1 job per worker gained nothing.  When you have browser process (tab in chrome) and doing async stuff (launch ajax request) get time to do other things.  This was not way workers were thought to behave.  Worker is not efficient when doing async stuff.  Several jobs per worker = async.  Theory: several jobs per worker can mean that when one job sends blob, other job can fetch data.  No significant gain observed.  Code was more complex so simplified.
-
 
 crlf: now have a constant for that.  This parameter was important when windows was not respecting line delimiters in emails.  Had to make this configurable in the past when some old Windows clients (Outlook) used different newline format.  Really long time since this was a problem.
 

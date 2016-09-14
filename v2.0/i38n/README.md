@@ -22,7 +22,6 @@ FileSender builds the list of user languages by order of importance from various
 * From `default_language` config parameter
 * From absolute default `en`
 
-
 ## Dictionary loading
 
 Translations are then loaded depending on the user language order, all more-preferred ones overriding less-preferred ones.
@@ -37,13 +36,11 @@ Any `lang.php` file under `config/language/some_lang` doesn't need to contain al
 
 One can select available languages and their names by creating a `config/language/locale.php` file (same structure as `language/locale.php`).
 
-
 ## Translation process
 
 When a translation is requested (UI display, email sending) the translated version is taken from the dictionary.
 
 Then several replacements can occur (depending on the application code), the translation engine parses a simple markup language described below.
-
 
 # Translation engine language
 
@@ -55,18 +52,15 @@ Variables available in UI translations can be found in the `en_AU` language file
 
 Variables available in emails are described [a bit further](#email_variables)
 
-
 ## Variable display
 
 Printing out the content of a variable is pretty straightforward :
 
 	{variable_name}
 
-
 If the variable contains an object (such as a `transfer`, a `recipient` ...) properties can be accessed as :
 
 	{variable_name.property_name} (one can chain as many properties as needed)
-
 
 If the variable is an array possible uses are :
 
@@ -80,7 +74,6 @@ If the variable is an array possible uses are :
 
 	{variable_name.nth(3)} (get the 4th item since arrays indexes are 0 based)
 
-
 Variables can also be automatically converted to formatted version (depending on language) :
 
 	{date:variable_name} (format as date)
@@ -93,7 +86,6 @@ Variables can also be automatically converted to formatted version (depending on
 
 	{raw:variable_name} (no formatting and no output escaping, MUST BE USED CAREFULLY since it escape injection protection)
 
-
 In case the variable resolves to an array without further key based access the number of items in the array will be returned :
 
 If
@@ -104,13 +96,11 @@ then
 
 will print out "2".
 
-
 All above access methods and formatters can be combined to achieve complex data fetching :
 
 	{size:transfer.downloads.first().target.size}
 
 	{transfer.files.last().downloads}
-
 
 ## Conditionals
 
@@ -126,11 +116,9 @@ Basic syntaxes are (new lines allowed) :
 
 `condition` should be a boolean test, it can use available variables against a number of test operators.
 
-
 Test operators are `==`, `!=`, `<`, `<=`, `>` and `>=` :
 
 	{if:transfer.files > 1}foo{else}bar{endif}
-
 
 Logical operators can be used to build complex tests : AND (`&`) and OR (`|`) (AND operator takes precedence).
 
@@ -138,11 +126,9 @@ Logical operators can be used to build complex tests : AND (`&`) and OR (`|`) (A
 
 	{if:transfer.files>1 & recipient.downloads | transfer.size>1234567890}foo{else}bar{endif} (here just having transfer.size over 1234567890 bytes leads to "foo" being printed)
 
-
 Logical negation can also be used by putting `!` in front of the test sub-part.
 
 	{if:transfer.files>1 & !recipient.downloads}foo{else}bar{endif}
-
 
 ## Loops
 
@@ -160,7 +146,6 @@ Conditionals can be used inside loops :
 
 Nesting of loops is not supported.
 
-
 ## Magic
 
 ### Config parameters
@@ -175,11 +160,9 @@ It is possible to use automatic formatting as well :
 
 	{size:cfg:max_transfer_size}
 
-
 ### Email parts
 
 When translating an email (file like `some_id.mail.php` or just `some_id.mail`, same effect) the translation file can contain several parts.
-
 
 #### Headers
 
@@ -224,18 +207,15 @@ It is usually considered a good practice to create both `html` and `plain` parts
 
 When translating an email the newly created translation REPLACES the basic one, there is no parts overriding so even if one wants to only tweak the `html` part the `plain` part must be copied as well otherwise it will be missing when translating.
 
-
 # Email variables
 
 Here are the names of the variables that are available for use in the emails translations :
-
 
 ## bounce_report
 
 Sent to transfer / guest owner when a bounce is received.
 
 * `bounces` : [Tracking Events](#trackingevent) (array)
-
 
 ## daily_summary
 
@@ -245,7 +225,6 @@ Sent to transfer owners for transfers that needs a daily summary of what happene
 * `transfer` : [Transfer](#transfer) (object)
 * `user` : recipient as a [User](#user) (object)
 
-
 ## download_complete
 
 Sent to a recipient who downloaded some file(s) to notify him that download ended.
@@ -253,7 +232,6 @@ Sent to a recipient who downloaded some file(s) to notify him that download ende
 * `files` : [Files](#file) that were downloaded (array)
 * `recipient` : [Recipient](#recipient) who downloaded (object)
 * `result` : flag indicating if everything went well (bool)
-
 
 ## email_feedback
 
@@ -263,14 +241,12 @@ Sent to admin when receiving an unknown feedback (depending on config).
 * `target_id` : identifier of the feedback's target (int)
 * `target_type` : type of the feedback's target (string)
 
-
 ## file_deleted
 
 Sent to transfer recipients when a file is removed from the transfer.
 
 * `file` : [File](#file) (object)
 * `recipient` : [Recipient](#recipient) (object)
-
 
 ## files_downloaded
 
@@ -281,7 +257,6 @@ Sent to a transfer owner when some file(s) is/are downloaded.
 * `result` : flag indicating if everything went well (bool)
 * `user` : owner as a [User](#user) (object)
 
-
 ## guest_access_upload_page
 
 Sent to a guest owner when his guest accesses the upload page.
@@ -289,20 +264,17 @@ Sent to a guest owner when his guest accesses the upload page.
 * `guest` : [Guest](#guest) (object)
 * `user` : guest owner as a [User](#user) (object)
 
-
 ## guest_canceled
 
 Sent to a guest when his owner removes the guest token.
 
 * `guest` : [Guest](#guest) (object)
 
-
 ## guest_created
 
 Sent to a guest when it becomes available.
 
 * `guest` : [Guest](#guest) (object)
-
 
 ## guest_created_receipt
 
@@ -311,20 +283,17 @@ Sent to a guest owner when his guest becomes available.
 * `guest` : [Guest](#guest) (object)
 * `user` : guest owner as a [User](#user) (object)
 
-
 ## guest_expired
 
 Sent to a guest when it expires.
 
 * `guest` : [Guest](#guest) (object)
 
-
 ## guest_reminder
 
 Sent to a guest when his owner sends him a reminder.
 
 * `guest` : [Guest](#guest) (object)
-
 
 ## guest_upload_complete
 
@@ -333,7 +302,6 @@ Sent to a guest owner when his guest finishes to upload a transfer.
 * `guest` : [Guest](#guest) (object)
 * `user` : guest owner as a [User](#user) (object)
 
-
 ## guest_upload_start
 
 Sent to a guest owner when his guest starts to upload a transfer.
@@ -341,13 +309,11 @@ Sent to a guest owner when his guest starts to upload a transfer.
 * `guest` : [Guest](#guest) (object)
 * `user` : guest owner as a [User](#user) (object)
 
-
 ## recipient_deleted
 
 Sent to a recipient when it is removed from a transfer.
 
 * `recipient` : [Recipient](#recipient) (object)
-
 
 ## recipient_feedback
 
@@ -356,7 +322,6 @@ Sent to a transfer owner when an unknown feedback is received for one of his rec
 * `target` : feedback's target (object)
 * `target_id` : identifier of the feedback's target (int)
 * `target_type` : type of the feedback's target (string)
-
 
 ## report_attached
 
@@ -369,7 +334,6 @@ Sent to a transfer owner when reporting transfer activity using attached file (d
 * `transfer` : [Transfer](#transfer) the report is about if report `target` is a transfer, not provided otherwise (object)
 * `user` : recipient as a [User](#user) (object)
 
-
 ## report_inline
 
 Sent to a transfer owner when reporting transfer activity in the mail body (depending on config).
@@ -381,13 +345,11 @@ Sent to a transfer owner when reporting transfer activity in the mail body (depe
 * `transfer` : [Transfer](#transfer) the report is about if report `target` is a transfer, not provided otherwise (object)
 * `user` : recipient as a [User](#user) (object)
 
-
 ## storage_usage_warning
 
 Sent to the admins when storage usage is too high (depending on config).
 
 * `warnings` : [storage blocks warnings](#storage_block_warning) (array)
-
 
 ## transfer_available
 
@@ -395,7 +357,6 @@ Sent to a recipient when a transfer becomes available.
 
 * `recipient` : [Recipient](#recipient) (object)
 * `transfer` : [Transfer](#transfer) (object)
-
 
 ## transfer_autoreminder_receipt
 
@@ -405,14 +366,12 @@ Sent to a transfer owner when recipients that did not download files were remind
 * `transfer` : [Transfer](#transfer) (object)
 * `user` : owner as a [User](#user) (object)
 
-
 ## transfer_deleted
 
 Sent to a recipient when a transfer is closed by it's owner.
 
 * `recipient` : [Recipient](#recipient) (object)
 * `transfer` : [Transfer](#transfer) (object)
-
 
 ## transfer_deleted_receipt
 
@@ -421,14 +380,12 @@ Sent to a transfer owner when he deletes it.
 * `transfer` : [Transfer](#transfer) (object)
 * `user` : owner as a [User](#user) (object)
 
-
 ## transfer_expired
 
 Sent to a recipient when a transfer expires.
 
 * `recipient` : [Recipient](#recipient) (object)
 * `transfer` : [Transfer](#transfer) (object)
-
 
 ## transfer_expired_receipt
 
@@ -437,7 +394,6 @@ Sent to a transfer owner when it expires.
 * `transfer` : [Transfer](#transfer) (object)
 * `user` : owner as a [User](#user) (object)
 
-
 ## transfer_reminder
 
 Sent to a recipient when a transfer owner triggers a remind.
@@ -445,13 +401,11 @@ Sent to a recipient when a transfer owner triggers a remind.
 * `recipient` : [Recipient](#recipient) (object)
 * `transfer` : [Transfer](#transfer) (object)
 
-
 ## translate_email_footer
 
 Sent along any email that can be translated.
 
 * `translatableemail` : related [TranslatableEmail](#translatableemail) (object)
-
 
 ## upload_complete
 
@@ -459,7 +413,6 @@ Sent to a transfer owner when it's transfer is made available.
 
 * `transfer` : [Transfer](#transfer) (object)
 * `user` : owner as a [User](#user) (object)
-
 
 # Core objects properties
 
@@ -477,7 +430,6 @@ Sent to a transfer owner when it's transfer is made available.
 * `author` : shortcut to get the event author (object)
 * `time_taken` : time it took to get to the event (depending on event type, empty when it doesn't make sense) (in seconds) (int)
 
-
 ## File
 
 * `id` : unique identifier (int)
@@ -494,7 +446,6 @@ Sent to a transfer owner when it's transfer is made available.
 * `auditlogs` : file [AuditLogs](#auditlog) (array)
 * `downloads` : download related [AuditLogs](#auditlog) (array)
 * `upload_time` : time it took to upload the file (in seconds) (int)
-
 
 ## Guest
 
@@ -520,7 +471,6 @@ Sent to a transfer owner when it's transfer is made available.
 * `identity` : alias to `email` (string)
 * `name` : local part of `email` (string)
 
-
 ## Recipient
 
 * `id` : unique identifier (int)
@@ -540,7 +490,6 @@ Sent to a transfer owner when it's transfer is made available.
 * `identity` : recipient email or "Anonymous" for "get_a_link" recipients (string)
 * `name` : recipient email's local part or "Anonymous" for "get_a_link" recipients (string)
 
-
 ## Storage blocks warning
 
 * `filesystem` : identifier of related filesystem, "main" if hashing not configured (string)
@@ -549,14 +498,12 @@ Sent to a transfer owner when it's transfer is made available.
 * `paths` : paths that are stored in the block (array of strings)
 * `total_space` : total space on the block in bytes (int)
 
-
 ## Summary event
 
 * `who` : email of the event's author (string)
 * `what` : event target type (string, "file" or "archive")
 * `what_name` : name of the file if `what` is set to "file", empty otherwise (string)
 * `when` : event epoch date (int)
-
 
 ## TrackingEvent
 
@@ -569,7 +516,6 @@ Sent to a transfer owner when it's transfer is made available.
 * `reported` : event report epoch date (int)
 * `date` : alias of `created`
 * `target` : shortcut to th target object (object)
-
 
 ## Transfer
 
@@ -602,7 +548,6 @@ Sent to a transfer owner when it's transfer is made available.
 * `upload_end` : epoch date when the last file finished uploading (int)
 * `upload_time` : time it took to upload all files (in seconds) (int)
 
-
 ## TranslatableEmail
 
 * `id` : unique identifier (int)
@@ -614,7 +559,6 @@ Sent to a transfer owner when it's transfer is made available.
 * `created` : epoch creation date (int)
 * `context` : shortcut to the context (object)
 * `link` : url to use to access the translation UI (string)
-
 
 ## User
 

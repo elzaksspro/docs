@@ -36,7 +36,6 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 * Email receipt options:
 	* No emails at all, just present a download link in the UI after uploading the transfer
 
-
 * Translation URL included in emails, when user clicks on it the email is shown in another language on the FileSender service URL
 * The transfer sender can specify an optional subject and/or message for inclusion with the transfer available email sent to the transfer recipient
 
@@ -120,7 +119,6 @@ FileSender service staff.
 * Supports MySQL and PostgreSQL
 * Database upgrade script: database definitions generated from what the classes specify is needed
 * Configurable database prefix, useful when running multiple FileSender instances on the same database
-
 
 ## RESTful Webservice API
 
