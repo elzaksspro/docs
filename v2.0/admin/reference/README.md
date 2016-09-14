@@ -58,7 +58,7 @@ FileSender has no user database and has no concept of user accounts.
 
 ## What happens when a login session expires?
 
-There are two expiry timers on a user logon session.  One controlled by FileSender on its side, in its simplesamlphp or shibboleth configuration.  The other is controlled by the IdP the user uses to authenticate against. 
+There are two expiry timers on a user logon session.  One controlled by FileSender on its side, in its simplesamlphp or shibboleth configuration.  The other is controlled by the IdP the user uses to authenticate against.
 
 The <...> is set in the SAML2 message received by .
 
@@ -96,7 +96,7 @@ question: do we need to implement auto-refresh of the instance.secret?
 
 ## Detection of stalled and corrupted chunks
 
-We open file from zero, seek to chunk offset and write the data received in the chunk.  So checks on file size of total file less meaningfull.  You could only write last chunk and file size would still be good.  Advantage: can restart any chunk. 
+We open file from zero, seek to chunk offset and write the data received in the chunk.  So checks on file size of total file less meaningfull.  You could only write last chunk and file size would still be good.  Advantage: can restart any chunk.
 
 Checks to ensure file integrity
 
@@ -105,9 +105,9 @@ Checks to ensure file integrity
 * Check chunk size against max. chunksize set in config: can be smaller but not bigger than this
 * <span style="background-color:#ff0">At end of file upload we check the entire file size?
 * check whether filesize on server is filesize client
-* <span style="background-color:#ff0">on wish list: chunk map or file integrity.  For big files this map would be big.  For each chunk sent client side we keep chunk offset and chunk data length.  At end of upload, hash that, server does same during upload and check if all are equal.  Means keeping data both sides, can become huge.  Can store in flat file, put it in tmp directory "transferid.map", one line per chunk.  When transfer is labeled as "failed" after no data has come for multiple days, just remove the file.  Writing entry in map file can only be done once chunk is successfully written to disk.  At end of upload read map to check if all expected offsets have been uploaded.  This is not really a map but more like an "uploaded offset list".  As long as we can detect holes in this list we can detect missing chunks. 
+* <span style="background-color:#ff0">on wish list: chunk map or file integrity.  For big files this map would be big.  For each chunk sent client side we keep chunk offset and chunk data length.  At end of upload, hash that, server does same during upload and check if all are equal.  Means keeping data both sides, can become huge.  Can store in flat file, put it in tmp directory "transferid.map", one line per chunk.  When transfer is labeled as "failed" after no data has come for multiple days, just remove the file.  Writing entry in map file can only be done once chunk is successfully written to disk.  At end of upload read map to check if all expected offsets have been uploaded.  This is not really a map but more like an "uploaded offset list".  As long as we can detect holes in this list we can detect missing chunks.
 * <span style="background-color:#ff0">observation: no hash is  browser limitation.  But we have API.  Researchers are the most likely to use API with either command line client or their own code _and_ most likely to send the big files that you would like to integrity check.  Can implement hashing server-side and make available via API in preparation for browser fucntionality supporting client-side hashing.
-* <span style="background-color:#ff0">reason we don't do file integrity check now: with sending blob we pass on a pointer to the blob to the browser's http client.  We don't have access to the data.  If we want to hash it, we need to read it, it's an intensive process and memory consuming.  Workers time chunk size.  Slows down upload considerably.  File reader also doesn't really support binary, so get string encoded.  You have to create a byte array from that on which you can hash. 
+* <span style="background-color:#ff0">reason we don't do file integrity check now: with sending blob we pass on a pointer to the blob to the browser's http client.  We don't have access to the data.  If we want to hash it, we need to read it, it's an intensive process and memory consuming.  Workers time chunk size.  Slows down upload considerably.  File reader also doesn't really support binary, so get string encoded.  You have to create a byte array from that on which you can hash.
 
 # 6. Language and internationalisation
 
@@ -140,7 +140,7 @@ Checks to ensure file integrity
 
 <filesender>/www/skin
 
-Each template uses "Foundation".  There are template overrides. 
+Each template uses "Foundation".  There are template overrides.
 
 
 

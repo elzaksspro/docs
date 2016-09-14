@@ -6,7 +6,7 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 * New feature: multi-file transfer of unlimited size files with drag & drop support
 * New feature: fine-grained email receipt control
 * New feature: user-accessible transfer audit log
-* Removed dependency on Flash for uploads with legacy browsers without HTML5 FileAPI support.  Note the per-file limit with legacy browsers is 2GB. 
+* Removed dependency on Flash for uploads with legacy browsers without HTML5 FileAPI support.  Note the per-file limit with legacy browsers is 2GB.
 * REST API
 
 #User visible features
@@ -35,11 +35,11 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 ##Email receipts with full control
 * Email receipt options:
 	* No emails at all, just present a download link in the UI after uploading the transfer
-	
+
 
 * Translation URL included in emails, when user clicks on it the email is shown in another language on the FileSender service URL
 * The transfer sender can specify an optional subject and/or message for inclusion with the transfer available email sent to the transfer recipient
-	
+
 ##My Transfers
 * Overview of transfers, both in flight and closed
 * For each transfer:
@@ -83,7 +83,7 @@ o
 * Audit report can automatically be sent to transfer owner on transfer expiry after which the audit logging can be deleted.  In this scenario the sensitive data is kept exactly as long as it is needed.
 * Support for logging additional user account parameters in the statlog, e.g. an organisation identifier allowing statistics per customer
 * Configurable enforcing of in-flight encryption of transfers (SSL)
-	
+
 ##Transfers
 * Generalised transfer option mechanism
 	* For each option you can configure whether that option is:
@@ -100,7 +100,7 @@ o	Number of recipients
 o	Mandatory to tick before transfer can commence
 o	Ticked by default
 o	Absent from UI
-	
+
 ##TeraSender high speed upload module
 * Improved robustness (needs details)
 * Can be switched on and off (default on)
@@ -109,7 +109,7 @@ o	Absent from UI
 form.  This is useful for those specific frequent very large file use cases where you
 really want to optimise the upload speed.  The user('s organisation) can then figure out
 what the best worker count for that particular setting is without burdening the
-FileSender service staff.	
+FileSender service staff.
 
 ##Authentication
 * Externalised authentication
@@ -137,8 +137,3 @@ System administration support
 * Configurable email_from, email_from_name, email_reply_to, email_reply_to_name, email_return_path
 * Automatic email bounce handling (note: field tested by RENATER in production, not tested elsewhere)
 * Configurable SPF compliant behaviour
-
-
-
-
-
