@@ -304,7 +304,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 
-<span style="background-color:orange">###storage_filesystem_hashing
+###<span style="background-color:orange">storage_filesystem_hashing
 * __description:__ Aggregate several directories into a virtual FileSender file store without using LVM.  Directories can be on different file systems which can be on different block devices and hard drives.  Allows you to pool several hard drives into one virtual FileSender file store without any external software.
 * __mandatory:__ no
 * __type:__ **int** or **callable**.  When integer indicates number of characters used in hash.  When callable "file que l'on veit stocker et doit retourner le chemin dans le stockage"
