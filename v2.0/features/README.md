@@ -30,7 +30,7 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 * Auto-complete
 * User preferences
 	* Can save preferred language
-•	Service configurable speed units (bits or bytes per second)
+* Service configurable speed units (bits or bytes per second)
 
 ##Email receipts with full control
 * Email receipt options:

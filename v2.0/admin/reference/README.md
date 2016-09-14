@@ -140,11 +140,11 @@ Checks to ensure file integrity
 
 <filesender>/www/skin
 
-Each template uses “Foundation”.  There are template overrides. 
+Each template uses "Foundation".  There are template overrides. 
 
 
 
-When you want to override css or add script, like for Fonts: create skin directory in www/skin and put it there.  CSS must be named “styles.css”.  In skin: skin/script.js and styles.css are immediately interpreted by FileSender.  Can have other scripts, but must include them in your files or tweak templates/header.php to include them.  Can copy it in config/templates/header.php and tweak there.  Start of page with HTML headers etc.  Can add scripts and styles you want there.
+When you want to override css or add script, like for Fonts: create skin directory in www/skin and put it there.  CSS must be named "styles.css".  In skin: skin/script.js and styles.css are immediately interpreted by FileSender.  Can have other scripts, but must include them in your files or tweak templates/header.php to include them.  Can copy it in config/templates/header.php and tweak there.  Start of page with HTML headers etc.  Can add scripts and styles you want there.
 
 ## html template engine
 
