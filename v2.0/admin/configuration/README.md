@@ -157,11 +157,9 @@
 * [config_overrides (experimental feature, not tested)](#config_overrides)
 
 ---
----
 
 # Configuration directives
 
----
 ---
 
 ## General settings
@@ -278,7 +276,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__ when configured with a mailto: address that points to e.g. support@yourdomain.dom the email bounce handler will use this address to send unprocessable email bounces to. <span style="background-color:orange">include link to email bounce handling config directives/help</span>
 
 ---
----
 
 ## Backend storage
 
@@ -345,7 +342,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__ basically integer. use fileUID (which is used to create name on hard drive) + as many characters as the hashing value (if you set hashing to 2 you take the 2 first letters of the fileUID (big random string) and use these two characters to create a directory structure under the storage path. This avoids having all files in the same directory. If you set this to 1 you have 16 possible different values for the directory structure under the storage root. You'll have 16 folders under your storage root under which you'll have the files. This allows you to spread files over different file systems / hard drives. You can aggregate storage space without using things like LVM. If you set this to two you have 2 levels of subdirectories. For directory naming: first level, directory names has one letter. Second level has two: letter from upper level + own level. Temporary chunks are stored directly in the final file. No temp folder (!!) Benchmarking between writing small file in potentially huge directory and opening big file and seeking in it was negligable. Can just open final file, seek to location of chunk offset and write data. Removes need to move file in the end.  It can also be "callable". We call the function giving it the file object which hold all properties of the file. Reference to the transfer as well. The function has to return a path under the storage root. This is a path related to storage root. For example: if you want to store small files in a small file directory and big files in big directory. F.ex. if file->size < 100 MB store on fast small disk, if > 100 MB store on big slow disk. Can also be used for functions to store new files on new storage while the existing files remain on existing storage. Note: we need contributions for useful functions here :)
 </span>
 
----
 ---
 
 ## Database
@@ -414,7 +410,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ---
----
 
 ## Language and internationalisation
 
@@ -479,7 +474,6 @@ User language detection is done in the following order:
 * __1.x name:__
 * __comment:__
 
----
 ---
 
 ## Email
@@ -621,7 +615,6 @@ User language detection is done in the following order:
 * __1.x name:__
 * __comment:__ does this actually work?
 
----
 ---
 
 ## Transfers
@@ -831,7 +824,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ user quote can be implemented in a much more flexible way as well.  As we're doing lazy loading of configuration parameters we can change this value (and max. file size) based on user profile.  In stead of defining this config parameter with a number you can give a function to it.  The value returned by this function is cached for a login session.  For example a function that uses eduPersonAffiliation can give a "student" 10 GB and "faculty" 1 TB.  You could also change max. days valid based on user profile.  The function can use the current application state and user session to compute the value for a logged in user, because the function would run after everything else.  <span style="background-color:orange">Calculated maximum values should have its own chapter to explain, with examples especially for using eduPersonAffiliation.</span>
 
 ---
----
 
 ## TeraSender (high speed upload module)
 
@@ -889,7 +881,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ Has effect on the JavaScript-variables given to the client-side of Terasender.
 
 ---
----
 
 ## Download
 
@@ -925,7 +916,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __1.x name:__
 * __comment:__
 
----
 ---
 
 ## Guest use
@@ -1000,7 +990,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __1.x name:__
 * __comment:__
 
----
 ---
 
 ## Authentication
@@ -1201,7 +1190,6 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ---
----
 
 ## Maintenance and logging
 
@@ -1357,7 +1345,6 @@ only)
 * __comment:__ The same information is sent regardless of format.  Inline sends an email in plain text and HTML, with all information inline.  If PDF is chosen, the report is sent as PDF attachment.  Building a PDF is somewhat heavier on the server but won't matter unless you would have a heavily used server.  The library used is "dom pdf", included in the code.
 
 ---
----
 
 ## Webservices API
 
@@ -1429,7 +1416,6 @@ $config['rest_allow_jsonp'] = array(
 '/transfer/[0-9]+/auditlog'
 );
 
----
 ---
 
 ## Other
