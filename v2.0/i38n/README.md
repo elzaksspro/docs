@@ -17,10 +17,10 @@ you want to contribute to or add a new language and start translating right away
 
 FileSender builds the list of user languages by order of importance from various sources :
 
-  * From the url (`lang` url parameter) : allows for user language switching (only if `lang_url_enabled` set to true in config), if `lang_save_url_switch_in_userpref` is enabled in config and a user session exists the new language is saved in the user preferences so that he doesn't need to switch it again the nex time. If no user session is found the new choice is saved in the PhP session.
-  * From the browser's `Accept-Language` header : allows for automatic language detection base on the browser config (if `lang_browser_enabled` set to true in config)
-  * From `default_language` config parameter
-  * From absolute default `en`
+* From the url (`lang` url parameter) : allows for user language switching (only if `lang_url_enabled` set to true in config), if `lang_save_url_switch_in_userpref` is enabled in config and a user session exists the new language is saved in the user preferences so that he doesn't need to switch it again the nex time. If no user session is found the new choice is saved in the PhP session.
+* From the browser's `Accept-Language` header : allows for automatic language detection base on the browser config (if `lang_browser_enabled` set to true in config)
+* From `default_language` config parameter
+* From absolute default `en`
 
 
 ## Dictionary loading
@@ -215,10 +215,10 @@ Start of `text/html` part is signaled using `{alternative:html}`
 
 If the first part after the headers does not have a starting `alternative` tag its type will be set depending on what comes after in the mail :
 
-  * `plain` if an other part has a `{alternative:html}` starting tag
-  * `html` if an other part has a `{alternative:plain}` starting tag
-  * `html` if no other part is found but some html tags can be detected in the part
-  * `plain` if no other part is found and no html tags can be detected
+* `plain` if an other part has a `{alternative:html}` starting tag
+* `html` if an other part has a `{alternative:plain}` starting tag
+* `html` if no other part is found but some html tags can be detected in the part
+* `plain` if no other part is found and no html tags can be detected
 
 It is usually considered a good practice to create both `html` and `plain` parts when translating FileSender emails.
 
@@ -234,404 +234,404 @@ Here are the names of the variables that are available for use in the emails tra
 
 Sent to transfer / guest owner when a bounce is received.
 
-  * `bounces` : [Tracking Events](#trackingevent) (array)
+* `bounces` : [Tracking Events](#trackingevent) (array)
 
 
 ## daily_summary
 
 Sent to transfer owners for transfers that needs a daily summary of what happened.
 
-  * `events` : [summary events](#summary_event) (array)
-  * `transfer` : [Transfer](#transfer) (object)
-  * `user` : recipient as a [User](#user) (object)
+* `events` : [summary events](#summary_event) (array)
+* `transfer` : [Transfer](#transfer) (object)
+* `user` : recipient as a [User](#user) (object)
 
 
 ## download_complete
 
 Sent to a recipient who downloaded some file(s) to notify him that download ended.
 
-  * `files` : [Files](#file) that were downloaded (array)
-  * `recipient` : [Recipient](#recipient) who downloaded (object)
-  * `result` : flag indicating if everything went well (bool)
+* `files` : [Files](#file) that were downloaded (array)
+* `recipient` : [Recipient](#recipient) who downloaded (object)
+* `result` : flag indicating if everything went well (bool)
 
 
 ## email_feedback
 
 Sent to admin when receiving an unknown feedback (depending on config).
 
-  * `target` : feedback's target (object)
-  * `target_id` : identifier of the feedback's target (int)
-  * `target_type` : type of the feedback's target (string)
+* `target` : feedback's target (object)
+* `target_id` : identifier of the feedback's target (int)
+* `target_type` : type of the feedback's target (string)
 
 
 ## file_deleted
 
 Sent to transfer recipients when a file is removed from the transfer.
 
-  * `file` : [File](#file) (object)
-  * `recipient` : [Recipient](#recipient) (object)
+* `file` : [File](#file) (object)
+* `recipient` : [Recipient](#recipient) (object)
 
 
 ## files_downloaded
 
 Sent to a transfer owner when some file(s) is/are downloaded.
 
-  * `files` : [Files](#file) that were downloaded (array)
-  * `recipient` : [Recipient](#recipient) who downloaded (object)
-  * `result` : flag indicating if everything went well (bool)
-  * `user` : owner as a [User](#user) (object)
+* `files` : [Files](#file) that were downloaded (array)
+* `recipient` : [Recipient](#recipient) who downloaded (object)
+* `result` : flag indicating if everything went well (bool)
+* `user` : owner as a [User](#user) (object)
 
 
 ## guest_access_upload_page
 
 Sent to a guest owner when his guest accesses the upload page.
 
-  * `guest` : [Guest](#guest) (object)
-  * `user` : guest owner as a [User](#user) (object)
+* `guest` : [Guest](#guest) (object)
+* `user` : guest owner as a [User](#user) (object)
 
 
 ## guest_canceled
 
 Sent to a guest when his owner removes the guest token.
 
-  * `guest` : [Guest](#guest) (object)
+* `guest` : [Guest](#guest) (object)
 
 
 ## guest_created
 
 Sent to a guest when it becomes available.
 
-  * `guest` : [Guest](#guest) (object)
+* `guest` : [Guest](#guest) (object)
 
 
 ## guest_created_receipt
 
 Sent to a guest owner when his guest becomes available.
 
-  * `guest` : [Guest](#guest) (object)
-  * `user` : guest owner as a [User](#user) (object)
+* `guest` : [Guest](#guest) (object)
+* `user` : guest owner as a [User](#user) (object)
 
 
 ## guest_expired
 
 Sent to a guest when it expires.
 
-  * `guest` : [Guest](#guest) (object)
+* `guest` : [Guest](#guest) (object)
 
 
 ## guest_reminder
 
 Sent to a guest when his owner sends him a reminder.
 
-  * `guest` : [Guest](#guest) (object)
+* `guest` : [Guest](#guest) (object)
 
 
 ## guest_upload_complete
 
 Sent to a guest owner when his guest finishes to upload a transfer.
 
-  * `guest` : [Guest](#guest) (object)
-  * `user` : guest owner as a [User](#user) (object)
+* `guest` : [Guest](#guest) (object)
+* `user` : guest owner as a [User](#user) (object)
 
 
 ## guest_upload_start
 
 Sent to a guest owner when his guest starts to upload a transfer.
 
-  * `guest` : [Guest](#guest) (object)
-  * `user` : guest owner as a [User](#user) (object)
+* `guest` : [Guest](#guest) (object)
+* `user` : guest owner as a [User](#user) (object)
 
 
 ## recipient_deleted
 
 Sent to a recipient when it is removed from a transfer.
 
-  * `recipient` : [Recipient](#recipient) (object)
+* `recipient` : [Recipient](#recipient) (object)
 
 
 ## recipient_feedback
 
 Sent to a transfer owner when an unknown feedback is received for one of his recipients (depending on config).
 
-  * `target` : feedback's target (object)
-  * `target_id` : identifier of the feedback's target (int)
-  * `target_type` : type of the feedback's target (string)
+* `target` : feedback's target (object)
+* `target_id` : identifier of the feedback's target (int)
+* `target_type` : type of the feedback's target (string)
 
 
 ## report_attached
 
 Sent to a transfer owner when reporting transfer activity using attached file (depending on config).
 
-  * `content` : array with `plain`and `html` entries, not used
-  * `file` : [File](#file) the report is about if report `target` is a file, not provided otherwise (object)
-  * `recipient` : [Recipient](#recipient) the report is about if report `target` is a recipient, not provided otherwise (object)
-  * `target` : array describing the report target in a common way, it has a `type` entry containing the target type as a string and an `id` entry containing the target identifier
-  * `transfer` : [Transfer](#transfer) the report is about if report `target` is a transfer, not provided otherwise (object)
-  * `user` : recipient as a [User](#user) (object)
+* `content` : array with `plain`and `html` entries, not used
+* `file` : [File](#file) the report is about if report `target` is a file, not provided otherwise (object)
+* `recipient` : [Recipient](#recipient) the report is about if report `target` is a recipient, not provided otherwise (object)
+* `target` : array describing the report target in a common way, it has a `type` entry containing the target type as a string and an `id` entry containing the target identifier
+* `transfer` : [Transfer](#transfer) the report is about if report `target` is a transfer, not provided otherwise (object)
+* `user` : recipient as a [User](#user) (object)
 
 
 ## report_inline
 
 Sent to a transfer owner when reporting transfer activity in the mail body (depending on config).
 
-  * `content` : array with `plain`and `html` entries, contains report text for both formats
-  * `file` : [File](#file) the report is about if report `target` is a file, not provided otherwise (object)
-  * `recipient` : [Recipient](#recipient) the report is about if report `target` is a recipient, not provided otherwise (object)
-  * `target` : array describing the report target in a common way, it has a `type` entry containing the target type as a string and an `id` entry containing the target identifier
-  * `transfer` : [Transfer](#transfer) the report is about if report `target` is a transfer, not provided otherwise (object)
-  * `user` : recipient as a [User](#user) (object)
+* `content` : array with `plain`and `html` entries, contains report text for both formats
+* `file` : [File](#file) the report is about if report `target` is a file, not provided otherwise (object)
+* `recipient` : [Recipient](#recipient) the report is about if report `target` is a recipient, not provided otherwise (object)
+* `target` : array describing the report target in a common way, it has a `type` entry containing the target type as a string and an `id` entry containing the target identifier
+* `transfer` : [Transfer](#transfer) the report is about if report `target` is a transfer, not provided otherwise (object)
+* `user` : recipient as a [User](#user) (object)
 
 
 ## storage_usage_warning
 
 Sent to the admins when storage usage is too high (depending on config).
 
-  * `warnings` : [storage blocks warnings](#storage_block_warning) (array)
+* `warnings` : [storage blocks warnings](#storage_block_warning) (array)
 
 
 ## transfer_available
 
 Sent to a recipient when a transfer becomes available.
 
-  * `recipient` : [Recipient](#recipient) (object)
-  * `transfer` : [Transfer](#transfer) (object)
+* `recipient` : [Recipient](#recipient) (object)
+* `transfer` : [Transfer](#transfer) (object)
 
 
 ## transfer_autoreminder_receipt
 
 Sent to a transfer owner when recipients that did not download files were reminded.
 
-  * `recipients` : [Recipients](#recipient) reminders were sent to (array)
-  * `transfer` : [Transfer](#transfer) (object)
-  * `user` : owner as a [User](#user) (object)
+* `recipients` : [Recipients](#recipient) reminders were sent to (array)
+* `transfer` : [Transfer](#transfer) (object)
+* `user` : owner as a [User](#user) (object)
 
 
 ## transfer_deleted
 
 Sent to a recipient when a transfer is closed by it's owner.
 
-  * `recipient` : [Recipient](#recipient) (object)
-  * `transfer` : [Transfer](#transfer) (object)
+* `recipient` : [Recipient](#recipient) (object)
+* `transfer` : [Transfer](#transfer) (object)
 
 
 ## transfer_deleted_receipt
 
 Sent to a transfer owner when he deletes it.
 
-  * `transfer` : [Transfer](#transfer) (object)
-  * `user` : owner as a [User](#user) (object)
+* `transfer` : [Transfer](#transfer) (object)
+* `user` : owner as a [User](#user) (object)
 
 
 ## transfer_expired
 
 Sent to a recipient when a transfer expires.
 
-  * `recipient` : [Recipient](#recipient) (object)
-  * `transfer` : [Transfer](#transfer) (object)
+* `recipient` : [Recipient](#recipient) (object)
+* `transfer` : [Transfer](#transfer) (object)
 
 
 ## transfer_expired_receipt
 
 Sent to a transfer owner when it expires.
 
-  * `transfer` : [Transfer](#transfer) (object)
-  * `user` : owner as a [User](#user) (object)
+* `transfer` : [Transfer](#transfer) (object)
+* `user` : owner as a [User](#user) (object)
 
 
 ## transfer_reminder
 
 Sent to a recipient when a transfer owner triggers a remind.
 
-  * `recipient` : [Recipient](#recipient) (object)
-  * `transfer` : [Transfer](#transfer) (object)
+* `recipient` : [Recipient](#recipient) (object)
+* `transfer` : [Transfer](#transfer) (object)
 
 
 ## translate_email_footer
 
 Sent along any email that can be translated.
 
-  * `translatableemail` : related [TranslatableEmail](#translatableemail) (object)
+* `translatableemail` : related [TranslatableEmail](#translatableemail) (object)
 
 
 ## upload_complete
 
 Sent to a transfer owner when it's transfer is made available.
 
-  * `transfer` : [Transfer](#transfer) (object)
-  * `user` : owner as a [User](#user) (object)
+* `transfer` : [Transfer](#transfer) (object)
+* `user` : owner as a [User](#user) (object)
 
 
 # Core objects properties
 
 ## AuditLog
 
-  * `id` : unique identifier (int)
-  * `event` : type of event (string)
-  * `target_type` : type of the event target ("Transfer", "File" ... depends on event type) (string)
-  * `target_id` : identifier of the event target (int)
-  * `author_type` : type of the event author ("User", "Guest", "Recipient" ... depends on event type) (string)
-  * `author_id` : identifier of the event author (int)
-  * `created` : event epoch date (int)
-  * `ip` : IP address of remote user which triggered the event (string)
-  * `target` : shortcut to get the event target (object)
-  * `author` : shortcut to get the event author (object)
-  * `time_taken` : time it took to get to the event (depending on event type, empty when it doesn't make sense) (in seconds) (int)
+* `id` : unique identifier (int)
+* `event` : type of event (string)
+* `target_type` : type of the event target ("Transfer", "File" ... depends on event type) (string)
+* `target_id` : identifier of the event target (int)
+* `author_type` : type of the event author ("User", "Guest", "Recipient" ... depends on event type) (string)
+* `author_id` : identifier of the event author (int)
+* `created` : event epoch date (int)
+* `ip` : IP address of remote user which triggered the event (string)
+* `target` : shortcut to get the event target (object)
+* `author` : shortcut to get the event author (object)
+* `time_taken` : time it took to get to the event (depending on event type, empty when it doesn't make sense) (in seconds) (int)
 
 
 ## File
 
-  * `id` : unique identifier (int)
-  * `transfer_id` : id of the [Transfer](#transfer) the file is part of (int)
-  * `uid` : file uid (string)
-  * `name` : file name (string)
-  * `mime_type` : file Mime type as provided by uploader (string)
-  * `size` : size of the file in bytes (int)
-  * `upload_start` : epoch date when the first file started being uploaded (int)
-  * `upload_end` : epoch date when the last file finished uploading (int)
-  * `sha1` : not used
-  * `transfer` : shortcut to the [Transfer](#transfer) the file is part of (object)
-  * `owner` : shortcut to the [User](#user) who owns the transfer the file is part of (object)
-  * `auditlogs` : file [AuditLogs](#auditlog) (array)
-  * `downloads` : download related [AuditLogs](#auditlog) (array)
-  * `upload_time` : time it took to upload the file (in seconds) (int)
+* `id` : unique identifier (int)
+* `transfer_id` : id of the [Transfer](#transfer) the file is part of (int)
+* `uid` : file uid (string)
+* `name` : file name (string)
+* `mime_type` : file Mime type as provided by uploader (string)
+* `size` : size of the file in bytes (int)
+* `upload_start` : epoch date when the first file started being uploaded (int)
+* `upload_end` : epoch date when the last file finished uploading (int)
+* `sha1` : not used
+* `transfer` : shortcut to the [Transfer](#transfer) the file is part of (object)
+* `owner` : shortcut to the [User](#user) who owns the transfer the file is part of (object)
+* `auditlogs` : file [AuditLogs](#auditlog) (array)
+* `downloads` : download related [AuditLogs](#auditlog) (array)
+* `upload_time` : time it took to upload the file (in seconds) (int)
 
 
 ## Guest
 
-  * `id` : unique identifier (int)
-  * `user_id` : identifier of the creator (string)
-  * `user_email` : email of the creator (string)
-  * `token` : upload token (used to build upload link) (string)
-  * `email` : email of the guest (string)
-  * `transfer_count
-  * `subject` : subject given by creator (string)
-  * `message` : message given by creator (string)
-  * `options` : guest options (array of strings)
-  * `transfer_options` : created transfer options (array of strings)
-  * `status` : guest status (string)
-  * `created` : epoch creation date (int)
-  * `expires` : epoch date when the guest will expire (int)
-  * `last_activity` : epoch date when the guest was last active (int)
-  * `user` : alias of `owner` (object)
-  * `owner` : shortcut to the [User](#user) who owns the transfer (object)
-  * `transfers` : [Transfers](#transfer) the guest uploaded (array)
-  * `tracking_events` : [TrackingEvents](#trackingevent) encountered when sending emails to the guest (array)
-  * `errors` : [TrackingEvents](#trackingevent) describing errors encountered when sending emails to the guest (array)
-  * `identity` : alias to `email` (string)
-  * `name` : local part of `email` (string)
+* `id` : unique identifier (int)
+* `user_id` : identifier of the creator (string)
+* `user_email` : email of the creator (string)
+* `token` : upload token (used to build upload link) (string)
+* `email` : email of the guest (string)
+* `transfer_count
+* `subject` : subject given by creator (string)
+* `message` : message given by creator (string)
+* `options` : guest options (array of strings)
+* `transfer_options` : created transfer options (array of strings)
+* `status` : guest status (string)
+* `created` : epoch creation date (int)
+* `expires` : epoch date when the guest will expire (int)
+* `last_activity` : epoch date when the guest was last active (int)
+* `user` : alias of `owner` (object)
+* `owner` : shortcut to the [User](#user) who owns the transfer (object)
+* `transfers` : [Transfers](#transfer) the guest uploaded (array)
+* `tracking_events` : [TrackingEvents](#trackingevent) encountered when sending emails to the guest (array)
+* `errors` : [TrackingEvents](#trackingevent) describing errors encountered when sending emails to the guest (array)
+* `identity` : alias to `email` (string)
+* `name` : local part of `email` (string)
 
 
 ## Recipient
 
-  * `id` : unique identifier (int)
-  * `transfer_id` : id of the [Transfer](#transfer) the recipient is part of (int)
-  * `email` : email of the recipient (string)
-  * `token` : download token (string)
-  * `created` : epoch creation date (int)
-  * `last_activity` : epoch date when the recipient was last active (int)
-  * `options` : recipient options (array of strings), not used (?)
-  * `transfer` : shortcut to the [Transfer](#transfer) the recipient is part of (object)
-  * `owner` : shortcut to the [User](#user) who owns the transfer the recipient is part of (object)
-  * `auditlogs` : recipient [AuditLogs](#auditlog) (array)
-  * `download_link` : recipient download url (string)
-  * `downloads` : download related [AuditLogs](#auditlog) (array)
-  * `tracking_events` : [TrackingEvents](#trackingevent) encountered when sending emails to the recipient (array)
-  * `errors` : [TrackingEvents](#trackingevent) describing errors encountered when sending emails to the recipient (array)
-  * `identity` : recipient email or "Anonymous" for "get_a_link" recipients (string)
-  * `name` : recipient email's local part or "Anonymous" for "get_a_link" recipients (string)
+* `id` : unique identifier (int)
+* `transfer_id` : id of the [Transfer](#transfer) the recipient is part of (int)
+* `email` : email of the recipient (string)
+* `token` : download token (string)
+* `created` : epoch creation date (int)
+* `last_activity` : epoch date when the recipient was last active (int)
+* `options` : recipient options (array of strings), not used (?)
+* `transfer` : shortcut to the [Transfer](#transfer) the recipient is part of (object)
+* `owner` : shortcut to the [User](#user) who owns the transfer the recipient is part of (object)
+* `auditlogs` : recipient [AuditLogs](#auditlog) (array)
+* `download_link` : recipient download url (string)
+* `downloads` : download related [AuditLogs](#auditlog) (array)
+* `tracking_events` : [TrackingEvents](#trackingevent) encountered when sending emails to the recipient (array)
+* `errors` : [TrackingEvents](#trackingevent) describing errors encountered when sending emails to the recipient (array)
+* `identity` : recipient email or "Anonymous" for "get_a_link" recipients (string)
+* `name` : recipient email's local part or "Anonymous" for "get_a_link" recipients (string)
 
 
 ## Storage blocks warning
 
-  * `filesystem` : identifier of related filesystem, "main" if hashing not configured (string)
-  * `free_space` : free space on the block in bytes (int)
-  * `free_space_pct` : human readable free space percentage, floored, without unit (int)
-  * `paths` : paths that are stored in the block (array of strings)
-  * `total_space` : total space on the block in bytes (int)
+* `filesystem` : identifier of related filesystem, "main" if hashing not configured (string)
+* `free_space` : free space on the block in bytes (int)
+* `free_space_pct` : human readable free space percentage, floored, without unit (int)
+* `paths` : paths that are stored in the block (array of strings)
+* `total_space` : total space on the block in bytes (int)
 
 
 ## Summary event
 
-  * `who` : email of the event's author (string)
-  * `what` : event target type (string, "file" or "archive")
-  * `what_name` : name of the file if `what` is set to "file", empty otherwise (string)
-  * `when` : event epoch date (int)
+* `who` : email of the event's author (string)
+* `what` : event target type (string, "file" or "archive")
+* `what_name` : name of the file if `what` is set to "file", empty otherwise (string)
+* `when` : event epoch date (int)
 
 
 ## TrackingEvent
 
-  * `id` : unique identifier (int)
-  * `type` : type of event (string)
-  * `target_type` : type of the event target (string)
-  * `target_id` : identifier of the event target (int)
-  * `details` : details about the event (string)
-  * `created` : event epoch date (int)
-  * `reported` : event report epoch date (int)
-  * `date` : alias of `created`
-  * `target` : shortcut to th target object (object)
+* `id` : unique identifier (int)
+* `type` : type of event (string)
+* `target_type` : type of the event target (string)
+* `target_id` : identifier of the event target (int)
+* `details` : details about the event (string)
+* `created` : event epoch date (int)
+* `reported` : event report epoch date (int)
+* `date` : alias of `created`
+* `target` : shortcut to th target object (object)
 
 
 ## Transfer
 
-  * `id` : unique identifier (int)
-  * `status` : transfer status (string)
-  * `user_id` : owner id (string)
-  * `user_email` : email the user used when he uploaded (string)
-  * `guest_id` : guest identifier if created by a guest, empty otherwise (int)
-  * `subject` : subject given by owner (string)
-  * `message` : message given by owner (string)
-  * `created` : epoch creation date (int)
-  * `made_available` : epoch date when the transfer became available (int)
-  * `expires` : epoch date when the transfer will expire (int)
-  * `expiry_date_extension` : number of days the transfer expiry date can be extended by (int)
-  * `options` : transfer options (array of strings)
-  * `lang` : lang set by the owner for the recipients (string)
-  * `user` : alias of `owner` (object)
-  * `owner` : shortcut to the [User](#user) who owns the transfer (object)
-  * `guest` : shortcut to the [Guest](#guest) who uploaded, null otherwise (object)
-  * `files` : [Files](#file) in the transfer (array)
-  * `size` : total size of the transfer in bytes (int)
-  * `recipients` : [Recipients](#recipient) the transfer was sent to (array, order not predictable)
-  * `first_recipient` : shortcut to the first [Recipients](#recipient) (order not predictable)
-  * `recipients_with_error` : [Recipients](#recipient) of the transfer for whom email sending encountered an error (array, order not predictable)
-  * `auditlogs` : transfer [AuditLogs](#auditlog) (array)
-  * `downloads` : download related [AuditLogs](#auditlog) (array)
-  * `is_expired` : expired flag (bool)
-  * `made_available_time` : total time it took to create, upload and make the transfer available (in seconds) (int)
-  * `upload_start` : epoch date when the first file started being uploaded (int)
-  * `upload_end` : epoch date when the last file finished uploading (int)
-  * `upload_time` : time it took to upload all files (in seconds) (int)
+* `id` : unique identifier (int)
+* `status` : transfer status (string)
+* `user_id` : owner id (string)
+* `user_email` : email the user used when he uploaded (string)
+* `guest_id` : guest identifier if created by a guest, empty otherwise (int)
+* `subject` : subject given by owner (string)
+* `message` : message given by owner (string)
+* `created` : epoch creation date (int)
+* `made_available` : epoch date when the transfer became available (int)
+* `expires` : epoch date when the transfer will expire (int)
+* `expiry_date_extension` : number of days the transfer expiry date can be extended by (int)
+* `options` : transfer options (array of strings)
+* `lang` : lang set by the owner for the recipients (string)
+* `user` : alias of `owner` (object)
+* `owner` : shortcut to the [User](#user) who owns the transfer (object)
+* `guest` : shortcut to the [Guest](#guest) who uploaded, null otherwise (object)
+* `files` : [Files](#file) in the transfer (array)
+* `size` : total size of the transfer in bytes (int)
+* `recipients` : [Recipients](#recipient) the transfer was sent to (array, order not predictable)
+* `first_recipient` : shortcut to the first [Recipients](#recipient) (order not predictable)
+* `recipients_with_error` : [Recipients](#recipient) of the transfer for whom email sending encountered an error (array, order not predictable)
+* `auditlogs` : transfer [AuditLogs](#auditlog) (array)
+* `downloads` : download related [AuditLogs](#auditlog) (array)
+* `is_expired` : expired flag (bool)
+* `made_available_time` : total time it took to create, upload and make the transfer available (in seconds) (int)
+* `upload_start` : epoch date when the first file started being uploaded (int)
+* `upload_end` : epoch date when the last file finished uploading (int)
+* `upload_time` : time it took to upload all files (in seconds) (int)
 
 
 ## TranslatableEmail
 
-  * `id` : unique identifier (int)
-  * `context_type` : context object type of the sent message (string)
-  * `context_id` : context object identifier of the sent message (string)
-  * `token` : translation token for viewing (string)
-  * `translation_id` : identifier of translation template (string)
-  * `variables` : variables used for translation (array)
-  * `created` : epoch creation date (int)
-  * `context` : shortcut to the context (object)
-  * `link` : url to use to access the translation UI (string)
+* `id` : unique identifier (int)
+* `context_type` : context object type of the sent message (string)
+* `context_id` : context object identifier of the sent message (string)
+* `token` : translation token for viewing (string)
+* `translation_id` : identifier of translation template (string)
+* `variables` : variables used for translation (array)
+* `created` : epoch creation date (int)
+* `context` : shortcut to the context (object)
+* `link` : url to use to access the translation UI (string)
 
 
 ## User
 
-  * `id` : unique identifier (string)
-  * `additional_attributes` : additional attributes collected during authentication (depending on config) (array)
-  * `lang` : user preferred language (depending on config) (string)
-  * `aup_ticked` : flag telling if the user ticked aup checkbox the for previous upload (bool)
-  * `aup_last_ticked_date` : epoch date the user ticked the aup checkbox last (int)
-  * `auth_secret` : remote authentication secret if enabled (string)
-  * `transfer_preferences` : last chosen transfer preferences (array)
-  * `guest_preferences` : last chosen guest preferences (array)
-  * `frequent_recipients` : list of most frequent recipients email addresses (array)
-  * `created` : epoch creation date (int)
-  * `last_activity` : epoch date when the user was last active (int)
-  * `email_addresses` : user email addresses as returned by authentication (array)
-  * `name` : user name as returned by authentication (string)
-  * `quota` : copy of last user quota in bytes (int)
-  * `email` : user first email address as returned by authentication (array)
-  * `remote_config` : user remote access config if enabled (string)
-  * `identity` : alias to `email` (string)
+* `id` : unique identifier (string)
+* `additional_attributes` : additional attributes collected during authentication (depending on config) (array)
+* `lang` : user preferred language (depending on config) (string)
+* `aup_ticked` : flag telling if the user ticked aup checkbox the for previous upload (bool)
+* `aup_last_ticked_date` : epoch date the user ticked the aup checkbox last (int)
+* `auth_secret` : remote authentication secret if enabled (string)
+* `transfer_preferences` : last chosen transfer preferences (array)
+* `guest_preferences` : last chosen guest preferences (array)
+* `frequent_recipients` : list of most frequent recipients email addresses (array)
+* `created` : epoch creation date (int)
+* `last_activity` : epoch date when the user was last active (int)
+* `email_addresses` : user email addresses as returned by authentication (array)
+* `name` : user name as returned by authentication (string)
+* `quota` : copy of last user quota in bytes (int)
+* `email` : user first email address as returned by authentication (array)
+* `remote_config` : user remote access config if enabled (string)
+* `identity` : alias to `email` (string)

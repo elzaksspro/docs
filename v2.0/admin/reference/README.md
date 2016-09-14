@@ -32,11 +32,11 @@ A transfer consists of one or more files sent to one <span style="background-col
 
 Version 2.0 supports a maintenance mode. This allows to interrupt the service for database upgrade or even server restart without breaking uploads.  When switched on:
 
-* all pages are replaced with the maintenance page 
-* webservice returns specific exception to all requests 
-* clients display a popup explaining what happens 
-* clients pause uploads and put all requests they were about to make in a stack 
-* clients starts to query the server on a regular basis to see if maintenance ended (server responding with no exception status) 
+* all pages are replaced with the maintenance page
+* webservice returns specific exception to all requests
+* clients display a popup explaining what happens
+* clients pause uploads and put all requests they were about to make in a stack
+* clients starts to query the server on a regular basis to see if maintenance ended (server responding with no exception status)
 * when server exits maintenance mode clients restart uploading and run stacked requests and remove maintenance popup
 
 ## How to switch on maintenance mode
@@ -58,9 +58,9 @@ FileSender has no user database and has no concept of user accounts.
 
 ## What happens when a login session expires?
 
-There are two expiry timers on a user logon session.  One controlled by FileSender on its side, in its simplesamlphp or shibboleth configuration.  The other is controlled by the IdP the user uses to authenticate against.  
+There are two expiry timers on a user logon session.  One controlled by FileSender on its side, in its simplesamlphp or shibboleth configuration.  The other is controlled by the IdP the user uses to authenticate against. 
 
-The <...> is set in the SAML2 message received by . 
+The <...> is set in the SAML2 message received by .
 
 <span style="background-color:#ff0">..</span>
 
@@ -78,7 +78,7 @@ no longer flash: now normal html post.  User can still select multiple files, wh
 
 ## Use of temporary files
 
-<filesender>/tmp 
+<filesender>/tmp
 used for following tmp files:
 
 *  instance.secret which is the seed value used in the secure generation of random values used for fileUID, download link etc.
@@ -96,7 +96,7 @@ question: do we need to implement auto-refresh of the instance.secret?
 
 ## Detection of stalled and corrupted chunks
 
-We open file from zero, seek to chunk offset and write the data received in the chunk.  So checks on file size of total file less meaningfull.  You could only write last chunk and file size would still be good.  Advantage: can restart any chunk.  
+We open file from zero, seek to chunk offset and write the data received in the chunk.  So checks on file size of total file less meaningfull.  You could only write last chunk and file size would still be good.  Advantage: can restart any chunk. 
 
 Checks to ensure file integrity
 
@@ -105,9 +105,9 @@ Checks to ensure file integrity
 * Check chunk size against max. chunksize set in config: can be smaller but not bigger than this
 * <span style="background-color:#ff0">At end of file upload we check the entire file size?
 * check whether filesize on server is filesize client
-* <span style="background-color:#ff0">on wish list: chunk map or file integrity.  For big files this map would be big.  For each chunk sent client side we keep chunk offset and chunk data length.  At end of upload, hash that, server does same during upload and check if all are equal.  Means keeping data both sides, can become huge.  Can store in flat file, put it in tmp directory "transferid.map", one line per chunk.  When transfer is labeled as "failed" after no data has come for multiple days, just remove the file.  Writing entry in map file can only be done once chunk is successfully written to disk.  At end of upload read map to check if all expected offsets have been uploaded.  This is not really a map but more like an "uploaded offset list".  As long as we can detect holes in this list we can detect missing chunks.  
+* <span style="background-color:#ff0">on wish list: chunk map or file integrity.  For big files this map would be big.  For each chunk sent client side we keep chunk offset and chunk data length.  At end of upload, hash that, server does same during upload and check if all are equal.  Means keeping data both sides, can become huge.  Can store in flat file, put it in tmp directory "transferid.map", one line per chunk.  When transfer is labeled as "failed" after no data has come for multiple days, just remove the file.  Writing entry in map file can only be done once chunk is successfully written to disk.  At end of upload read map to check if all expected offsets have been uploaded.  This is not really a map but more like an "uploaded offset list".  As long as we can detect holes in this list we can detect missing chunks. 
 * <span style="background-color:#ff0">observation: no hash is  browser limitation.  But we have API.  Researchers are the most likely to use API with either command line client or their own code _and_ most likely to send the big files that you would like to integrity check.  Can implement hashing server-side and make available via API in preparation for browser fucntionality supporting client-side hashing.
-* <span style="background-color:#ff0">reason we don't do file integrity check now: with sending blob we pass on a pointer to the blob to the browser's http client.  We don't have access to the data.  If we want to hash it, we need to read it, it's an intensive process and memory consuming.  Workers time chunk size.  Slows down upload considerably.  File reader also doesn't really support binary, so get string encoded.  You have to create a byte array from that on which you can hash.  
+* <span style="background-color:#ff0">reason we don't do file integrity check now: with sending blob we pass on a pointer to the blob to the browser's http client.  We don't have access to the data.  If we want to hash it, we need to read it, it's an intensive process and memory consuming.  Workers time chunk size.  Slows down upload considerably.  File reader also doesn't really support binary, so get string encoded.  You have to create a byte array from that on which you can hash. 
 
 # 6. Language and internationalisation
 
@@ -123,7 +123,7 @@ Checks to ensure file integrity
 
 ## Overriding the default language files
 
-* describe how to modify language 
+* describe how to modify language
 	* local overrides (directory in config directory
 
 ## Creating and changing default language files
@@ -140,7 +140,7 @@ Checks to ensure file integrity
 
 <filesender>/www/skin
 
-Each template uses “Foundation”.  There are template overrides.  
+Each template uses “Foundation”.  There are template overrides. 
 
 
 
@@ -159,20 +159,20 @@ Add possibility to forward feedback with non-detectable type but identified rela
 Related config parameter is "relay_unknown_feedbacks" (string, defaults to "sender") :
 
 
-  - "sender" : relay to recipient's transfer owner or guest owner
+- "sender" : relay to recipient's transfer owner or guest owner
 
-  - "admin" : relay to admin emails
+- "admin" : relay to admin emails
 
-  - "support" : relay to help_url if it is in the form of "mailto:someaddress@domain.tld"
+- "support" : relay to help_url if it is in the form of "mailto:someaddress@domain.tld"
 
-  - "someaddress@domain.tld" : choosen email address
+- "someaddress@domain.tld" : choosen email address
 
 
 Received feedback is forwarded as a message/rfc822 attachment.
 
 # 9. Multi-tenant hosting
 
-## Installation 
+## Installation
 
 ### Database initialisation and updates
 Describe how the database is initialised for version 2.0 (from classes definiation) and how it's updated automatically!
@@ -224,11 +224,11 @@ PHP cannot magically consider a class to be part of a software from its name, no
 
 # Securing your FileSender instance
 
-security mechanisms 
+security mechanisms
 * cross site scripting protection: csrf cookies (security-token)
 * sp-session (authentication)
 * chunk-upload-security token
-* fileUID random generated, 
+* fileUID random generated,
 * download URL protection
 * API: api access key
 

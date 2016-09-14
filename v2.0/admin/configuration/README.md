@@ -117,7 +117,7 @@
 	* [auth_sp_shibboleth_name_attribute](#auth_sp_shibboleth_name_attribute)
 	* [auth_sp_shibboleth_login_url](#auth_sp_shibboleth_login_url)
 	* [auth_sp_shibboleth_logout_url](#auth_sp_shibboleth_logout_url)
-* __SP_Fake__	
+* __SP_Fake__
 	* [auth_sp_fake_authenticated](#auth_sp_fake_authenticated)!!
 	* [auth_sp_fake_uid](#auth_sp_fake_uid)!!
 	* [auth_sp_fake_email](#auth_sp_fake_email)!!
@@ -156,14 +156,14 @@
 ---
 
 ###admin_email
-* __description:__ email address of FileSender administrator(s).  Separate multiple addresses with a comma (',').  
+* __description:__ email address of FileSender administrator(s).  Separate multiple addresses with a comma (',').
 Emails regarding disk full etc. are sent here. You should use a role-address here.
 * <span style="background-color:red">__mandatory:__ yes.  There must be at least one email address defined.</span>
 * __type:__ string.
 * __default:__ -
 * __available:__ since version 1.0
 * __1.x name:__ adminEmail
-		
+
 ###admin
 * __description:__ UIDs (as per the configured saml_uid_attribute) of FileSender administrators. Accounts with these UIDs can access the Admin page through the web UI.  <span style="background-color:orange">Separate multiple entries with a comma (',').</span>
 * <span style="background-color:red">__mandatory:__ yes.  Can be empty but then no-one has access to the admin page.</span>
@@ -173,7 +173,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ###site_name
 * __description:__ friendly name for your FileSender instance. Used in site header in browser and in email templates.
-* __mandatory:__ no. If you don't define it, every place it's used will initialise to NULL which results in an empty string being displayed. 
+* __mandatory:__ no. If you don't define it, every place it's used will initialise to NULL which results in an empty string being displayed.
 * __type:__ string
 * __default:__ FileSender
 * __available:__ since version 1.0
@@ -188,7 +188,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ forceSSL
 
 ###session_cookie_path
-* __description:__ Explicitly sets the session.cookie.path parameter for the authentication cookies.  You typically need this if you use SimpleSAMLphp for authentication and have multiple FileSender instances using the same SimpleSAMLphp installation.  Shibboleth has its own session identifier mechanism and you probably won't need to change the session_cookie_path when using Shibboleth. 
+* __description:__ Explicitly sets the session.cookie.path parameter for the authentication cookies.  You typically need this if you use SimpleSAMLphp for authentication and have multiple FileSender instances using the same SimpleSAMLphp installation.  Shibboleth has its own session identifier mechanism and you probably won't need to change the session_cookie_path when using Shibboleth.
 * __mandatory:__ no
 * __type:__ string
 * __default:__ if(!$session_cookie_path) $session_cookie_path = $site_url_parts['path'];
@@ -196,8 +196,8 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__
 * __comment:__ Testing, ticket #1198
 * __comment:__ Be careful to include the entire URL path, like http://yourdomain.dom/!
-* __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: http://yourdomain.dom/filesender-beta and http://yourdomain.dom/simplesamlphp.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example "http://yourdomain.dom/".  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.  
-    
+* __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: http://yourdomain.dom/filesender-beta and http://yourdomain.dom/simplesamlphp.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example "http://yourdomain.dom/".  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
+
 
 ###auth_remote_signature_algorithm
 * __description:__ <span style="background-color:orange">which remote signature algorithm to use.  Used in API? Should be in API section probably?  Which other permissible values?</span>
@@ -260,7 +260,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 ##Backend storage
 ---
 ###storage_type
-* __description:__  type of storage you used for storing files uploaded to FileSender. 
+* __description:__  type of storage you used for storing files uploaded to FileSender.
 * __mandatory:__ no
 * __type:__ string.  Permissible values: **filesystem**.
 * __default:__ filesystem
@@ -282,7 +282,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __type:__ string
 * __default:__ <span style="background-color:orange">?</span>?
 * __available:__ since version 2.0
-* __1.x name:__ 
+* __1.x name:__
 * __comment:__
 
 ###storage_filesystem_file_deletion_command
@@ -305,14 +305,14 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 
 <span style="background-color:orange">###storage_filesystem_hashing
-* __description:__ Aggregate several directories into a virtual FileSender file store without using LVM.  Directories can be on different file systems which can be on different block devices and hard drives.  Allows you to pool several hard drives into one virtual FileSender file store without any external software.  
-* __mandatory:__ no 
+* __description:__ Aggregate several directories into a virtual FileSender file store without using LVM.  Directories can be on different file systems which can be on different block devices and hard drives.  Allows you to pool several hard drives into one virtual FileSender file store without any external software.
+* __mandatory:__ no
 * __type:__ **int** or **callable**.  When integer indicates number of characters used in hash.  When callable "file que l'on veit stocker et doit retourner le chemin dans le stockage"
 * __default:__ 0
 * __available:__ since version 20
 * __1.x name:__
 * __comment:__ not tested
-* __comment:__ basically integer. use fileUID (which is used to create name on hard drive) + as many characters as the hashing value (if you set hashing to 2 you take the 2 first letters of the fileUID (big random string) and use these two characters to create a directory structure under the storage path. This avoids having all files in the same directory. If you set this to 1 you have 16 possible different values for the directory structure under the storage root. You'll have 16 folders under your storage root under which you'll have the files. This allows you to spread files over different file systems / hard drives. You can aggregate storage space without using things like LVM. If you set this to two you have 2 levels of subdirectories. For directory naming: first level, directory names has one letter. Second level has two: letter from upper level + own level. Temporary chunks are stored directly in the final file. No temp folder (!!) Benchmarking between writing small file in potentially huge directory and opening big file and seeking in it was negligable. Can just open final file, seek to location of chunk offset and write data. Removes need to move file in the end.  It can also be "callable". We call the function giving it the file object which hold all properties of the file. Reference to the transfer as well. The function has to return a path under the storage root. This is a path related to storage root. For example: if you want to store small files in a small file directory and big files in big directory. F.ex. if file->size < 100 MB store on fast small disk, if > 100 MB store on big slow disk. Can also be used for functions to store new files on new storage while the existing files remain on existing storage. Note: we need contributions for useful functions here :) 
+* __comment:__ basically integer. use fileUID (which is used to create name on hard drive) + as many characters as the hashing value (if you set hashing to 2 you take the 2 first letters of the fileUID (big random string) and use these two characters to create a directory structure under the storage path. This avoids having all files in the same directory. If you set this to 1 you have 16 possible different values for the directory structure under the storage root. You'll have 16 folders under your storage root under which you'll have the files. This allows you to spread files over different file systems / hard drives. You can aggregate storage space without using things like LVM. If you set this to two you have 2 levels of subdirectories. For directory naming: first level, directory names has one letter. Second level has two: letter from upper level + own level. Temporary chunks are stored directly in the final file. No temp folder (!!) Benchmarking between writing small file in potentially huge directory and opening big file and seeking in it was negligable. Can just open final file, seek to location of chunk offset and write data. Removes need to move file in the end.  It can also be "callable". We call the function giving it the file object which hold all properties of the file. Reference to the transfer as well. The function has to return a path under the storage root. This is a path related to storage root. For example: if you want to store small files in a small file directory and big files in big directory. F.ex. if file->size < 100 MB store on fast small disk, if > 100 MB store on big slow disk. Can also be used for functions to store new files on new storage while the existing files remain on existing storage. Note: we need contributions for useful functions here :)
 </span>
 
 
@@ -327,7 +327,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __permissible values__: mysql, pgsql, sqlite (<span style="background-color:orange">taken from PDO drivers documentation, need to check with Etienne)</span>
 * __default:__ pgsql
 * __available:__ since version 1.0
-* __1.x name:__ 
+* __1.x name:__
 * __comment:__
 
 ###db_host
@@ -340,7 +340,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ###db_port
-* __description:__ port used by database server 
+* __description:__ port used by database server
 * __mandatory:__  <span style="background-color:red">yes</span>
 * __type:__ string
 * __default:__ -
@@ -349,7 +349,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ###db_username
-* __description:__ database username 
+* __description:__ database username
 * __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
 * __default:__ -
@@ -358,7 +358,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ###db_password
-* __description:__ database password 
+* __description:__ database password
 * __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
 * __default:__ -
@@ -367,7 +367,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ###db_table_prefix
-* __description:__ table prefix to use.  Allows you to have several filesender instances in one database.  For example if you buy hosting with 1 database and still want multiple filesender instances. 
+* __description:__ table prefix to use.  Allows you to have several filesender instances in one database.  For example if you buy hosting with 1 database and still want multiple filesender instances.
 * __mandatory:__ <span style="background-color:orange">?  Would think not?</yes>
 * __type:__ string
 * __default:__ -
@@ -387,7 +387,7 @@ User language detection is done in the following order:
 2. From the browser's `Accept-Language` header : allows for automatic language detection base on the browser config (if `lang_browser_enabled` set to true in config)
 3. From `default_language` config parameter
 4. From the hard-coded absolute default `en`
-  
+
 ###lang_browser_enabled](#lang_browser_enabled)
 * __description:__ detect user's preferred language from browser's Accept-Language header if this header is provided.  If a language a user requests is not available, falls back to the default language.  If no default language is configured, falls back to English.  If a language directive is not available in the selected language, it is taken from the default language file.
 * __mandatory:__ no
@@ -407,7 +407,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ###lang_userpref_enabled
-* __description:__ take user's preferred language from user's stored preferences.  These preferences are stored in the FileSender database. 
+* __description:__ take user's preferred language from user's stored preferences.  These preferences are stored in the FileSender database.
 * __mandatory:__ no
 * __type:__ boolean
 * __default:__ false
@@ -462,7 +462,7 @@ User language detection is done in the following order:
 * __description:__ <span style="background-color:orange">adds a reply-to: header to emails sent by FileSender.  When users reply to such an email usually the reply is then sent to the reply_to address.  A user would typically reply to an email to ask a question about a file transfer which should go directly to the sender as the sender is the only one who knows.</span>
 * __mandatory:__ no
 * __type:__ string or keyword.  Permissible values for keyword: "sender"
-* __default:__ - 
+* __default:__ -
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ To be SPF compliant set this to "sender"
@@ -532,7 +532,7 @@ User language detection is done in the following order:
 * __default:__ false
 * __available:__ since version 1.6
 * __1.x name:__
-* __comment:__ Checks the frequent recipient field (array) in the user preference table. Holds different recipients the user did use. The first one is the last used one. Every time the user sends a file or guest voucher we take recipiients and add them at the top of the array. If they already exist in the array the address is put to the top. We limit array to max length defined in config. 
+* __comment:__ Checks the frequent recipient field (array) in the user preference table. Holds different recipients the user did use. The first one is the last used one. Every time the user sends a file or guest voucher we take recipiients and add them at the top of the array. If they already exist in the array the address is put to the top. We limit array to max length defined in config.
 
 ###autocomplete_max_pool
 * __description:__ how many of the user's recipients are stored in the user's preferences in the database.  Should be between 2 and ca. 15 times the "autocomplete" value.
@@ -602,11 +602,11 @@ User language detection is done in the following order:
 * __default:__ key
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ When you upload a file it is uploaded in chunks.  For each chunk there is a check whether the chunk belongs to a valid session and it ensures the right chunks are appended to the right files.  You don't want others to be able to insert chunks in a user's file as it would lead to file corruption.  In version 1.x this check was done with the user's session (login) identifier which from a security point of view worked well.  The only problem is that sometimes uploads take a long time, depending on file size and upload speeds.  A user's login session can then expire before the upload is complete.  Most FileSender installations in national research networks use SAML-based authentication.  A user logs in to an Identity Provider (IdP), this IdP sends a SAML-token to the Service Provider (SP, your FileSender instance) containing information like the session authentication token.  This SAML-token also contains a timestamp which indicates exactly when the user's login session expires. FileSender CAN NOT change this session expiry time as the authentication libraries it uses honour this value.  It's the Identiy Provider that makes this choice.  In Norwegian higher education for example a login session with the national authentication infrastructure expires after 8 hours.  We have seen uploads that last longer than that.  
-   
-   To solve this we introduced a transfer key in FileSender 2.0. When you start an upload you use the FileUID as a unique transfer session key. If the user session times out before the upload is done, the upload will still continue.  The transfer session key expires immediately once the upload is done. The upload is secure: you need an authenticated session to start an upload, only the server and the uploading client have knowledge of the FileUID. Third parties can not inject chunks.  
-  
-   If you want to find out the expiry timer for your SAML Identity Provider install [the SAML tracer add-on in FireFox](https://addons.mozilla.org/en-us/firefox/addon/saml-tracer/) and log in to your FileSender install.  Click on the "SAML" message in SAML tracer.
+* __comment:__ When you upload a file it is uploaded in chunks.  For each chunk there is a check whether the chunk belongs to a valid session and it ensures the right chunks are appended to the right files.  You don't want others to be able to insert chunks in a user's file as it would lead to file corruption.  In version 1.x this check was done with the user's session (login) identifier which from a security point of view worked well.  The only problem is that sometimes uploads take a long time, depending on file size and upload speeds.  A user's login session can then expire before the upload is complete.  Most FileSender installations in national research networks use SAML-based authentication.  A user logs in to an Identity Provider (IdP), this IdP sends a SAML-token to the Service Provider (SP, your FileSender instance) containing information like the session authentication token.  This SAML-token also contains a timestamp which indicates exactly when the user's login session expires. FileSender CAN NOT change this session expiry time as the authentication libraries it uses honour this value.  It's the Identiy Provider that makes this choice.  In Norwegian higher education for example a login session with the national authentication infrastructure expires after 8 hours.  We have seen uploads that last longer than that.
+
+To solve this we introduced a transfer key in FileSender 2.0. When you start an upload you use the FileUID as a unique transfer session key. If the user session times out before the upload is done, the upload will still continue.  The transfer session key expires immediately once the upload is done. The upload is secure: you need an authenticated session to start an upload, only the server and the uploading client have knowledge of the FileUID. Third parties can not inject chunks.
+
+If you want to find out the expiry timer for your SAML Identity Provider install [the SAML tracer add-on in FireFox](https://addons.mozilla.org/en-us/firefox/addon/saml-tracer/) and log in to your FileSender install.  Click on the "SAML" message in SAML tracer.
 
 ###default_transfer_days_valid
 * __description:__ specifies the default expiry date value in the "Expiry date" date picker in the Upload form.  If a user doesn't do anything this becomes the expiry date for the transfer.
@@ -618,33 +618,33 @@ User language detection is done in the following order:
 * __comment:__ Be aware of the changed semantic from 1.6 to 2.0.
 
 ###max_transfer_days_valid
-* __description:__ specifies the maximum expiry date for a transfer.  A user can not choose a larger value than this. 
+* __description:__ specifies the maximum expiry date for a transfer.  A user can not choose a larger value than this.
 * __mandatory:__ no
 * __type:__ int
 * __default:__ 20
 * __available:__ since version 1.0
 * __1.x name:__ default_daysvalid
-* __comment:__ experience shows the vast majority of users simply go with the default expiry time.  For some users having a maximum value a long time in the future makes sense, e.g. papers sent out to a research proposal evaluation committee that need to be evaluated by a certain date.  Downloads typically start not too long before the due date, but the actual due date can be over a month in the future. 
+* __comment:__ experience shows the vast majority of users simply go with the default expiry time.  For some users having a maximum value a long time in the future makes sense, e.g. papers sent out to a research proposal evaluation committee that need to be evaluated by a certain date.  Downloads typically start not too long before the due date, but the actual due date can be over a month in the future.
 
 
 ###allow_transfer_expiry_date_extension
-* __description:__ allows a user to extend the expiry date.  
-* __mandatory:__ 
+* __description:__ allows a user to extend the expiry date.
+* __mandatory:__
 * __type:__ an array of integers containing possible extensions in days.
 * __default:__ - (= not activated)
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__  
+* __comment:__
 * __Examples:__
 <PRE>
-   $config['allow_transfer_expiry_date_extension'] = array(5); // Allows a single extension of 5 days
-   $config['allow_transfer_expiry_date_extension'] = 5; // Same as above
-   $config['allow_transfer_expiry_date_extension'] = array(5, 3); // Allows 2 successive extensions, the first is by 5 days the second is by 3 days
-   $config['allow_transfer_expiry_date_extension'] = array(5, 3, 1, true); // Allows infinite extensions, the first is by 5 days the second is by 3 days, the third and above are by 1 day
+	$config['allow_transfer_expiry_date_extension'] = array(5); // Allows a single extension of 5 days
+	$config['allow_transfer_expiry_date_extension'] = 5; // Same as above
+	$config['allow_transfer_expiry_date_extension'] = array(5, 3); // Allows 2 successive extensions, the first is by 5 days the second is by 3 days
+	$config['allow_transfer_expiry_date_extension'] = array(5, 3, 1, true); // Allows infinite extensions, the first is by 5 days the second is by 3 days, the third and above are by 1 day
 </PRE>
 
 ##force_legacy_mode
-* __description:__ Force FileSender into legacy non-HTML5 mode. Multi-file uploads are still possible, but each file is limited to max. 2GB.  The help file and certain text labels change as well. The max. number of files and total transfer size limit is the same as for HTML5 mode.  This function is available for testing purposes: FileSender will detect automatically if a user's browser supports the necessary HTML5 functionality or not.   
+* __description:__ Force FileSender into legacy non-HTML5 mode. Multi-file uploads are still possible, but each file is limited to max. 2GB.  The help file and certain text labels change as well. The max. number of files and total transfer size limit is the same as for HTML5 mode.  This function is available for testing purposes: FileSender will detect automatically if a user's browser supports the necessary HTML5 functionality or not.
 * __mandatory:__ no
 * __type:__ boolean
 * __default:__ false
@@ -662,7 +662,7 @@ User language detection is done in the following order:
 * __comment:__ Normally FileSender will use the browser's HTML5 FileAPI functionality for uploading, splitting files in chunks and uploading these chunks.  This allows for uploads of any size.  Older browsers which you may find in a locked-down environment do not support the necessary HTML5 functionality.  For these browsers a legacy fallback upload method is provided.  Before version 2.0 a flash component was used for legacy uploads.  As of version 2.0 this is replaced by a native HTML upload with a limit of 2GB per file.  A user **can** select multiple files but in a less smooth way than with the HTML5 drag & drop box.  The upload progress for legacy uploads is polled from the server (via PHP) based on what has arrived (how many bytes) server side.  <span style="background-color:orange">This only became possible as of PHP version 5.x, released in x</span>
 
 ###max_legacy_file_size
-* __description:__ maximum size per file for a legacy upload.  <span style="background-color:orange">With a legacy upload users can upload x files per transfer.</span>.     
+* __description:__ maximum size per file for a legacy upload.  <span style="background-color:orange">With a legacy upload users can upload x files per transfer.</span>.
 * __mandatory:__ no
 * __type:__ int
 * __default:__ 2147483648 (2GB)
@@ -671,7 +671,7 @@ User language detection is done in the following order:
 * __comment:__ Files are uploaded serially.  A hidden iframe and hidden form is created for each file, containing the required data (session key for upload etc.).  A single file element is cloned into each hidden form.  This form is submitted to the hidden iframe which then uploads the file.  At the end of the upload the server sends a bit of javascript which triggers the next upload in the queue.  Each file is an "entire file at once" upload rather then the chunked upload used to get over the 2GB limit of 32 bit browsers.
 
 ###max_transfer_size
-* __description:__ maximum total size for any transfer (both html5 and legacy transfers) 
+* __description:__ maximum total size for any transfer (both html5 and legacy transfers)
 * __mandatory:__ no
 * __type:__ int
 * __default:__ 107374182400 (100 GB)
@@ -680,7 +680,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ###max_transfer_files
-* __description:__ maximum number of files that can be sent in one transfer 
+* __description:__ maximum number of files that can be sent in one transfer
 * __mandatory:__ no
 * __type:__ int
 * __default:__ 30
@@ -695,18 +695,18 @@ User language detection is done in the following order:
 * __default:__ 50
 * __available:__ since version 1.0
 * __1.x name:__ max_email_recipients
-* __comment:__ 
+* __comment:__
 
 
 
 ###transfer_options
-* __description:__ this parameter controls which transfer options are available to the user in the Upload form and how these options behave.  Options show up in the right hand side block in the Upload form.  Options appear in the order they are specified in the config file.  Most options control which email receipts are sent out when and to whom.  See below for details.  
+* __description:__ this parameter controls which transfer options are available to the user in the Upload form and how these options behave.  Options show up in the right hand side block in the Upload form.  Options appear in the order they are specified in the config file.  Most options control which email receipts are sent out when and to whom.  See below for details.
 * __mandatory:__ no
 * __type:__ array
 * __default:__
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ 
+* __comment:__
 * __*Standard parameters for all options:*__
 	* __available__(boolean): if set to true then this option shown in the upload form
 	* __advanced__ (boolean): if set to true the option is hidden under an "Advanced options" click-out.  The user must click "Advanced" to make the option visible.
@@ -720,7 +720,7 @@ User language detection is done in the following order:
 	* __email\_report\_on\_closing:__ send the sender an overview of all activity on this particular transfer after that transfer is closed.  This is the audit report for that particular transfer.  When a sender receives this, the server's audit logs can (in principle) be purged for the records pertaining to this particular transfer thus reducing FileSender's privacy footprint.
 	* __enable\_recipient\_email\_download\_complete:__ this gives the downloader a tick box in the download window which in turn lets the downloader indicate they would like to receive an email once the download is finished.  If you want this option available for all downloaders and do not want to bother the uploader with it, simply configure it with 'default' => false as the only parameter. __Warning:__ if the recipient of a file is a mailinglist and someone ticks the "send me a message on download complete" box, then all members of that mailinglist will receive that message.  That might be a reason why you don't want to make this option available to your users.
 	* __add\_me\_to\_recipients:__ include the sender as one of the recipients.
-	* __get\_a\_link:__ if checked it will not send any emails, only present the uploader with a download link once the upload is complete.  This is useful when sending files to mailinglists, newsletters etc.  When ticked the message subject and message text box disappear from the UI.  Under the hood it creates an anonymous recipient with a token for download.  You can se the download count, but not who downloaded it (obviously, as there are no recipients defined).  
+	* __get\_a\_link:__ if checked it will not send any emails, only present the uploader with a download link once the upload is complete.  This is useful when sending files to mailinglists, newsletters etc.  When ticked the message subject and message text box disappear from the UI.  Under the hood it creates an anonymous recipient with a token for download.  You can se the download count, but not who downloaded it (obviously, as there are no recipients defined).
 	* __redirect_url_on_complete:__ When the transfer upload completes, instead of showing a success message, redirect the user to a URL. This interferes with __get\_a\_link__ in that the uploader will not see the link after the upload completes. Additionally, if the uploader is a guest, there is no way straightforward way for the uploader to learn the download link, although this must not be used as a security feature.
 
 * __*Configuration example:*__
@@ -736,7 +736,7 @@ User language detection is done in the following order:
 			'advanced' => true,
 			'default' => false
 		);
-</PRE> 
+</PRE>
 
 ###upload_chunk_size
 * __description:__ standard upload for FileSender is chunked upload.  This indicates how big each chunk is.  There is a certain optimal chunk size which depends largely on your bandwidth-delay product.  Usually you shouldn't have to touch this but if you're trying to serve special use cases you might want to experiment with this and see which value gives you the fastest upload times..
@@ -749,7 +749,7 @@ User language detection is done in the following order:
 
 ###user_quota
 * __description:__ set to 0 to disable.  If set to a positive value it sets the per-user maximum storage usage. A transfer requiring more space than remains in the user's quota are rejected with an error message in the web-UI.
-* __mandatory:__ no 
+* __mandatory:__ no
 * __type:__ int (bytes) or function
 * __default:__ 0
 * __available:__ since version 2.0
@@ -782,7 +782,7 @@ User language detection is done in the following order:
 
 ###terasender_worker_count
 * __description:__ how many client-side workers FileSender fires up when starting a terasender upload.  Note that different browsers have different maximum webworker settings which also change over time.  As CPU power increases your users will typically be able to support higher number.
-* __mandatory:__ no 
+* __mandatory:__ no
 * __type:__ int
 * __default:__ 6
 * __available:__ since version 1.6
@@ -793,7 +793,7 @@ User language detection is done in the following order:
 * __description:__ progress sequentially or parallel through the file list.
 * __mandatory:__ no
 * __type:__ string, keyword
-* __permissible values:__ "single" or "multiple".  When single all workers will work on one single file and move sequentially through the file list.  When set to multiple all workers will be spread over all files.  The difference is in user experience; in the latter case a user sees progress on all files at once.  In reality the total upload time should remain the same.  So question is do you want the status to light up light a christmas tree or not. 
+* __permissible values:__ "single" or "multiple".  When single all workers will work on one single file and move sequentially through the file list.  When set to multiple all workers will be spread over all files.  The difference is in user experience; in the latter case a user sees progress on all files at once.  In reality the total upload time should remain the same.  So question is do you want the status to light up light a christmas tree or not.
 * __default:__ multiple
 * __available:__ since version 2.0
 * __1.x name:__
@@ -848,7 +848,7 @@ User language detection is done in the following order:
 * __description:__ <span style="background-color:orange">are transfer options for guest invitations inherited from transfer_options?</span>this parameter controls which options a user has available in the Guest form to control the behaviour of guest invitations.  Options show up in the right hand side block in the Guest form. Options appear in the order they are specified in the config file. See below for details.
 * __mandatory:__ no
 * __type:__ array
-* __default:__ 
+* __default:__
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
@@ -880,7 +880,7 @@ User language detection is done in the following order:
 			'advanced' => true,
 			'default' => false
 		);
-</PRE> 
+</PRE>
 
 
 ###default_guest_days_valid
@@ -926,7 +926,7 @@ User language detection is done in the following order:
 * __comment:__ <span style="background-color:orange">to use type "fake" you need ...</span>
 
 ###session_cookie_path
-* __description:__ Explicitly sets the session.cookie.path parameter for the authentication cookies.  You typically need this if you use SimpleSAMLphp for authentication and have multiple FileSender instances using the same SimpleSAMLphp installation.  Shibboleth has its own session identifier mechanism and you probably won't need to change the session_cookie_path when using Shibboleth. 
+* __description:__ Explicitly sets the session.cookie.path parameter for the authentication cookies.  You typically need this if you use SimpleSAMLphp for authentication and have multiple FileSender instances using the same SimpleSAMLphp installation.  Shibboleth has its own session identifier mechanism and you probably won't need to change the session_cookie_path when using Shibboleth.
 * __mandatory:__ no
 * __type:__ string
 * __default:__ if(!$session_cookie_path) $session_cookie_path = $site_url_parts['path'];
@@ -955,7 +955,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ###auth_sp_saml_simplesamlphp_url
-* __description:__ which URL to find SimpleSAMLphp.  
+* __description:__ which URL to find SimpleSAMLphp.
 * __mandatory:__ yes, if auth_sp_type is set to 'saml'
 * __type:__ string
 * __default:__ -
@@ -973,7 +973,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ###auth_sp_saml_uid_attribute
-* __description:__ attribute for user's unique user identifier to get from authentication service provider.  Usually you would use either *eduPersonTargetedID* or *eduPersonPrincipalName* (watch the spelling!).  ePTID is an anonymous identifier making it hard to link FileSender logging to a specific user which may or may not be what you want.  ePTID will protect your users against rogue IdPs.  eduPersonPrincipalName will usually give you an identifier like <username>@<domain>.  
+* __description:__ attribute for user's unique user identifier to get from authentication service provider.  Usually you would use either *eduPersonTargetedID* or *eduPersonPrincipalName* (watch the spelling!).  ePTID is an anonymous identifier making it hard to link FileSender logging to a specific user which may or may not be what you want.  ePTID will protect your users against rogue IdPs.  eduPersonPrincipalName will usually give you an identifier like <username>@<domain>.
 * __mandatory:__ no explicit configuration is needed when the default is used.  However, this value MUST be received from the Identity Provider, otherwise a user can not log on.
 * __type:__ string
 * __default:__ eduPersonTargetedId
@@ -988,7 +988,7 @@ User language detection is done in the following order:
 * __default:__ mail
 * __available:__ since version 1.0
 * __1.x name:__ saml_email_attribute
-* __comment:__ 
+* __comment:__
 
 ###auth_sp_saml_name_attribute
 * __description:__ attribute for user's name to get from authentication service provider
@@ -1006,7 +1006,7 @@ User language detection is done in the following order:
 * __description:__ attribute for user's unique user identifier to get from authentication service provider.  Usually you would use either *eduPersonTargetedID* or *eduPersonPrincipalName* (watch the spelling!).  ePTID is an anonymous identifier making it hard to link FileSender logging to a specific user which may or may not be what you want.  ePTID will protect your users against rogue IdPs.  eduPersonPrincipalName will usually give you an identifier like <username>@<domain>.
 * __mandatory:__ no explicit configuration is needed when the default is used.  However, this value MUST be received from the Identity Provider, otherwise a user can not log on.
 * __type:__ string
-* __default:__ 
+* __default:__
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
@@ -1040,7 +1040,7 @@ User language detection is done in the following order:
 * __example:__ $prot.$_SERVER['SERVER_NAME'].'/Shibboleth.sso/Login?target={target}';
 
 ###auth_sp_shibboleth_logout_url
-* __description:__ where to find the Shibboleth logout URL 
+* __description:__ where to find the Shibboleth logout URL
 * __mandatory:__ yes when using Shibboleth as authentication library
 * __type:__ string
 * __default:__ -
@@ -1051,8 +1051,8 @@ User language detection is done in the following order:
 
 ##Authentication: SP_fake
 ###auth_sp_fake_authenticated
-* __description:__ 
-* __mandatory:__ 
+* __description:__
+* __mandatory:__
 * __type:__ boolean
 * __default:__
 * __available:__
@@ -1061,7 +1061,7 @@ User language detection is done in the following order:
 
 ###auth_sp_fake_uid
 * __description:__ UID you want to have
-* __mandatory:__ 
+* __mandatory:__
 * __type:__ string
 * __default:__
 * __available:__
@@ -1069,8 +1069,8 @@ User language detection is done in the following order:
 * __comment:__
 
 ###auth_sp_fake_email
-* __description:__ 
-* __mandatory:__ 
+* __description:__
+* __mandatory:__
 * __type:__
 * __default:__
 * __available:__
@@ -1078,8 +1078,8 @@ User language detection is done in the following order:
 * __comment:__
 
 ###auth_sp_fake_name
-* __description:__ 
-* __mandatory:__ 
+* __description:__
+* __mandatory:__
 * __type:__
 * __default:__
 * __available:__
@@ -1107,7 +1107,7 @@ User language detection is done in the following order:
 * __default:__  array('type' => 'file', 'path' => FILESENDER_BASE.'/log/', 'rotate' => 'hourly'))
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ 
+* __comment:__
 
 
 <span style="background-color:orange">if you define your own log_facilities, you will overwrite the default setting.  Make sure to include all log targets you wish to log to.
@@ -1116,55 +1116,55 @@ User language detection is done in the following order:
 	* __'level' (optional):*__ restricts loglevel of current facility.  Permissible values: debug, warning, info, error
 	* __'process' (optional): allows you to separate logs from different parts of FileSender into separate logfiles, for example the REST logfile gets huge.  Permissible values: CLI, GUI, REST, WEB, CRON, FEEDBACK, MISC, INSTALL, UPGRADE.  Comma-separated list.
 	* __'
-*__*Available targets:*__ 
-	* __'type' => 'file'__ logs to a file.  You must specify a path.  You can optionally specify log file rotation with 'rotate' => '<value>', where value can be hourly, daily, weekly, monthly, yearly. 
-	* __'type' => 'syslog'__ logs to syslog.  
+*__*Available targets:*__
+	* __'type' => 'file'__ logs to a file.  You must specify a path.  You can optionally specify log file rotation with 'rotate' => '<value>', where value can be hourly, daily, weekly, monthly, yearly.
+	* __'type' => 'syslog'__ logs to syslog.
 	* __'type' => 'errror_log'__ logs to the default PHP log facility as defined in your webserver's PHP module.</span>
-	
+
 <span style="background-color:orange">* __*Examples:*__</span>
 examples for tpye file with different log rotations
 examles for type syslog
 
-<span style="background-color:orange"> OR 
+<span style="background-color:orange"> OR
 Array( array ( type => String (errorlog,syslog,file,callable) path => String rotate => String ) )
 mandatory: no
 type: array of arrays.  Each one is definition of a target.  Each target has a type and if needed optional parameters.
-default: type file.  
+default: type file.
 Note: if you define your own, it will _overwrite_ the default setting, not add it to the array.  If you want to keep basic logging and add syslog you must add _both_.
 array (
-    'type' => 'file', (permissible values?) (file, syslog, error_log (log using default php facility, puts logs in apache error logs, callable
-    'path' => '<something>/logs/'
-    'rotate' => hourly (permissible values?) (
-' process' => CLI, GUI or REST (can ask to only get logs from specific parts of FileSender, so you can separate your logs between different componentes.  Maybe hourly logs with REST service (they get huge)
+'type' => 'file', (permissible values?) (file, syslog, error_log (log using default php facility, puts logs in apache error logs, callable
+'path' => '<something>/logs/'
+'rotate' => hourly (permissible values?) (
+'process' => CLI, GUI or REST (can ask to only get logs from specific parts of FileSender, so you can separate your logs between different componentes.  Maybe hourly logs with REST service (they get huge)
 
 mandatory parameter is 'type'.  Permissible values file, syslog, error_log
 
 
 
 
-type syslog.  indent, facility.  Facility sets the syslog facility used.  Standard PHP syslog function parameters 
+type syslog.  indent, facility.  Facility sets the syslog facility used.  Standard PHP syslog function parameters
 
 callable (advanced): "I give you something you can call to log".  There is one mandatory parameter "callback" which must be a php function.  That will be called every time you want to log something. Level and process can be set as well.  When it's called it will get the message to log and the current process.  1st argument will be message, 2nd argument process type.  Can name them A and B.  CAn be useful if you're searching for a particular error or for example use remote log facility.  Search for particular error: write specific function to catch specific errors and drop an email when it happens.
 
 different options for different types.</span>
-	
+
 ###maintenance
 * __description:__ when true, switches the FileSender instance in maintenance mode.  This allows to interrupt the service for a database upgrade or webserver restart without breaking ongoing uploads.
 
    When switched on:  
-  * all pages are replaced with the maintenance page
-  * webservice returns specific exception to all requests
-  * clients display a popup explaining what happens
-  * clients pause uploads and put all requests they were about to make in a stack
-  * clients starts to query the server on a regular basis to see if maintenance ended (server responding with no exception status)
-  * when server exits maintenance mode clients restart uploading and run stacked requests and remove maintenance popup
+	* all pages are replaced with the maintenance page
+	* webservice returns specific exception to all requests
+	* clients display a popup explaining what happens
+	* clients pause uploads and put all requests they were about to make in a stack
+	* clients starts to query the server on a regular basis to see if maintenance ended (server responding with no exception status)
+	* when server exits maintenance mode clients restart uploading and run stacked requests and remove maintenance popup
 * __mandatory:__ no
 * __type:__ boolean
 * __default:__ false
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
-	
+
 ###statlog_lifetime
 * __description:__ The statlog is kept in the database and contains everything needed to produce usage statistics.  This directive defines maximum lifetime of statslog entries (in days) after which they get deleted.  <span style="background-color:orange">point to more text detailing what is actuallly logged in the statlog!</span>
 * __mandatory:__ no
@@ -1175,7 +1175,7 @@ different options for different types.</span>
 * __comment:__ The statlog is always enabled.  If you don't want anything logged, set this lifetime to 0.  Use this setting to control the privacy footprint of your FileSender service.
 
 ###auth_sp_additional_attributes
-* __description:__ Allows to define additional user attributes that will be asked for, such as organisation, that can then be propagated to the statistic log table in the database for use in creating statistics.  This configuration parameter defines the additional attributes to get.  
+* __description:__ Allows to define additional user attributes that will be asked for, such as organisation, that can then be propagated to the statistic log table in the database for use in creating statistics.  This configuration parameter defines the additional attributes to get.
 definition of additional attributes to get, array of either attributes names or
 final name to raw attribute name pair or final name to callable getter pair
 * __mandatory:__ no
@@ -1187,12 +1187,12 @@ final name to raw attribute name pair or final name to callable getter pair
 * __example:__ <span style="background-color:orange">need an example here!</span>
 
 ###auth_sp_save_user_additional_attributes
-* __description:__ if set to true, the additional user attributes are saved in the userpreferences table.  
+* __description:__ if set to true, the additional user attributes are saved in the userpreferences table.
 * __mandatory:__ no
 * __type:__ boolean
 * __default:__ false
 * __available:__ since version 2.0
-* __1.x name:__ 
+* __1.x name:__
 * __comment:__ <span style="background-color:orange">what was the point of this again?</span>
 * __example:__ ...
 
@@ -1224,7 +1224,7 @@ only)
 * __default:__ 31
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ Use this setting to control the privacy footprint of your FileSender service.  
+* __comment:__ Use this setting to control the privacy footprint of your FileSender service.
 
 ###report_format
 * __description:__ A user can ask for an audit report specifying what happened to a transfer when.  This can be done when initiating a transfer by ticking the checkbox or explicitly through MyTransfers (view audit log).  This setting specifies what type of report will be generated.
@@ -1250,7 +1250,7 @@ only)
 * __comment:__ <span style="background-color:orange">needs to be elaborated more.  Consequences of setting to true</span>
 
 ###remote_applications
-* __description:__  list of remote applications.  This is an array where each entry includes an authentication secret, whether or not the application has admin rights and what methods the application is allowed to use: 
+* __description:__  list of remote applications.  This is an array where each entry includes an authentication secret, whether or not the application has admin rights and what methods the application is allowed to use:
 * __mandatory:__ no
 * __type:__ array
 * __default:__
@@ -1269,7 +1269,7 @@ array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boo
 * __comment:__
 
 ###disclosed
-* __description:__ the webservice has an endpoint called "info" which discloses information about the FileSender instance.  By default it gives the URL of the FileSender instance.  This parameter allows you to add more info from the configuration file.  E.g. when using a remote client this client needs the chunk size.  
+* __description:__ the webservice has an endpoint called "info" which discloses information about the FileSender instance.  By default it gives the URL of the FileSender instance.  This parameter allows you to add more info from the configuration file.  E.g. when using a remote client this client needs the chunk size.
 * __mandatory:__ no
 * __type:__ boolean/array of strings
 * __default:__ - (disclose nothing)
@@ -1279,13 +1279,13 @@ array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boo
 * __example:__ <span style="background-color:orange">example comes here.</span>
 
 ###rest_allow_jsonp
-* __description:__ Define additional REST-API end points JSONP can be called upon. JSONP is typically used when using FileSender in an iframe. We limit which API end points you can reach in such a scenario but give you the option of enlarging that set of API end points in case you need this.  
+* __description:__ Define additional REST-API end points JSONP can be called upon. JSONP is typically used when using FileSender in an iframe. We limit which API end points you can reach in such a scenario but give you the option of enlarging that set of API end points in case you need this.
 * __mandatory:__ no
 * __type:__ boolean/array of strings
 * __default:__ Authorised by default are these api end points: /info, /lang, /file/[0-9]+/whole and /user/@me/remote_auth_config (if remote user authentication is enabled).
 * __available:__ since version 2
 * __1.x name:__
-* __comment:__ 
+* __comment:__
 * __example:__ Autorized by default are :
 
 /info : public infos about the instance (name, login url ...)
@@ -1307,7 +1307,7 @@ $config['rest_allow_jsonp'] = array(
 ##Other
 ---
 ###host_quota
-* __description:__ use this when your FileSender instance needs to share its storage with other applications.  If set to a positive value it defines the total amount of storage your FileSender instance can use for storing files.  New transfers that require more space than is available are rejected with an error message in the Web-UI.  Set to 0 to disable.  
+* __description:__ use this when your FileSender instance needs to share its storage with other applications.  If set to a positive value it defines the total amount of storage your FileSender instance can use for storing files.  New transfers that require more space than is available are rejected with an error message in the Web-UI.  Set to 0 to disable.
 * __mandatory:__ no
 * __type:__ int (in bytes)
 * __default:__ 0
@@ -1326,15 +1326,15 @@ $config['rest_allow_jsonp'] = array(
 * __comment:__ example:
 	* $config['config_overrides'] = array( 'site_name_in_header' => 'bool', 'site_name' =&gt; array('type' =&gt; 'string', 'validator' =&gt; 'is_string'), 'terasender_start_mode' =&gt; array('single', 'multiple'), );
 
-	In this example the "site_name_in_header" is a checkbox in the UI.  For the override "site_name", type string: displays a text field, and runs validator "is_string".  You can use existing validators or any other function. The override "terasender_start_mode" displays a dropdown in which you can choose from different predefined values.  
+	In this example the "site_name_in_header" is a checkbox in the UI.  For the override "site_name", type string: displays a text field, and runs validator "is_string".  You can use existing validators or any other function. The override "terasender_start_mode" displays a dropdown in which you can choose from different predefined values.
 
-Changes are saved in config_overrides.json in the config directory.  The config.php file is NOT modified.  This keeps overrides separated from the site config.  is_string, is_numeric (standard php validators) or a function of your own which returns a boolean indicating if the value is good or not.  
+Changes are saved in config_overrides.json in the config directory.  The config.php file is NOT modified.  This keeps overrides separated from the site config.  is_string, is_numeric (standard php validators) or a function of your own which returns a boolean indicating if the value is good or not.
 
- 
+
 
 ###
-* __description:__ 
-* __mandatory:__ 
+* __description:__
+* __mandatory:__
 * __type:__
 * __default:__
 * __available:__
@@ -1344,8 +1344,8 @@ Changes are saved in config_overrides.json in the config directory.  The config.
 
 ---
 ###
-* __description:__ 
-* __mandatory:__ 
+* __description:__
+* __mandatory:__
 * __type:__
 * __default:__
 * __available:__
@@ -1368,11 +1368,11 @@ webWorkersLimit: renamed to terasender_worker_count.  before you could launch se
 
 crlf: now have a constant for that.  This parameter was important when windows was not respecting line delimiters in emails.  Had to make this configurable in the past when some old Windows clients (Outlook) used different newline format.  Really long time since this was a problem.
 
-voucherRegEx: now hardcoded in utilities.  app was generating unique Ids with own algorithm that you can't change from the config.  Why does the checking regexp be configurable.  Changing it you can change the way the unique id looks which is a Bad Idea.  You could only really simplify it (make it less strict) thus reducing security.  
+voucherRegEx: now hardcoded in utilities.  app was generating unique Ids with own algorithm that you can't change from the config.  Why does the checking regexp be configurable.  Changing it you can change the way the unique id looks which is a Bad Idea.  You could only really simplify it (make it less strict) thus reducing security.
 
 openSSLKeyLength: generated in utility.  Method "generate_uid".  don't realy on openssl to generate unique IDs.   OpenSSL was used to be sure we had something unique.  Added dependency on OpenSSL.  Needs to be unique, non-guessable and properly random.  Using random_uid_generation (6 calls to mt_rand , build X-string, put dashes.  Solved by when generating unique ID.  Wwas used to generate random unique ids.  Adding dependency on openssl.  Was not that much more secure than generating unique IDs.  Unique IDs were generated before without collision checking.  Now we check for that until we get a real unique one.  Removing it removed a dependency.  Note: need to double-check how properly random the resulting UIDs are.
 
-emailRegEx: now using PHP built-in facility for checking email address validity which these days works well.  Basic function is filter_var. Give it a variable and a filter to use.  Using filter FILTER_VALIDATE_EMAIL.  
+emailRegEx: now using PHP built-in facility for checking email address validity which these days works well.  Basic function is filter_var. Give it a variable and a filter to use.  Using filter FILTER_VALIDATE_EMAIL.
 
 #Changed defaults from 1.x to 2.0
 email_newline is now "\r\n", before \n

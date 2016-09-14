@@ -6,7 +6,7 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 * New feature: multi-file transfer of unlimited size files with drag & drop support
 * New feature: fine-grained email receipt control
 * New feature: user-accessible transfer audit log
-* Removed dependency on Flash for uploads with legacy browsers without HTML5 FileAPI support.  Note the per-file limit with legacy browsers is 2GB.  
+* Removed dependency on Flash for uploads with legacy browsers without HTML5 FileAPI support.  Note the per-file limit with legacy browsers is 2GB. 
 * REST API
 
 #User visible features
@@ -20,7 +20,7 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 	* Download all or a selection of files, streamed into to a non-compressed .zip file that will open without external utilities in the file explorer on Windows and Mac.
 	* Download individual files
 	* Support for download pause/resume
-	* Can detect whether a file was actually downloaded (but for the last download chunk).   This also means download completed emails are now sent once the file is actually downloaded, not when the download starts. 
+	* Can detect whether a file was actually downloaded (but for the last download chunk).   This also means download completed emails are now sent once the file is actually downloaded, not when the download starts.
 	* Show a warning when downloading (to) a file > 2GB on Mac that you need a different unarchiver.
 * Automatic deletion of transfers
 * Flash-free legacy multi-file upload for older browsers lacking HTML5 FileAPI upload capability.  Not as pretty but it does work.
@@ -29,12 +29,12 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 * Default and Max days valid
 * Auto-complete
 * User preferences
- *Can save preferred language
+	* Can save preferred language
 •	Service configurable speed units (bits or bytes per second)
 
 ##Email receipts with full control
 * Email receipt options:
- * No emails at all, just present a download link in the UI after uploading the transfer
+	* No emails at all, just present a download link in the UI after uploading the transfer
 	
 
 * Translation URL included in emails, when user clicks on it the email is shown in another language on the FileSender service URL
@@ -43,11 +43,11 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 ##My Transfers
 * Overview of transfers, both in flight and closed
 * For each transfer:
- * Re-send download link email
- * Add recipients
- * Delete recipients
- * Extend availability period
- * Access audit trail
+	* Re-send download link email
+	* Add recipients
+	* Delete recipients
+	* Extend availability period
+	* Access audit trail
 
 ##Audit trail for each transfer
 * Each significant action (transfer complete, download etc.) for a transfer is logged in a per-transfer audit trail
@@ -59,7 +59,7 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 * Guest access vouchers can now be made available for:
 o	Valid only one time
 o	Unlimited amount of time
-o	Limited to send only to user who created the guest access voucher 
+o	Limited to send only to user who created the guest access voucher
 * Users can be informed when their guest starts an upload or accesses the upload page
 * The user creating the guest access voucher can specify which transfer options the guest has available
 * The user can include an optional subject and/or message with the guest access voucher
@@ -80,16 +80,16 @@ o
 ##Privacy by design
 * Logging to database separated in audit logging per transfer and anonymised logging for statistical purposes
 * Configurable lifetime for audit logging
-* Audit report can automatically be sent to transfer owner on transfer expiry after which the audit logging can be deleted.  In this scenario the sensitive data is kept exactly as long as it is needed. 
+* Audit report can automatically be sent to transfer owner on transfer expiry after which the audit logging can be deleted.  In this scenario the sensitive data is kept exactly as long as it is needed.
 * Support for logging additional user account parameters in the statlog, e.g. an organisation identifier allowing statistics per customer
 * Configurable enforcing of in-flight encryption of transfers (SSL)
 	
 ##Transfers
 * Generalised transfer option mechanism
- * For each option you can configure whether that option is: 
-	always visible or accessible under an "Advanced" click-down menu
-	switched on by default
-	user changeable or not
+	* For each option you can configure whether that option is:
+		always visible or accessible under an "Advanced" click-down menu
+		switched on by default
+		user changeable or not
 o	Currently implemented transfer options include full email control, audit report and direct link.
 * Configurable maximums for transfers:
 o	Total transfer size
@@ -105,15 +105,15 @@ o	Absent from UI
 * Improved robustness (needs details)
 * Can be switched on and off (default on)
 * Server-side configurable worker count
-* Server-side configurable whether the user can specify the worker count in the upload 
-form.  This is useful for those specific frequent very large file use cases where you 
-really want to optimise the upload speed.  The user('s organisation) can then figure out 
-what the best worker count for that particular setting is without burdening the 
+* Server-side configurable whether the user can specify the worker count in the upload
+form.  This is useful for those specific frequent very large file use cases where you
+really want to optimise the upload speed.  The user('s organisation) can then figure out
+what the best worker count for that particular setting is without burdening the
 FileSender service staff.	
 
 ##Authentication
 * Externalised authentication
-* Built-in support for Shibboleth and SimpleSAMLphp authentication libraries 
+* Built-in support for Shibboleth and SimpleSAMLphp authentication libraries
 * In practice this means SAML2, LDAP, RADIUS, Active Directory, Facebook, etc.
 
 ##Multi-database support

@@ -32,7 +32,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Returns an `array of Transfer`, see [Transfer](#transfer).
 
@@ -102,7 +102,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Returns an `array of string`, see [Transfer](#transfer).
 
@@ -115,7 +115,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Returns an `array of Audit log`, see [Audit log](#audit_log).
 
@@ -130,7 +130,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Returns `true`.
 
@@ -143,17 +143,17 @@ Accessible to : [users](#user).
 
 Request body fields :
 
-  * `files` : (`array of object`) files to be uploaded
+* `files` : (`array of object`) files to be uploaded
 	* `name` : (`string`) the file name
 	* `size` : (`integer`) the file size in bytes
 	* `mime_type` : (`string`) the file MIME type (optionnal), will be used to set the `Content-Type` header for downloaders so that their browsers handle the file better
 	* `cid` : (`string`) an optionnal client side identifier which will be returned in the response as a property of the corresponding created [File](#file), it may help the client to match back without having to use name and size
-  * `recipients` : (`array of string`) recipients email addresses
-  * `options` : (`array of string`) options (values defined in `classes/constants/TransferOptions.class.php`), under [Guest](#guest) authentication it will be ignored and the [Guest](#guest) `transfer_options` will be used
-  * `expires` : (`integer`) wanted expiry date as a UNIX timestamp, MUST respect `max_transfer_days_valid` configuration parameter
-  * `from` : (`string`) choosen sender email address, under [Service Provider](#service_provider) authentication it MUST be one of the authenticated user email addresses, under [Guest](#guest) authentication it will be ignored and the [Guest](#guest) `email` will be used and under [Remote Application](#remote_application) or [Remote User](#remote_user) it will be taken as is with just a format check
-  * `subject` : (`string`) subject sent to recipients (may be empty)
-  * `message` : (`string`) message sent to recipients (may be empty)
+* `recipients` : (`array of string`) recipients email addresses
+* `options` : (`array of string`) options (values defined in `classes/constants/TransferOptions.class.php`), under [Guest](#guest) authentication it will be ignored and the [Guest](#guest) `transfer_options` will be used
+* `expires` : (`integer`) wanted expiry date as a UNIX timestamp, MUST respect `max_transfer_days_valid` configuration parameter
+* `from` : (`string`) choosen sender email address, under [Service Provider](#service_provider) authentication it MUST be one of the authenticated user email addresses, under [Guest](#guest) authentication it will be ignored and the [Guest](#guest) `email` will be used and under [Remote Application](#remote_application) or [Remote User](#remote_user) it will be taken as is with just a format check
+* `subject` : (`string`) subject sent to recipients (may be empty)
+* `message` : (`string`) message sent to recipients (may be empty)
 
 Returns a [Transfer](#transfer) object.
 
@@ -247,11 +247,11 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Request body fields :
 
-  * `recipient` : (`string`) recipient's email address
+* `recipient` : (`string`) recipient's email address
 
 Returns a [Recipient](#recipient) object.
 
@@ -266,13 +266,13 @@ Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security)
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Request body fields :
 
-  * `complete` : (`boolean`) if set to `true` this signals the server that every file has been uploaded and that the [Transfer](#transfer) should be made available and sent to [Recipients](#recipient) (optionnal)
-  * `closed` : (`boolean`) if set to `true` this signals the server that the [Transfer](#transfer) should be closed (optionnal)
-  * `remind` : (`boolean`) if set to `true` this asks the server to send a reminder of the [Transfer](#transfer) availability to its [Recipients](#recipient) (optionnal)
+* `complete` : (`boolean`) if set to `true` this signals the server that every file has been uploaded and that the [Transfer](#transfer) should be made available and sent to [Recipients](#recipient) (optionnal)
+* `closed` : (`boolean`) if set to `true` this signals the server that the [Transfer](#transfer) should be closed (optionnal)
+* `remind` : (`boolean`) if set to `true` this asks the server to send a reminder of the [Transfer](#transfer) availability to its [Recipients](#recipient) (optionnal)
 
 Returns `true`.
 
@@ -297,7 +297,7 @@ Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security)
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Returns `true`.
 
@@ -312,7 +312,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) file unique identifier
+* `id` (`integer`) file unique identifier
 
 Returns a [File](#file).
 
@@ -325,7 +325,7 @@ Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security)
 
 Parameters :
 
-  * `id` (`integer`) file unique identifier
+* `id` (`integer`) file unique identifier
 
 The request content type MUST be `multipart/form-data`, at least a `file` part is expected.
 
@@ -344,16 +344,16 @@ Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security)
 
 Parameters :
 
-  * `id` (`integer`) file unique identifier
-  * `offset` (`integer`) body offset in bytes
+* `id` (`integer`) file unique identifier
+* `offset` (`integer`) body offset in bytes
 
 The request content type MUST be `application/octet-stream`.
 
 Several request headers SHOULD be provided so that the server can check validity of sent data :
 
-  * `X-Filesender-File-Size` (`integer`) should be equal to the file size
-  * `X-Filesender-Chunk-Offset` (`integer`) should be equal to `offset`
-  * `X-Filesender-Chunk-Size` (`integer`) the sent chunk size
+* `X-Filesender-File-Size` (`integer`) should be equal to the file size
+* `X-Filesender-Chunk-Offset` (`integer`) should be equal to `offset`
+* `X-Filesender-Chunk-Size` (`integer`) the sent chunk size
 
 The sent chunk size MUST not be over `upload_chunk_size`.
 
@@ -388,11 +388,11 @@ Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security)
 
 Parameters :
 
-  * `id` (`integer`) file unique identifier
+* `id` (`integer`) file unique identifier
 
 Request body fields :
 
-  * `complete` : (`boolean`) if set to `true` this signals the server that all chunks for the file have been uploaded
+* `complete` : (`boolean`) if set to `true` this signals the server that all chunks for the file have been uploaded
 
 Returns `true`.
 
@@ -405,7 +405,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) file unique identifier
+* `id` (`integer`) file unique identifier
 
 If the related [Transfer](#transfer) still has [Files](#file) the recipients will be notified of the [File](#file) removal.
 
@@ -424,7 +424,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) recipient unique identifier
+* `id` (`integer`) recipient unique identifier
 
 Returns a [Recipient](#recipient).
 
@@ -437,7 +437,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) recipient unique identifier
+* `id` (`integer`) recipient unique identifier
 
 If the related [Transfer](#transfer) still has [Recipients](#recipient) the recipient will be notified of its removal.
 
@@ -474,7 +474,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) guest unique identifier
+* `id` (`integer`) guest unique identifier
 
 Returns a [Guest](#guest).
 
@@ -487,13 +487,13 @@ Accessible to : [users](#user).
 
 Request body fields :
 
-  * `recipient` : (`string`) recipient email addresse
-  * `from` : (`string`) choosen sender email address, under [Service Provider](#service_provider) authentication it MUST be one of the authenticated user email addresses and under [Remote Application](#remote_application) or [Remote User](#remote_user) it will be taken as is with just a format check
-  * `subject` : (`string`) subject sent to recipient (may be empty)
-  * `message` : (`string`) message sent to recipient (may be empty)
-  * `options` : (`array of string`) options (values defined in `classes/constants/GuestOptions.class.php`)
-  * `transfer_options` : (`array of string`) created [Transfer](#transfer) options (values defined in `classes/constants/TransferOptions.class.php`)
-  * `expires` : (`integer`) wanted expiry date as a UNIX timestamp, MUST respect `max_guest_days_valid` configuration parameter
+* `recipient` : (`string`) recipient email addresse
+* `from` : (`string`) choosen sender email address, under [Service Provider](#service_provider) authentication it MUST be one of the authenticated user email addresses and under [Remote Application](#remote_application) or [Remote User](#remote_user) it will be taken as is with just a format check
+* `subject` : (`string`) subject sent to recipient (may be empty)
+* `message` : (`string`) message sent to recipient (may be empty)
+* `options` : (`array of string`) options (values defined in `classes/constants/GuestOptions.class.php`)
+* `transfer_options` : (`array of string`) created [Transfer](#transfer) options (values defined in `classes/constants/TransferOptions.class.php`)
+* `expires` : (`integer`) wanted expiry date as a UNIX timestamp, MUST respect `max_guest_days_valid` configuration parameter
 
 This will send an email to the created [Guest](#guest).
 
@@ -547,11 +547,11 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) transfer unique identifier
+* `id` (`integer`) transfer unique identifier
 
 Request body fields :
 
-  * `remind` : (`boolean`) if set to `true` this asks the server to send a reminder to the [Guest](#guest)
+* `remind` : (`boolean`) if set to `true` this asks the server to send a reminder to the [Guest](#guest)
 
 Returns `true`.
 
@@ -576,7 +576,7 @@ Accessible to : [owner](#owner).
 
 Parameters :
 
-  * `id` (`integer`) recipient unique identifier
+* `id` (`integer`) recipient unique identifier
 
 The [Guest](#guest) will be notified.
 
@@ -602,7 +602,7 @@ Get a list of frequent recipients of a specific user.
 
 Parameters :
 
-  * `id` (`string`) user unique identifier
+* `id` (`string`) user unique identifier
 
 Accessible to : user itself, [admin](#admin).
 
@@ -619,7 +619,7 @@ Accessible to : [users](#user).
 
 Request body fields :
 
-  * `lang` : (`string`) lang code of user's prefered language
+* `lang` : (`string`) lang code of user's prefered language
 
 Returns `true`.
 
@@ -632,11 +632,11 @@ Accessible to : user itself, [admin](#admin).
 
 Parameters :
 
-  * `id` (`string`) user unique identifier
+* `id` (`string`) user unique identifier
 
 Request body fields :
 
-  * `lang` : (`string`) lang code of user's prefered language
+* `lang` : (`string`) lang code of user's prefered language
 
 Returns `true`.
 
@@ -666,14 +666,14 @@ Get information about a legacy (whole file) upload progress.
 
 Parameters :
 
-  * `key` (`string`) the file's choosen upload tracking random (see `POST /file/{id}/whole`)
+* `key` (`string`) the file's choosen upload tracking random (see `POST /file/{id}/whole`)
 
 Returns an `object` :
 
-  * `error` (`integer`) not 0 if something bad happened
-  * `done` (`boolean`) is the upload complete
-  * `start_time` (`integer`) UNIX timestamp of when the server started receiving data
-  * `bytes_processed` (`integer`) number of bytes already received
+* `error` (`integer`) not 0 if something bad happened
+* `done` (`boolean`) is the upload complete
+* `start_time` (`integer`) UNIX timestamp of when the server started receiving data
+* `bytes_processed` (`integer`) number of bytes already received
 
 
 ### GET /lang
@@ -691,10 +691,10 @@ Parameters : any
 
 Returns `object` :
 
-  * `args` : (`array of string`) the decoded URL tokens
-  * `request` : (`mixed`) the decoded request body
-  * `user` : (`string`) authenticated user unique identifier
-  * `auth` : (`object`)
+* `args` : (`array of string`) the decoded URL tokens
+* `request` : (`mixed`) the decoded request body
+* `user` : (`string`) authenticated user unique identifier
+* `auth` : (`object`)
 	* `remote` : (`boolean`) is the detected authentication a [Remote Application](#remote_application) or a [Remote User](#remote_user)
 	* `attr` : (`object`) authentication attributes
 
@@ -702,18 +702,18 @@ Returns `object` :
 # Errors
 
 Errors (or exceptions) are returned in a structured format with the following fields :
-  * `message` : (`string`) translatable id telling what happened
-  * `uid` : (`string`) unique error identifier, is included in the logs
-  * `details` : (`array of string`) details about the error (may be empty, null or even not set)
+* `message` : (`string`) translatable id telling what happened
+* `uid` : (`string`) unique error identifier, is included in the logs
+* `details` : (`array of string`) details about the error (may be empty, null or even not set)
 
 All possible errors messages are not listed here but can be found in the files under `classes/exceptions/`.
 
 Common errors to all endpoints are :
-  * `rest_authentication_required` : need an authenticated user
-  * `rest_ownership_required` : need ownership of target resource (admin owns all)
-  * `rest_admin_required` : need an authenticated admin
-  * `rest_missing_parameter` : an URL token is missing
-  * `rest_bad_parameter` : an URL token does not have the expected type
+* `rest_authentication_required` : need an authenticated user
+* `rest_ownership_required` : need ownership of target resource (admin owns all)
+* `rest_admin_required` : need an authenticated admin
+* `rest_missing_parameter` : an URL token is missing
+* `rest_bad_parameter` : an URL token does not have the expected type
 
 Example :
 
@@ -727,75 +727,75 @@ Example :
 
 ## Transfer
 
-  * `id` : (`integer`) transfer unique identifier
-  * `user_id` : (`string`) uploader / guest creator unique identifier
-  * `user_email` : (`string`) uploader (user or guest) email
-  * `subject` : (`string`) subject sent to recipients
-  * `message` : (`string`) message sent to recipients
-  * `created` : (`Date`) creation [Date](#date)
-  * `expires` : (`Date`) expiry [Date](#date)
-  * `options` : (`array of string`) options (values defined in `classes/constants/TransferOptions.class.php`)
-  * `files` : (`array of File`) see [File](#file)
-  * `recipients` : (`array of Recipient`) see [Recipient](#recipient)
+* `id` : (`integer`) transfer unique identifier
+* `user_id` : (`string`) uploader / guest creator unique identifier
+* `user_email` : (`string`) uploader (user or guest) email
+* `subject` : (`string`) subject sent to recipients
+* `message` : (`string`) message sent to recipients
+* `created` : (`Date`) creation [Date](#date)
+* `expires` : (`Date`) expiry [Date](#date)
+* `options` : (`array of string`) options (values defined in `classes/constants/TransferOptions.class.php`)
+* `files` : (`array of File`) see [File](#file)
+* `recipients` : (`array of Recipient`) see [Recipient](#recipient)
 
 
 ## File
 
-  * `id` : (`integer`) file unique identifier
-  * `transfer_id` : (`integer`) related [Transfer](#transfer) unique identifier
-  * `uid` : (`string`) random unique identifier
-  * `name` : (`string`) file original name
-  * `size` : (`integer`) file size in bytes
-  * `sha1` : (`string`) file hash, unused, unset @TODO should we remove it until we have a viable technical solution ?
+* `id` : (`integer`) file unique identifier
+* `transfer_id` : (`integer`) related [Transfer](#transfer) unique identifier
+* `uid` : (`string`) random unique identifier
+* `name` : (`string`) file original name
+* `size` : (`integer`) file size in bytes
+* `sha1` : (`string`) file hash, unused, unset @TODO should we remove it until we have a viable technical solution ?
 
 
 ## Recipient
 
-  * `id` : (`integer`) recipient unique identifier
-  * `transfer_id` : (`integer`) related [Transfer](#transfer) unique identifier
-  * `token` : (`string`) download unique random token, used for authentication
-  * `email` : (`string`) recipient email address
-  * `created` : (`Date`) creation [Date](#date)
-  * `last_activity` : (`Date`) last activity [Date](#date)
-  * `options` : (`null`) unused, unset @TODO what was it for ?
-  * `download_url` : (`string`) Download page URL
-  * `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
+* `id` : (`integer`) recipient unique identifier
+* `transfer_id` : (`integer`) related [Transfer](#transfer) unique identifier
+* `token` : (`string`) download unique random token, used for authentication
+* `email` : (`string`) recipient email address
+* `created` : (`Date`) creation [Date](#date)
+* `last_activity` : (`Date`) last activity [Date](#date)
+* `options` : (`null`) unused, unset @TODO what was it for ?
+* `download_url` : (`string`) Download page URL
+* `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
 
 
 ## Guest
 
-  * `id` : (`integer`) guest unique identifier
-  * `user_id` : (`string`) guest creator unique identifier
-  * `user_email` : (`string`) guest creator email
-  * `email` : (`string`) guest email address
-  * `token` : (`string`) guest unique random token, used for authentication
-  * `transfer_count` : (`integer`) number of transfers uploaded
-  * `subject` : (`string`) subject sent to guest
-  * `message` : (`string`) message sent to guest
-  * `options` : (`array of string`) options (values defined in `classes/constants/GuestOptions.class.php`)
-  * `transfer_options` : (`array of string`) created transfers options (values defined in `classes/constants/TransferOptions.class.php`)
-  * `created` : (`Date`) creation [Date](#date)
-  * `expires` : (`Date`) expiry [Date](#date)
-  * `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
+* `id` : (`integer`) guest unique identifier
+* `user_id` : (`string`) guest creator unique identifier
+* `user_email` : (`string`) guest creator email
+* `email` : (`string`) guest email address
+* `token` : (`string`) guest unique random token, used for authentication
+* `transfer_count` : (`integer`) number of transfers uploaded
+* `subject` : (`string`) subject sent to guest
+* `message` : (`string`) message sent to guest
+* `options` : (`array of string`) options (values defined in `classes/constants/GuestOptions.class.php`)
+* `transfer_options` : (`array of string`) created transfers options (values defined in `classes/constants/TransferOptions.class.php`)
+* `created` : (`Date`) creation [Date](#date)
+* `expires` : (`Date`) expiry [Date](#date)
+* `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
 
 
 ## Tracking error
 
-  * `type` : (`string`) error type (values defined in `classes/constants/TrackingEventTypes.class.php`)
-  * `date` : (`Date`) error [Date](#date)
-  * `details` : (`string`) technical details about what hapenned
+* `type` : (`string`) error type (values defined in `classes/constants/TrackingEventTypes.class.php`)
+* `date` : (`Date`) error [Date](#date)
+* `details` : (`string`) technical details about what hapenned
 
 
 ## Audit log
 
-  * `date` : (`Date`) event [Date](#date)
-  * `event` : (`string`) event type (values defined in `classes/constants/LogEventTypes.class.php`)
-  * `author` : (`object`) information about who did the action
+* `date` : (`Date`) event [Date](#date)
+* `event` : (`string`) event type (values defined in `classes/constants/LogEventTypes.class.php`)
+* `author` : (`object`) information about who did the action
 	* `type` : (`string`) author type, can be `User`, `Recipient` or `Guest`
 	* `id` : (`string`) author's unique identifier
 	* `ip` : (`string`) author's IP address
 	* `email` : (`string`) author's email address (may not be provided)
-  * `target` : (`object`) information about the target of the event
+* `target` : (`object`) information about the target of the event
 	* `type` : (`string`) target type, can be `Transfer`, `File` or `Recipient`
 	* `id` : (`string`) target's unique identifier
 	* `name` : (`string`) original name if `type` is `File` (not provided otherwise)
@@ -805,8 +805,8 @@ Example :
 
 ## Date
 
-  * `raw` : (`integer`) unix timestamp
-  * `formatted` : (`string`) human readable version according to lang configuration
+* `raw` : (`integer`) unix timestamp
+* `formatted` : (`string`) human readable version according to lang configuration
 
 
 # Authentication
@@ -834,10 +834,10 @@ An authenticated user whose `id` is listed in the `admin` configuration paramete
 
 The servers look up for authentication in this order and stops on the first detected one :
 
-  1. [Guest token](#guest_token)
-  2. [Service provider](#service_provider)
-  3. [Remote application](#remote_application) (if enabled)
-  4. [Remote user](#remote_user) (if enabled)
+1. [Guest token](#guest_token)
+2. [Service provider](#service_provider)
+3. [Remote application](#remote_application) (if enabled)
+4. [Remote user](#remote_user) (if enabled)
 
 
 ## Guest token
@@ -872,10 +872,10 @@ This mode expects a [signed request](#signed_request) and a `remote_user` URL ar
 
 A signed request if formed by adding several informations to a request to be made :
 
-  * a `timestamp` URL argument containing a UNIX timestamp of the current date and time, this ensure the request will not be replayed later as FileSender will reject any signed requests older than 15 seconds. In case of uploads with a slow connexion you may have to put this in the future.
-  * a `remote_application` URL argument in the case of a [Remote Application](#remote_application) authentication, this contains the name of the application, shared between FileSender and the application sending the request
-  * a `remote_user` URL argument in the case of a [Remote User](#remote_user) authentication, this contains the unique user identifier, shared between FileSender and the application sending the request
-  * a `signature` URL argument, this is a SHA1 HMAC signature of the prepared request (see below) with :
+* a `timestamp` URL argument containing a UNIX timestamp of the current date and time, this ensure the request will not be replayed later as FileSender will reject any signed requests older than 15 seconds. In case of uploads with a slow connexion you may have to put this in the future.
+* a `remote_application` URL argument in the case of a [Remote Application](#remote_application) authentication, this contains the name of the application, shared between FileSender and the application sending the request
+* a `remote_user` URL argument in the case of a [Remote User](#remote_user) authentication, this contains the unique user identifier, shared between FileSender and the application sending the request
+* a `signature` URL argument, this is a SHA1 HMAC signature of the prepared request (see below) with :
 	* the shared application secret in case of a [Remote Application](#remote_application) authentication
 	* the shared user secret in case of a [Remote User](#remote_user) authentication
 
@@ -883,9 +883,9 @@ A signed request if formed by adding several informations to a request to be mad
 
 To prepare a request for signing one must concatenate following parts, in order, using `&` separator :
 
-  * lowercased HTTP method : `get`, `post`, `put` or `delete`
-  * URL with alphabetically ordered arguments, without scheme or signature argument, example `filesender.org/rest.php/transfer/@me?remote_application=foo&remote_user=user_id&timestamp=1234567890`
-  * request body as a string (if there is one)
+* lowercased HTTP method : `get`, `post`, `put` or `delete`
+* URL with alphabetically ordered arguments, without scheme or signature argument, example `filesender.org/rest.php/transfer/@me?remote_application=foo&remote_user=user_id&timestamp=1234567890`
+* request body as a string (if there is one)
 
 #### Examples
 
@@ -948,7 +948,7 @@ Note that this mecanism is a fallback in the case your client lost all other kin
 
 To upload files one must follow a set of operations in order.
 
-  1. Create the transfer using `POST /transfer`, this gives back data about the transfer, especially file identifiers to be used later
-  2. Send file data using `PUT /file/{file_id}/chunk/{chunk_offset}`, chunks don't need to be in order, it is possible to upload several chunks at the same time by making requests in parallel
-  3. Once a file data has been sent signal file completion using `PUT /file/{file_id}` with payload `{"complete":true}`
-  4. Once all file completions signals have been sent signal transfer completion using `PUT /transfer/{transfer_id}` with payload `{"complete":true}`
+1. Create the transfer using `POST /transfer`, this gives back data about the transfer, especially file identifiers to be used later
+2. Send file data using `PUT /file/{file_id}/chunk/{chunk_offset}`, chunks don't need to be in order, it is possible to upload several chunks at the same time by making requests in parallel
+3. Once a file data has been sent signal file completion using `PUT /file/{file_id}` with payload `{"complete":true}`
+4. Once all file completions signals have been sent signal transfer completion using `PUT /transfer/{transfer_id}` with payload `{"complete":true}`
