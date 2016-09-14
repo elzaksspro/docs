@@ -51,7 +51,7 @@ Variables come from the various replacement calls done on the translated content
 
 Variables available in UI translations can be found in the `en_AU` language files most of the time.
 
-Variables available in emails are described [a bit further](#email_variables)
+Variables available in emails are described [a bit further](#email-variables)
 
 ## Variable display
 
@@ -222,7 +222,7 @@ Sent to transfer / guest owner when a bounce is received.
 
 Sent to transfer owners for transfers that needs a daily summary of what happened.
 
-* `events` : [summary events](#summary_event) (array)
+* `events` : [summary events](#summary-event) (array)
 * `transfer` : [Transfer](#transfer) (object)
 * `user` : recipient as a [User](#user) (object)
 
@@ -350,7 +350,7 @@ Sent to a transfer owner when reporting transfer activity in the mail body (depe
 
 Sent to the admins when storage usage is too high (depending on config).
 
-* `warnings` : [storage blocks warnings](#storage_block_warning) (array)
+* `warnings` : [storage blocks warnings](#storage-blocks-warning) (array)
 
 ## transfer_available
 

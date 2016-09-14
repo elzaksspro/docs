@@ -105,7 +105,7 @@ Returns an `array of string`, see [Transfer](#transfer).
 
 ### GET /transfer/{id}/auditlog
 
-Get the [Audit logs](#audit_log) of a specific [Transfer](#transfer).
+Get the [Audit logs](#audit-log) of a specific [Transfer](#transfer).
 
 Accessible to : [owner](#owner).
 
@@ -113,13 +113,13 @@ Parameters :
 
 * `id` (`integer`) transfer unique identifier
 
-Returns an `array of Audit log`, see [Audit log](#audit_log).
+Returns an `array of Audit log`, see [Audit log](#audit-log).
 
 Returned array will be empty if the audit logging is turned off.
 
 ### GET /transfer/{id}/auditlog/mail
 
-Sends the [Audit logs](#audit_log) of a specific [Transfer](#transfer) to the current user by email.
+Sends the [Audit logs](#audit-log) of a specific [Transfer](#transfer) to the current user by email.
 
 Accessible to : [owner](#owner).
 
@@ -145,7 +145,7 @@ Request body fields :
 * `recipients` : (`array of string`) recipients email addresses
 * `options` : (`array of string`) options (values defined in `classes/constants/TransferOptions.class.php`), under [Guest](#guest) authentication it will be ignored and the [Guest](#guest) `transfer_options` will be used
 * `expires` : (`integer`) wanted expiry date as a UNIX timestamp, MUST respect `max_transfer_days_valid` configuration parameter
-* `from` : (`string`) choosen sender email address, under [Service Provider](#service_provider) authentication it MUST be one of the authenticated user email addresses, under [Guest](#guest) authentication it will be ignored and the [Guest](#guest) `email` will be used and under [Remote Application](#remote_application) or [Remote User](#remote_user) it will be taken as is with just a format check
+* `from` : (`string`) choosen sender email address, under [Service Provider](#service-provider) authentication it MUST be one of the authenticated user email addresses, under [Guest](#guest) authentication it will be ignored and the [Guest](#guest) `email` will be used and under [Remote Application](#remote-application) or [Remote User](#remote-user) it will be taken as is with just a format check
 * `subject` : (`string`) subject sent to recipients (may be empty)
 * `message` : (`string`) message sent to recipients (may be empty)
 
@@ -254,7 +254,7 @@ Returns a `Location` HTTP header giving the path to the new [Recipient](#recipie
 
 Update a specific [Transfer](#transfer).
 
-Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security) fallback accepted for `complete` property setting only.
+Accessible to : [owner](#owner), [chunk upload security](#chunk-upload-security) fallback accepted for `complete` property setting only.
 
 Parameters :
 
@@ -284,7 +284,7 @@ Response example :
 
 Close a specific [Transfer](#transfer).
 
-Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security) fallback accepted for early [Transfer](#transfer) statuses (`created`, `started` and `uploading`, but not `available`).
+Accessible to : [owner](#owner), [chunk upload security](#chunk-upload-security) fallback accepted for early [Transfer](#transfer) statuses (`created`, `started` and `uploading`, but not `available`).
 
 Parameters :
 
@@ -310,7 +310,7 @@ Returns a [File](#file).
 
 Upload file body as a whole (legacy mode).
 
-Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security) fallback accepted.
+Accessible to : [owner](#owner), [chunk upload security](#chunk-upload-security) fallback accepted.
 
 Parameters :
 
@@ -328,7 +328,7 @@ Returns a `Location` HTTP header giving the path to the [File](#file).
 
 Add a chunk to a [File](#file)'s body at the given `offset`.
 
-Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security) fallback accepted.
+Accessible to : [owner](#owner), [chunk upload security](#chunk-upload-security) fallback accepted.
 
 Parameters :
 
@@ -371,7 +371,7 @@ Response example :
 
 Update a [File](#file).
 
-Accessible to : [owner](#owner), [chunk upload security](#chunk_upload_security) fallback accepted.
+Accessible to : [owner](#owner), [chunk upload security](#chunk-upload-security) fallback accepted.
 
 Parameters :
 
@@ -468,7 +468,7 @@ Accessible to : [users](#user).
 Request body fields :
 
 * `recipient` : (`string`) recipient email addresse
-* `from` : (`string`) choosen sender email address, under [Service Provider](#service_provider) authentication it MUST be one of the authenticated user email addresses and under [Remote Application](#remote_application) or [Remote User](#remote_user) it will be taken as is with just a format check
+* `from` : (`string`) choosen sender email address, under [Service Provider](#service-provider) authentication it MUST be one of the authenticated user email addresses and under [Remote Application](#remote-application) or [Remote User](#remote-user) it will be taken as is with just a format check
 * `subject` : (`string`) subject sent to recipient (may be empty)
 * `message` : (`string`) message sent to recipient (may be empty)
 * `options` : (`array of string`) options (values defined in `classes/constants/GuestOptions.class.php`)
@@ -665,7 +665,7 @@ Returns `object` :
 * `request` : (`mixed`) the decoded request body
 * `user` : (`string`) authenticated user unique identifier
 * `auth` : (`object`)
-	* `remote` : (`boolean`) is the detected authentication a [Remote Application](#remote_application) or a [Remote User](#remote_user)
+	* `remote` : (`boolean`) is the detected authentication a [Remote Application](#remote-application) or a [Remote User](#remote-user)
 	* `attr` : (`object`) authentication attributes
 
 # Errors
@@ -727,7 +727,7 @@ Example :
 * `last_activity` : (`Date`) last activity [Date](#date)
 * `options` : (`null`) unused, unset @TODO what was it for ?
 * `download_url` : (`string`) Download page URL
-* `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
+* `errors` : (`array of Tracking error`) see [Tracking error](#tracking-error)
 
 ## Guest
 
@@ -743,7 +743,7 @@ Example :
 * `transfer_options` : (`array of string`) created transfers options (values defined in `classes/constants/TransferOptions.class.php`)
 * `created` : (`Date`) creation [Date](#date)
 * `expires` : (`Date`) expiry [Date](#date)
-* `errors` : (`array of Tracking error`) see [Tracking error](#tracking_error)
+* `errors` : (`array of Tracking error`) see [Tracking error](#tracking-error)
 
 ## Tracking error
 
@@ -778,7 +778,7 @@ Example :
 
 ### User
 
-Anybody authenticated through a Service provider, a [Remote User](#remote_user) or a [Remote Application](#remote_application) providing the `remote_user` argument.
+Anybody authenticated through a Service provider, a [Remote User](#remote-user) or a [Remote Application](#remote-application) providing the `remote_user` argument.
 
 Authentication through using [Recipient](#recipient) token is not considered as beeing a user.
 
@@ -788,16 +788,16 @@ An authenticated user who is owner of the current resource ([Admin](#admin) is c
 
 ### Admin
 
-An authenticated user whose `id` is listed in the `admin` configuration parameter, or a [Remote Application](#remote_application) whose configuration include the `isAdmin` entry set to `true`.
+An authenticated user whose `id` is listed in the `admin` configuration parameter, or a [Remote Application](#remote-application) whose configuration include the `isAdmin` entry set to `true`.
 
 ## Authentication evaluation workflow
 
 The servers look up for authentication in this order and stops on the first detected one :
 
-1. [Guest token](#guest_token)
-2. [Service provider](#service_provider)
-3. [Remote application](#remote_application) (if enabled)
-4. [Remote user](#remote_user) (if enabled)
+1. [Guest token](#guest-token)
+2. [Service provider](#service-provider)
+3. [Remote application](#remote-application) (if enabled)
+4. [Remote user](#remote-user) (if enabled)
 
 ## Guest token
 
@@ -813,7 +813,7 @@ This mode requires the configured service provider to return a valid authenticat
 
 This mode is intended towards giving access to applications FileSender can fully trust, like a big file generating script of yours that need to send its file to recipients.
 
-This mode expects a [signed request](#signed_request) and a `remote_application` URL argument.
+This mode expects a [signed request](#signed-request) and a `remote_application` URL argument.
 
 Additionnaly if a `remote_user` argument is provided all opérations will be conducted with this identity.
 
@@ -821,18 +821,18 @@ Additionnaly if a `remote_user` argument is provided all opérations will be con
 
 This mode is intended to give users to possibility to create a trust between another of their application and their "account" on FileSender, like a mail client beeing able to send big attachments through FileSender.
 
-This mode expects a [signed request](#signed_request) and a `remote_user` URL argument.
+This mode expects a [signed request](#signed-request) and a `remote_user` URL argument.
 
 ## Signed request
 
 A signed request if formed by adding several informations to a request to be made :
 
 * a `timestamp` URL argument containing a UNIX timestamp of the current date and time, this ensure the request will not be replayed later as FileSender will reject any signed requests older than 15 seconds. In case of uploads with a slow connexion you may have to put this in the future.
-* a `remote_application` URL argument in the case of a [Remote Application](#remote_application) authentication, this contains the name of the application, shared between FileSender and the application sending the request
-* a `remote_user` URL argument in the case of a [Remote User](#remote_user) authentication, this contains the unique user identifier, shared between FileSender and the application sending the request
+* a `remote_application` URL argument in the case of a [Remote Application](#remote-application) authentication, this contains the name of the application, shared between FileSender and the application sending the request
+* a `remote_user` URL argument in the case of a [Remote User](#remote-user) authentication, this contains the unique user identifier, shared between FileSender and the application sending the request
 * a `signature` URL argument, this is a SHA1 HMAC signature of the prepared request (see below) with :
-	* the shared application secret in case of a [Remote Application](#remote_application) authentication
-	* the shared user secret in case of a [Remote User](#remote_user) authentication
+	* the shared application secret in case of a [Remote Application](#remote-application) authentication
+	* the shared user secret in case of a [Remote User](#remote-user) authentication
 
 ### Preparing a request for signing
 
@@ -886,7 +886,7 @@ You will find an sample client under `scripts/client/FilesenderRestClient.class.
 
 ## Chunk upload security
 
-As when authenticated with a [Service Provider](#service_provider) the session can be broken during upload depending on the [Service Provider](#service_provider) configuration (absolute session lifetime ...) it is possible to enable the key based chunk upload security.
+As when authenticated with a [Service Provider](#service-provider) the session can be broken during upload depending on the [Service Provider](#service-provider) configuration (absolute session lifetime ...) it is possible to enable the key based chunk upload security.
 
 This mode is enabled by setting the `chunk_upload_security` configuration parameter to `key` @TODO { need default value }.
 
@@ -894,7 +894,7 @@ In this mode you may send the chunk's related [File](#file)'s `uid` property alo
 
 In a [Transfer](#transfer) context any `uid` property from any [File](#file) related to the [Transfer](#transfer) will be accepted.
 
-Note that this mecanism is a fallback in the case your client lost all other kind of authentication, this is not necessary under [Remote Application](#remote_application) or [Remote User](#remote_user) as they are always valid as long as the [signature](#signed_request) is right.
+Note that this mecanism is a fallback in the case your client lost all other kind of authentication, this is not necessary under [Remote Application](#remote-application) or [Remote User](#remote-user) as they are always valid as long as the [signature](#signed-request) is right.
 
 # The upload process
 

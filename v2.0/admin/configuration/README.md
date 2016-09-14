@@ -8,150 +8,150 @@
 
 ## General settings
 
-* [admin_email](#admin_email)
+* [admin_email](#adminemail)
 * [admin](#admin)
-* [site_name](#site_name)
-* [force_ssl](#force_ssl)
-* [auth_remote_signature_algorithm](#auth_remote_signature_algorithm)
-* [default_timezone](#default_timezone)
-* [default_language](#default_language)
-* [site_url](#site_url)
-* [site_logouturl](#site_logouturl)
-* [about_url](#about_url)
-* [help_url](#help_url)
+* [site_name](#sitename)
+* [force_ssl](#forcessl)
+* [auth_remote_signature_algorithm](#authremotesignaturealgorithm)
+* [default_timezone](#defaulttimezone)
+* [default_language](#defaultlanguage)
+* [site_url](#siteurl)
+* [site_logouturl](#sitelogouturl)
+* [about_url](#abouturl)
+* [help_url](#helpurl)
 
 ## Backend storage
 
-* [storage_type](#storage_type)
-* [storage_filesystem_path](#storage_filesystem_path)
-* [storage_filesystem_df_command](#storage_filesystem_df_command)
-* [storage_filesystem_file_deletion_command](#storage_filesystem_file_deletion_command)
-* [storage_usage_warning](#storage_usage_warning)
-* [storage_filesystem_hashing](#storage_filesystem_hashing)
+* [storage_type](#storagetype)
+* [storage_filesystem_path](#storagefilesystempath)
+* [storage_filesystem_df_command](#storagefilesystemdfcommand)
+* [storage_filesystem_file_deletion_command](#storagefilesystemfiledeletioncommand)
+* [storage_usage_warning](#storageusagewarning)
+* [storage_filesystem_hashing](#storagefilesystemhashing)
 
 ## Database
 
-* [db_type](#db_type)
-* [db_host](#db_host)
-* [db_port](#db_port)
-* [db_username](#db_username)
-* [db_password](#db_password)
-* [db_database](#db_database)
-* [db_table_prefix](#db_table_prefix)
+* [db_type](#dbtype)
+* [db_host](#dbhost)
+* [db_port](#dbport)
+* [db_username](#dbusername)
+* [db_password](#dbpassword)
+* [db_database](#dbdatabase)
+* [db_table_prefix](#dbtableprefix)
 
 ## Language and internationalisation
 
-* [lang_browser_enabled](#lang_browser_enabled)
-* [lang_url_enabled](#lang_url_enabled)
-* [lang_userpref_enabled](#lang_userpref_enabled)
-* [lang_selector_enabled](#lang_selector_enabled)
-* [lang_save_url_switch_in_userpref](#lang_save_url_switch_in_userpref)
+* [lang_browser_enabled](#langbrowserenabled)
+* [lang_url_enabled](#langurlenabled)
+* [lang_userpref_enabled](#languserprefenabled)
+* [lang_selector_enabled](#langselectorenabled)
+* [lang_save_url_switch_in_userpref](#langsaveurlswitchinuserpref)
 
 ## Email
 
-* [email_from](#email_from)
-* [email_from_name](#email_from_name)
-* [email_reply_to](#email_reply_to)
-* [email_reply_to_name](#email_reply_to_name)
-* [email_return_path](#email_return_path)
-* [email_use_html](#email_use_html)
-* [email_newline](#email_newline)
-* [relay_unknown_feedbacks](#relay_unknown_feedbacks)
+* [email_from](#emailfrom)
+* [email_from_name](#emailfromname)
+* [email_reply_to](#emailreplyto)
+* [email_reply_to_name](#emailreplytoname)
+* [email_return_path](#emailreturnpath)
+* [email_use_html](#emailusehtml)
+* [email_newline](#emailnewline)
+* [relay_unknown_feedbacks](#relayunknownfeedbacks)
 
 ## General UI
 
 * [autocomplete](#autocomplete)
-* [autocomplete_max_pool](#autocomplete_max_pool)
-* [autocomplete_min_characters](#autocomplete_min_characters)
-* [upload_display_bits_per_sec](#upload_display_bits_per_sec)
+* [autocomplete_max_pool](#autocompletemaxpool)
+* [autocomplete_min_characters](#autocompletemincharacters)
+* [upload_display_bits_per_sec](#uploaddisplaybitspersec)
 
 ## Transfers
 
-* [aup_default](#aup_default)
-* [aup_enabled](#aup_enabled)
-* [ban_extension](#ban_extension)
-* [chunk_upload_security](#chunk_upload_security)
-* [default_days_valid](#default_days_valid)
-* [max_days_valid](#max_days_valid)
-* [allow_transfer_expiry_date_extension](#allow_transfer_expiry_date_extension)
-* [force_legacy_mode](#force_legacy_mode)
+* [aup_default](#aupdefault)
+* [aup_enabled](#aupenabled)
+* [ban_extension](#banextension)
+* [chunk_upload_security](#chunkuploadsecurity)
+* [default_days_valid](#defaultdaysvalid)
+* [max_days_valid](#maxdaysvalid)
+* [allow_transfer_expiry_date_extension](#allowtransferexpirydateextension)
+* [force_legacy_mode](#forcelegacymode)
 * [legacy_upload_progress_refresh_period](#)
-* [max_legacy_file_size](#max_legacy_file_size)
-* [max_transfer_size](#max_transfer_size)
-* [max_transfer_files](#max_transfer_files)
-* [max_transfer_recipients](#max_transfer_recipients)
-* [transfer_options](#transfer_options) (email receipt control)
-* [upload_chunk_size](#upload_chunk_size)
-* [user_quota](#user_quota)
+* [max_legacy_file_size](#maxlegacyfilesize)
+* [max_transfer_size](#maxtransfersize)
+* [max_transfer_files](#maxtransferfiles)
+* [max_transfer_recipients](#maxtransferrecipients)
+* [transfer_options](#transferoptions) (email receipt control)
+* [upload_chunk_size](#uploadchunksize)
+* [user_quota](#userquota)
 
 ## TeraSender (high speed upload module)
 
-* [terasender_enabled](#terasender_enabled)
-* [terasender_advanced](#terasender_advanced)
-* [terasender_worker_count](#terasender_worker_count)
-* [terasender_start_mode](#terasender_start_mode)
-* [stalling_detection](#stalling_detection)
+* [terasender_enabled](#terasenderenabled)
+* [terasender_advanced](#terasenderadvanced)
+* [terasender_worker_count](#terasenderworkercount)
+* [terasender_start_mode](#terasenderstartmode)
+* [stalling_detection](#stallingdetection)
 
 ## Download
 
-* [download_chunk_size](#download_chunk_size)
-* [mac_unzip_name](#mac_unzip_name)
-* [mac_unzip_link)(#mac_unzip_link)
+* [download_chunk_size](#downloadchunksize)
+* [mac_unzip_name](#macunzipname)
+* [mac_unzip_link)(#macunziplink)
 
 ## Guest use
 
-* [guest_options](#guest_options)
-* [default_guest_days_valid](#default_guest_days_valid)
-* [max_guest_days_valid](#max_guest_days_valid)
-* [max_guest_recipients](#max_guest_recipients)
+* [guest_options](#guestoptions)
+* [default_guest_days_valid](#defaultguestdaysvalid)
+* [max_guest_days_valid](#maxguestdaysvalid)
+* [max_guest_recipients](#maxguestrecipients)
 
 ## Authentication
 
-* [auth_sp_type](#auth_sp_type)
-* [session_cookie_path](#session_cookie_path)
+* [auth_sp_type](#authsptype)
+* [session_cookie_path](#sessioncookiepath)
 * __SimpleSAMLphp__
-	* [auth_sp_saml_authentication_source](#auth_sp_saml_authentication_source)
-	* [auth_sp_saml_simplesamlphp_url](#auth_sp_saml_simplesamlphp_url)
-	* [auth_sp_saml_simplesamlphp_location](#auth_sp_saml_simplesamlphp_location)
-	* [auth_sp_saml_email_attribute](#auth_sp_saml_email_attribute)
-	* [auth_sp_saml_name_attribute](#auth_sp_saml_name_attribute)
-	* [auth_sp_saml_uid_attribute](#auth_sp_saml_uid_attribute)
+	* [auth_sp_saml_authentication_source](#authspsamlauthenticationsource)
+	* [auth_sp_saml_simplesamlphp_url](#authspsamlsimplesamlphpurl)
+	* [auth_sp_saml_simplesamlphp_location](#authspsamlsimplesamlphplocation)
+	* [auth_sp_saml_email_attribute](#authspsamlemailattribute)
+	* [auth_sp_saml_name_attribute](#authspsamlnameattribute)
+	* [auth_sp_saml_uid_attribute](#authspsamluidattribute)
 * __Shibboleth__
-	* [auth_sp_shibboleth_uid_attribute](#auth_sp_shibboleth_uid_attribute)
-	* [auth_sp_shibboleth_email_attribute](#auth_sp_shibboleth_email_attribute)
-	* [auth_sp_shibboleth_name_attribute](#auth_sp_shibboleth_name_attribute)
-	* [auth_sp_shibboleth_login_url](#auth_sp_shibboleth_login_url)
-	* [auth_sp_shibboleth_logout_url](#auth_sp_shibboleth_logout_url)
+	* [auth_sp_shibboleth_uid_attribute](#authspshibbolethuidattribute)
+	* [auth_sp_shibboleth_email_attribute](#authspshibbolethemailattribute)
+	* [auth_sp_shibboleth_name_attribute](#authspshibbolethnameattribute)
+	* [auth_sp_shibboleth_login_url](#authspshibbolethloginurl)
+	* [auth_sp_shibboleth_logout_url](#authspshibbolethlogouturl)
 * __SP_Fake__
-	* [auth_sp_fake_authenticated](#auth_sp_fake_authenticated)!!
-	* [auth_sp_fake_uid](#auth_sp_fake_uid)!!
-	* [auth_sp_fake_email](#auth_sp_fake_email)!!
-	* [auth_sp_fake_name](#auth_sp_fake_name)!!
+	* [auth_sp_fake_authenticated](#authspfakeauthenticated)!!
+	* [auth_sp_fake_uid](#authspfakeuid)!!
+	* [auth_sp_fake_email](#authspfakeemail)!!
+	* [auth_sp_fake_name](#authspfakename)!!
 
 ## Maintenance and logging
 
-* [failed_transfer_cleanup_days](#failed_transfer_cleanup_days)
-* [log_facilities](#log_facilities)!!
+* [failed_transfer_cleanup_days](#failedtransfercleanupdays)
+* [log_facilities](#logfacilities)!!
 * [maintenance mode](#maintenance)
-* [statlog_lifetime](#statlog_lifetime)
-* [auth_sp_additional_attributes](#auth_sp_additional_attributes)
-* [auth_sp_save_user_additional_attributes](#auth_sp_save_user_additional_attributes)
-* [statlog_log_user_additional_attributes](#statlog_log_user_additional_attributes)
-* [auth_sp_fake_additional_attributes_values](#auth_sp_fake_additional_attributes_values)
-* [auditlog_lifetime](#auditlog_lifetime)
-* [report_format](#report_format)
+* [statlog_lifetime](#statloglifetime)
+* [auth_sp_additional_attributes](#authspadditionalattributes)
+* [auth_sp_save_user_additional_attributes](#authspsaveuseradditionalattributes)
+* [statlog_log_user_additional_attributes](#statlogloguseradditionalattributes)
+* [auth_sp_fake_additional_attributes_values](#authspfakeadditionalattributesvalues)
+* [auditlog_lifetime](#auditloglifetime)
+* [report_format](#reportformat)
 
 ## Webservices API
 
-* [auth_remote_application_enabled](#auth_remote_application_enabled)
-* [remote_applications](#remote_applications)
-* [auth_remote_user_autogenerate_secret](#auth_remote_user_autogenerate_secret)
-* [rest_allow_jsonp](#rest_allow_jsonp)
+* [auth_remote_application_enabled](#authremoteapplicationenabled)
+* [remote_applications](#remoteapplications)
+* [auth_remote_user_autogenerate_secret](#authremoteuserautogeneratesecret)
+* [rest_allow_jsonp](#restallowjsonp)
 
 ## Other
 
-* [host_quota](#host_quota)
-* [config_overrides (experimental feature, not tested)](#config_overrides)
+* [host_quota](#hostquota)
+* [config_overrides (experimental feature, not tested)](#configoverrides)
 
 ---
 
@@ -418,7 +418,7 @@ User language detection is done in the following order:
 3. From `default_language` config parameter
 4. From the hard-coded absolute default `en`
 
-### lang_browser_enabled](#lang_browser_enabled)
+### lang_browser_enabled](#langbrowserenabled)
 
 * __description:__ detect user's preferred language from browser's Accept-Language header if this header is provided.  If a language a user requests is not available, falls back to the default language.  If no default language is configured, falls back to English.  If a language directive is not available in the selected language, it is taken from the default language file.
 * __mandatory:__ no
