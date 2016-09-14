@@ -3,6 +3,7 @@
 Filesender includes a translation engine which allows for flexible user language detection and customization.
 
 ## How to contribute to the FileSender 2.0 translation effort
+
 Starting with version 2.0 we are using www.poeditor.com to manage the different languages
 FileSender supports.  If you want to contribute to a translation please follow the public
 link to the FileSender 2.0 project in poeditor.com and follow the instructions you get

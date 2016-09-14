@@ -3,6 +3,7 @@
 FileSender 2.0 is built around the following concepts:
 
 ## transfers
+
 A transfer consists of one or more files sent to one <span style="background-color:#ff0">(zero?)</span> or more recipients
 
 ## files
@@ -72,6 +73,7 @@ The <...> is set in the SAML2 message received by .
 ## Any size with HTML5 chunked upload
 
 ## fall-back for non-html5 browsers
+
 no longer flash: now normal html post.  User can still select multiple files, when uploading a hidden iframe takes care of the upload.  Progress event through polling the server.  How often polling is done is defined by legacy_upload_progress_refresh_period.
 
 ## TeraSender high speed upload module
@@ -170,9 +172,11 @@ Received feedback is forwarded as a message/rfc822 attachment.
 ## Installation
 
 ### Database initialisation and updates
+
 Describe how the database is initialised for version 2.0 (from classes definiation) and how it's updated automatically!
 
 ### Workarounds implemented to work around various client quirks
+
 mac_unzip_link (to work around Mac unsigned 32 bit default unzip client)
 
 recipient Id includes transfer Id

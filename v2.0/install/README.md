@@ -11,6 +11,7 @@ This documentation is a work in progress and will be cleaned up as the software 
 If you notice mistakes in this documentation, or if it took you more than an hour to install FileSender, please let us know on filesender-dev@filesender.org and help us improve the documentation for those that come after you!
 
 ## About this documentation
+
 This is the installation documentation for installing the **FileSender 2.0-alpha Git snapshot** on Linux. This guide is written for installation from source on the RedHat/CentOS or Debian platform but any Linux variant should work with some modifications (most notably about installing the required additional software packages).
 
 ### This documentation was tested with
@@ -293,16 +294,19 @@ Example `/etc/fstab` line:
 ### SEbooleans
 
 #### httpd_can_sendmail
+
 MUST be on for Apache to be able to send mail.
 
 	setsebool httpd_can_sendmail on
 
 #### httpd_use_nfs
+
 MUST be off, use `context=system_u:object_r:httpd_sys_rw_content_t:s0` as a mount option instead if you use NFS.
 
 	setsebool httpd_use_nfs off
 
 #### httpd_can_network_connect_db
+
 MAY be on, if you do not run the database on the local host.
 
 	setsebool httpd_can_network_connect_db on

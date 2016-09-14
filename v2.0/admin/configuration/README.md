@@ -6,8 +6,11 @@
 * sections <span style="background-color:orange">marked in orange</span> need to be double checked.
 
 # Table of contents
+
 ---
+
 ## General settings
+
 * [admin_email](#admin_email)
 * [admin](#admin)
 * [site_name](#site_name)
@@ -21,6 +24,7 @@
 * [help_url](#help_url)
 
 ## Backend storage
+
 * [storage_type](#storage_type)
 * [storage_filesystem_path](#storage_filesystem_path)
 * [storage_filesystem_df_command](#storage_filesystem_df_command)
@@ -29,6 +33,7 @@
 * [storage_filesystem_hashing](#storage_filesystem_hashing)
 
 ## Database
+
 * [db_type](#db_type)
 * [db_host](#db_host)
 * [db_port](#db_port)
@@ -38,6 +43,7 @@
 * [db_table_prefix](#db_table_prefix)
 
 ## Language and internationalisation
+
 * [lang_browser_enabled](#lang_browser_enabled)
 * [lang_url_enabled](#lang_url_enabled)
 * [lang_userpref_enabled](#lang_userpref_enabled)
@@ -45,6 +51,7 @@
 * [lang_save_url_switch_in_userpref](#lang_save_url_switch_in_userpref)
 
 ## Email
+
 * [email_from](#email_from)
 * [email_from_name](#email_from_name)
 * [email_reply_to](#email_reply_to)
@@ -55,12 +62,14 @@
 * [relay_unknown_feedbacks](#relay_unknown_feedbacks)
 
 ## General UI
+
 * [autocomplete](#autocomplete)
 * [autocomplete_max_pool](#autocomplete_max_pool)
 * [autocomplete_min_characters](#autocomplete_min_characters)
 * [upload_display_bits_per_sec](#upload_display_bits_per_sec)
 
 ## Transfers
+
 * [aup_default](#aup_default)
 * [aup_enabled](#aup_enabled)
 * [ban_extension](#ban_extension)
@@ -79,6 +88,7 @@
 * [user_quota](#user_quota)
 
 ## TeraSender (high speed upload module)
+
 * [terasender_enabled](#terasender_enabled)
 * [terasender_advanced](#terasender_advanced)
 * [terasender_worker_count](#terasender_worker_count)
@@ -86,17 +96,20 @@
 * [stalling_detection](#stalling_detection)
 
 ## Download
+
 * [download_chunk_size](#download_chunk_size)
 * [mac_unzip_name](#mac_unzip_name)
 * [mac_unzip_link)(#mac_unzip_link)
 
 ## Guest use
+
 * [guest_options](#guest_options)
 * [default_guest_days_valid](#default_guest_days_valid)
 * [max_guest_days_valid](#max_guest_days_valid)
 * [max_guest_recipients](#max_guest_recipients)
 
 ## Authentication
+
 * [auth_sp_type](#auth_sp_type)
 * [session_cookie_path](#session_cookie_path)
 * __SimpleSAMLphp__
@@ -119,6 +132,7 @@
 	* [auth_sp_fake_name](#auth_sp_fake_name)!!
 
 ## Maintenance and logging
+
 * [failed_transfer_cleanup_days](#failed_transfer_cleanup_days)
 * [log_facilities](#log_facilities)!!
 * [maintenance mode](#maintenance)
@@ -131,24 +145,31 @@
 * [report_format](#report_format)
 
 ## Webservices API
+
 * [auth_remote_application_enabled](#auth_remote_application_enabled)
 * [remote_applications](#remote_applications)
 * [auth_remote_user_autogenerate_secret](#auth_remote_user_autogenerate_secret)
 * [rest_allow_jsonp](#rest_allow_jsonp)
 
 ## Other
+
 * [host_quota](#host_quota)
 * [config_overrides (experimental feature, not tested)](#config_overrides)
 
 ---
 ---
+
 # Configuration directives
+
 ---
 ---
+
 ## General settings
+
 ---
 
 ### admin_email
+
 * __description:__ email address of FileSender administrator(s).  Separate multiple addresses with a comma (',').
 Emails regarding disk full etc. are sent here. You should use a role-address here.
 * <span style="background-color:red">__mandatory:__ yes.  There must be at least one email address defined.</span>
@@ -158,6 +179,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ adminEmail
 
 ### admin
+
 * __description:__ UIDs (as per the configured saml_uid_attribute) of FileSender administrators. Accounts with these UIDs can access the Admin page through the web UI.  <span style="background-color:orange">Separate multiple entries with a comma (',').</span>
 * <span style="background-color:red">__mandatory:__ yes.  Can be empty but then no-one has access to the admin page.</span>
 * __type:__ string
@@ -165,6 +187,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __available:__ since version 1.0
 
 ### site_name
+
 * __description:__ friendly name for your FileSender instance. Used in site header in browser and in email templates.
 * __mandatory:__ no. If you don't define it, every place it's used will initialise to NULL which results in an empty string being displayed.
 * __type:__ string
@@ -172,6 +195,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __available:__ since version 1.0
 
 ### force_ssl
+
 * __description:__ enforce use of SSL. Set this to true and FileSender won't work if the user doesn't have a SSL session. Useful to retain security in case of web server misconfigurations.
 * __mandatory:__ no. <span style="background-color:orange">if you don't set it it will be evaluated to false?  What about the default of 'true'?)</span>
 * __type:__ boolean
@@ -180,6 +204,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ forceSSL
 
 ### session_cookie_path
+
 * __description:__ Explicitly sets the session.cookie.path parameter for the authentication cookies.  You typically need this if you use SimpleSAMLphp for authentication and have multiple FileSender instances using the same SimpleSAMLphp installation.  Shibboleth has its own session identifier mechanism and you probably won't need to change the session_cookie_path when using Shibboleth.
 * __mandatory:__ no
 * __type:__ string
@@ -191,6 +216,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: http://yourdomain.dom/filesender-beta and http://yourdomain.dom/simplesamlphp.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example "http://yourdomain.dom/".  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
 
 ### auth_remote_signature_algorithm
+
 * __description:__ <span style="background-color:orange">which remote signature algorithm to use.  Used in API? Should be in API section probably?  Which other permissible values?</span>
 * __mandatory:__ no
 * __type:__ string, permissible values: "sha1".
@@ -198,6 +224,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __available:__ since version 2.0
 
 ### default_timezone
+
 * __description:__ used to set default timezone of PHP. Used to convert dates. Dates are loaded from database and converted to PHP timestamps on the fly. Times in database are stored in GMT dates. Used to present localised time information. <span style="background-color:orange">Audit logs use time?  Also: include link to PHP timezone values</span>
 * __mandatory:__ yes (<span style="background-color:orange">doublecheck</span>)
 * __type:__ string
@@ -206,6 +233,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ Default_TimeZone
 
 ### default_language
+
 * __description:__ if there are no end-user overrides then this is the default language to use in the UI <span style="background-color:orange">(and email?).</span>  If the user picks a language that doesn't exist, or if a language directive isn't translated in the language served up to the user, the directive will in stead be taken from the language defined here as default_language. If all else fails, English (en) is a hard coded default.
 * __mandatory:__ no. Hard-coded default of last resort: English ("en")
 * __type:__ string
@@ -215,6 +243,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__ if the default_language is not one of the available (configured) languages, the configuration validator will thrown an error.
 
 ### site_url
+
 * __description:__ Site URL. Used in emails, to build URLs for logging in, logging out, build URL for upload endpoint for web workers, to include scripts etc.
 * <span style="background-color:red">__mandatory:__ yes</span>
 * __type:__ string
@@ -222,6 +251,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __available:__ since version 1.0
 
 ### site_logouturl
+
 * __description:__ $_GET parameters for the logout page;  this is where user gets redirected to after logout. Is given to the SP logout end-point.
 * __mandatory:__ <span style="background-color:orange">?</span>
 * __type:__ string
@@ -229,6 +259,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __available:__ since version 1.6
 
 ### about_url
+
 * __description:__ if set to "", a modal inline popup dialogue is shown with the contents of _ABOUT_TEXT from the relevant language file. Alternatively a URL can be used to point to a specific (local or external) HTML page. <span style="background-color:orange">check if this is a modal inline popup</span>
 * __mandatory:__ no
 * __type:__ string
@@ -237,6 +268,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__ aboutURL
 
 ### help_url
+
 * __description:__ if set to "", a modal inline popup dialogue is shown with the contents of _HELP_TEXT from the relevant language file. If set to an URL it will open the referenced (local or external) HTML page in a new tab. <span style="background-color:orange">check if this is a modal inline popup</span>
 * __mandatory:__ no <span style="background-color:orange">doublecheck</span>
 * __type:__ string
@@ -247,9 +279,13 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ---
 ---
+
 ## Backend storage
+
 ---
+
 ### storage_type
+
 * __description:__  type of storage you used for storing files uploaded to FileSender.
 * __mandatory:__ no
 * __type:__ string.  Permissible values: **filesystem**.
@@ -258,6 +294,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__ each supported storage type will have a specific class defined in classes/storage.  Each is named Storage<Foo>.class.php, for example StorageFilesystem.class.php for the type filesystem.  The values for "Foo" are the permissible values for this directive. For now the only permissible value and supported storage type is filesystem.  Future storage types could include e.g. **object**, **amazon_s3** and others.
 
 ### storage_filesystem_path
+
 * __description:__ when using storage type **filesystem** this is the absolute path to the file system where uploaded files are stored until they expire.  Your FileSender storage root.
 * __mandatory:__ no
 * __type:__ string
@@ -267,6 +304,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### storage_filesystem_df_command
+
 * __description:__ Command used to determine available disk space on file system.  Used to perform per-transfer check for sufficient disk space and to trigger disk space usage warnings to the FileSender Admin
 * __mandatory:__ <span style="background-color:orange">?</span>
 * __type:__ string
@@ -276,6 +314,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### storage_filesystem_file_deletion_command
+
 * __description:__ Command used to delete files, when they expire or are cleaned in routine cleaning of stale files.
 * __mandatory:__ <span style="background-color:orange">?</span>
 * __type:__ string
@@ -285,6 +324,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### storage_usage_warning
+
 * __description:__ percentage of drive space left that will trigger an email warning to the admin.
 * __mandatory:__ no.  If not set, evaluates to zero and you get no warnings.
 * __type:__ int
@@ -294,6 +334,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### <span style="background-color:orange">storage_filesystem_hashing
+
 * __description:__ Aggregate several directories into a virtual FileSender file store without using LVM.  Directories can be on different file systems which can be on different block devices and hard drives.  Allows you to pool several hard drives into one virtual FileSender file store without any external software.
 * __mandatory:__ no
 * __type:__ **int** or **callable**.  When integer indicates number of characters used in hash.  When callable "file que l'on veit stocker et doit retourner le chemin dans le stockage"
@@ -306,9 +347,13 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ---
 ---
+
 ## Database
+
 ---
+
 ### db_type
+
 * __description:__ type of database
 * __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string, keyword
@@ -319,6 +364,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### db_host
+
 * __description:__ database host address or name. Typically 127.0.0.1 or localhost.
 * __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
@@ -328,6 +374,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### db_port
+
 * __description:__ port used by database server
 * __mandatory:__  <span style="background-color:red">yes</span>
 * __type:__ string
@@ -337,6 +384,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### db_username
+
 * __description:__ database username
 * __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
@@ -346,6 +394,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### db_password
+
 * __description:__ database password
 * __mandatory:__ <span style="background-color:red">yes</span>
 * __type:__ string
@@ -355,6 +404,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __comment:__
 
 ### db_table_prefix
+
 * __description:__ table prefix to use.  Allows you to have several filesender instances in one database.  For example if you buy hosting with 1 database and still want multiple filesender instances.
 * __mandatory:__ <span style="background-color:orange">?  Would think not?</yes>
 * __type:__ string
@@ -365,7 +415,9 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 
 ---
 ---
+
 ## Language and internationalisation
+
 ---
 FileSender includes a translation engine which allows for flexible user language detection and customisation.  For more details check the [Translating FileSender 2.0 documentation](https://www.assembla.com/spaces/file_sender/wiki/Translating_FileSender)
 
@@ -376,6 +428,7 @@ User language detection is done in the following order:
 4. From the hard-coded absolute default `en`
 
 ### lang_browser_enabled](#lang_browser_enabled)
+
 * __description:__ detect user's preferred language from browser's Accept-Language header if this header is provided.  If a language a user requests is not available, falls back to the default language.  If no default language is configured, falls back to English.  If a language directive is not available in the selected language, it is taken from the default language file.
 * __mandatory:__ no
 * __type:__ boolean
@@ -385,6 +438,7 @@ User language detection is done in the following order:
 * __comment:__ requires lang_url_enabled to be true.
 
 ### lang_url_enabled
+
 * __description:__ allow explicit language switching via URL (example: ?lang=en)
 * __mandatory:__ no (required when using lang_browser_enabled)
 * __type:__ boolean
@@ -394,6 +448,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### lang_userpref_enabled
+
 * __description:__ take user's preferred language from user's stored preferences.  These preferences are stored in the FileSender database.
 * __mandatory:__ no
 * __type:__ boolean
@@ -403,6 +458,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### lang_selector_enabled
+
 * __description:__ display language selector in UI .  If your FileSender instance only supports 1 language no selector is displayed and no "translate this email" link is present in emails.
 * __mandatory:__ no
 * __type:__ boolean
@@ -414,6 +470,7 @@ User language detection is done in the following order:
 * __comment:__ <span style="background-color:orange">how is determined which language the lang selector defaults to when a user enters a page?  Browser setting?  Order in locale.php? </span>
 
 ### lang_save_url_switch_in_userpref
+
 * __description:__ save language switching in user preferences on change (requires lang_url_enabled = true and lang_userpref_enabled = true)
 * __mandatory:__ no
 * __type:__ boolean
@@ -424,9 +481,13 @@ User language detection is done in the following order:
 
 ---
 ---
+
 ## Email
+
 ---
+
 ### email_from
+
 * __description:__ <span style="background-color:orange">sets the email From: header to either an explicit value or fills it with the sender's email address as received from the identity service provider in the "mail" attribute.  Is this the body From:?</span>
 * __mandatory:__ no
 * __type:__ string or keyword. Permissible value for keyword: "sender"
@@ -436,6 +497,7 @@ User language detection is done in the following order:
 * __comment:__ To be SPF compliant set this to an address like "filesender-bounces@yourdomain.dom" and use the bounce-handler script to deal with email bounces.
 
 ### email_from_name
+
 * __description:__ pretty name for the email_from address.  Use when you explicitly set email_from to an email address like "no-reply@domain.dom".
 * __mandatory:__ no
 * __type:__ string
@@ -445,6 +507,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### email_reply_to
+
 * __description:__ <span style="background-color:orange">adds a reply-to: header to emails sent by FileSender.  When users reply to such an email usually the reply is then sent to the reply_to address.  A user would typically reply to an email to ask a question about a file transfer which should go directly to the sender as the sender is the only one who knows.</span>
 * __mandatory:__ no
 * __type:__ string or keyword.  Permissible values for keyword: "sender"
@@ -454,6 +517,7 @@ User language detection is done in the following order:
 * __comment:__ To be SPF compliant set this to "sender"
 
 ### email_reply_to_name
+
 * __description:__  pretty name for the email_reply_to address.  Use when you explicitly set email_reply_to to an email address like "no-reply@domain.dom".
 * __mandatory:__ no
 * __type:__ string
@@ -463,6 +527,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### email_return_path
+
 * __description:__ <span style="background-color:orange">sets the return_path email header to either an explicit value or fills it with the sender's email address as received from the identity service provider in the "mail" attribute. Is this the envelope from??</span>
 * __mandatory:__ <span style="background-color:orange">no</span>
 * __type:__ string or keyword. Permissible value for keyword: "sender"
@@ -473,6 +538,7 @@ User language detection is done in the following order:
 </span>
 
 ### email_subject_prefix
+
 * __description:__ the string specified here will be prepended to the subject of all emails sent out.
 * __mandatory:__ no
 * __type:__: string
@@ -482,6 +548,7 @@ User language detection is done in the following order:
 * __comment:__ was equal to site_name in version 1.x
 
 ### email_use_html
+
 * __description:__ if true all emails sent by FileSender will include both HTML and plaintext.  For most users this means they will see HTML emails. If false only plain-text emails are sent.
 * __mandatory:__ no
 * __type:__ boolean
@@ -491,6 +558,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### email_newline
+
 * __description:__ specify a different new line character for use in emails. If your FileSender emails look garbled (display raw MIME and HTML source) try setting this to \n as an alternative to reconfiguring your mail server.
 * __mandatory:__ no
 * __type:__ string
@@ -501,6 +569,7 @@ User language detection is done in the following order:
 * __comment:__ Make sure you use double quotes to configure this value in the config file.  If you use single quotes the \r and \n will NOT be interpreted!
 
 ### relay_unknown_feedbacks
+
 * __description:__ tells the bounce handler where to forward those messages it can not identify as email bounces but can be related to a specific target (recipient, guest). The received message is forwarded as message/rfc822 attachment.
 * __mandatory:__ no
 * __type:__ string or keyword
@@ -511,7 +580,9 @@ User language detection is done in the following order:
 * __comment:__ <span style="background-color:orange">this parameter will get a different name</span>
 
 ## General UI
+
 ### autocomplete
+
 * __description:__ provide autocomplete for email input fields.  If set to a positive integer autocomplete is enabled and the value dictates how many results are returned to a user in the autocomplete popup.  The result list is limited to recipients this particular user has used.
 * __mandatory:__ no
 * __type:__ integer/boolean
@@ -521,6 +592,7 @@ User language detection is done in the following order:
 * __comment:__ Checks the frequent recipient field (array) in the user preference table. Holds different recipients the user did use. The first one is the last used one. Every time the user sends a file or guest voucher we take recipiients and add them at the top of the array. If they already exist in the array the address is put to the top. We limit array to max length defined in config.
 
 ### autocomplete_max_pool
+
 * __description:__ how many of the user's recipients are stored in the user's preferences in the database.  Should be between 2 and ca. 15 times the "autocomplete" value.
 * __mandatory:__ no
 * __type:__ int
@@ -530,6 +602,7 @@ User language detection is done in the following order:
 * __comment:__ the higher this number the larger the number of email recipients you will store over time.  This increases your privacy footprint.
 
 ### autocomplete_min_characters
+
 * __description:__ how many characters the user needs to type in an email address field to trigger the autocomplete popup.
 * __mandatory:__ no
 * __type:__ int
@@ -539,6 +612,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### upload_display_bits_per_sec
+
 * __description:__ <span style="background-color:orange">if true display upload speed in MBps (megabytes/second).  If false display upload speeds as Mbps (megabits/second) Need to test, reality seems different from documentation</span>
 * __mandatory:__ no
 * __type:__ boolean
@@ -549,9 +623,13 @@ User language detection is done in the following order:
 
 ---
 ---
+
 ## Transfers
+
 ---
+
 ### aup_enabled
+
 * __description:__ If set to 'true' the AuP (terms of service) checkbox is visible AND mandatory for the user to tick.
 * __mandatory:__ no
 * __type:__ boolean
@@ -561,6 +639,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### aup_default
+
 * __description:__ if set to 'true' the AuP (terms of service) checkbox (if enabled) is already pre-ticked for the user
 * __mandatory:__ no
 * __type:__ boolean
@@ -570,6 +649,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### ban_extension
+
 * __description:__ disallow files with the extensions specified here.
 * __mandatory:__ no
 * __type:__ string
@@ -579,6 +659,7 @@ User language detection is done in the following order:
 * __comment:__
 
 ### chunk_upload_security
+
 * <span style="background-color:orange">this entire parameter needs to be checked with Etienne</span>
 * __description:__ controls how FileSender behaves when an upload lasts longer than an authenticated user session.  If set to "key" the web client will use FileUID as a transfer session key.  This transfer session key is valid for as long as the upload lasts independent from the user's login session.  So if a user logs in at some identity provider and that session expires after e.g. 8 hours but the upload lasts for 10 hours, the upload will complete.  If set to "auth" the user will be required to re-logon if their logon session has expired before an upload completed.  __If set to "key" and the user's login session expires before the upload is completed, the user will need to be logged on before redirected to their "My Transfers" page.__
 * __mandatory:__ no
@@ -594,6 +675,7 @@ To solve this we introduced a transfer key in FileSender 2.0. When you start an 
 If you want to find out the expiry timer for your SAML Identity Provider install [the SAML tracer add-on in FireFox](https://addons.mozilla.org/en-us/firefox/addon/saml-tracer/) and log in to your FileSender install.  Click on the "SAML" message in SAML tracer.
 
 ### default_transfer_days_valid
+
 * __description:__ specifies the default expiry date value in the "Expiry date" date picker in the Upload form.  If a user doesn't do anything this becomes the expiry date for the transfer.
 * __mandatory:__ no
 * __type:__ int
@@ -603,6 +685,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ Be aware of the changed semantic from 1.6 to 2.0.
 
 ### max_transfer_days_valid
+
 * __description:__ specifies the maximum expiry date for a transfer.  A user can not choose a larger value than this.
 * __mandatory:__ no
 * __type:__ int
@@ -612,6 +695,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ experience shows the vast majority of users simply go with the default expiry time.  For some users having a maximum value a long time in the future makes sense, e.g. papers sent out to a research proposal evaluation committee that need to be evaluated by a certain date.  Downloads typically start not too long before the due date, but the actual due date can be over a month in the future.
 
 ### allow_transfer_expiry_date_extension
+
 * __description:__ allows a user to extend the expiry date.
 * __mandatory:__
 * __type:__ an array of integers containing possible extensions in days.
@@ -627,6 +711,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 	$config['allow_transfer_expiry_date_extension'] = array(5, 3, 1, true); // Allows infinite extensions, the first is by 5 days the second is by 3 days, the third and above are by 1 day
 
 ## force_legacy_mode
+
 * __description:__ Force FileSender into legacy non-HTML5 mode. Multi-file uploads are still possible, but each file is limited to max. 2GB.  The help file and certain text labels change as well. The max. number of files and total transfer size limit is the same as for HTML5 mode.  This function is available for testing purposes: FileSender will detect automatically if a user's browser supports the necessary HTML5 functionality or not.
 * __mandatory:__ no
 * __type:__ boolean
@@ -636,6 +721,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ for testing purposes.
 
 ### legacy_upload_progress_refresh_period
+
 * __description:__ when uploading in legacy mode (non-HTML5 uploads) this indicates in seconds how often the client-side progress bar is refreshed.
 * __mandatory:__ no
 * __type:__ int (seconds)
@@ -645,6 +731,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ Normally FileSender will use the browser's HTML5 FileAPI functionality for uploading, splitting files in chunks and uploading these chunks.  This allows for uploads of any size.  Older browsers which you may find in a locked-down environment do not support the necessary HTML5 functionality.  For these browsers a legacy fallback upload method is provided.  Before version 2.0 a flash component was used for legacy uploads.  As of version 2.0 this is replaced by a native HTML upload with a limit of 2GB per file.  A user **can** select multiple files but in a less smooth way than with the HTML5 drag & drop box.  The upload progress for legacy uploads is polled from the server (via PHP) based on what has arrived (how many bytes) server side.  <span style="background-color:orange">This only became possible as of PHP version 5.x, released in x</span>
 
 ### max_legacy_file_size
+
 * __description:__ maximum size per file for a legacy upload.  <span style="background-color:orange">With a legacy upload users can upload x files per transfer.</span>.
 * __mandatory:__ no
 * __type:__ int
@@ -654,6 +741,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ Files are uploaded serially.  A hidden iframe and hidden form is created for each file, containing the required data (session key for upload etc.).  A single file element is cloned into each hidden form.  This form is submitted to the hidden iframe which then uploads the file.  At the end of the upload the server sends a bit of javascript which triggers the next upload in the queue.  Each file is an "entire file at once" upload rather then the chunked upload used to get over the 2GB limit of 32 bit browsers.
 
 ### max_transfer_size
+
 * __description:__ maximum total size for any transfer (both html5 and legacy transfers)
 * __mandatory:__ no
 * __type:__ int
@@ -663,6 +751,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### max_transfer_files
+
 * __description:__ maximum number of files that can be sent in one transfer
 * __mandatory:__ no
 * __type:__ int
@@ -672,6 +761,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### max_transfer_recipients
+
 * __description:__ maximum number of recipients a transfer can have.
 * __mandatory:__ no
 * __type:__ int
@@ -681,6 +771,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### transfer_options
+
 * __description:__ this parameter controls which transfer options are available to the user in the Upload form and how these options behave.  Options show up in the right hand side block in the Upload form.  Options appear in the order they are specified in the config file.  Most options control which email receipts are sent out when and to whom.  See below for details.
 * __mandatory:__ no
 * __type:__ array
@@ -720,6 +811,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 </PRE>
 
 ### upload_chunk_size
+
 * __description:__ standard upload for FileSender is chunked upload.  This indicates how big each chunk is.  There is a certain optimal chunk size which depends largely on your bandwidth-delay product.  Usually you shouldn't have to touch this but if you're trying to serve special use cases you might want to experiment with this and see which value gives you the fastest upload times..
 * __mandatory:__ no
 * __type:__ int (bytes)
@@ -729,6 +821,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ Please note that as of version 2.0 the terasender_chunksize and upload_chunk-size have been merged into one parameter.
 
 ### user_quota
+
 * __description:__ set to 0 to disable.  If set to a positive value it sets the per-user maximum storage usage. A transfer requiring more space than remains in the user's quota are rejected with an error message in the web-UI.
 * __mandatory:__ no
 * __type:__ int (bytes) or function
@@ -739,9 +832,13 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 
 ---
 ---
+
 ## TeraSender (high speed upload module)
+
 ---
+
 ### terasender_enabled
+
 * __description:__ if set to true, enables TeraSender high speed upload module.  This leverages client-side webworkers to parallelise uploads; each chunk is sent by a webworker allowing us to send many chunks in parallel.
 * __mandatory:__ no
 * __type:__ boolean
@@ -751,6 +848,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ the default value in version 1.6 was false
 
 ### terasender_advanced
+
 * __description:__ if set to yes the advanced terasender settings (worker count, chunk size) become available for a user in the UI.  Use this to easily test which workercount vs. chunk size settings work best for a very specific very demanding user/use case.
 * __mandatory:__ no
 * __type:__ boolean
@@ -760,6 +858,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### terasender_worker_count
+
 * __description:__ how many client-side workers FileSender fires up when starting a terasender upload.  Note that different browsers have different maximum webworker settings which also change over time.  As CPU power increases your users will typically be able to support higher number.
 * __mandatory:__ no
 * __type:__ int
@@ -769,6 +868,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ <span style="background-color:orange">we need to check maximum webworker counts for standard browsers and possibly increase the default number</span>
 
 ### terasender_start_mode
+
 * __description:__ progress sequentially or parallel through the file list.
 * __mandatory:__ no
 * __type:__ string, keyword
@@ -780,6 +880,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 <span style="background-color:orange">when set to "single" uploads don't work?  Bug?</span>
 
 ### stalling_detection
+
 * __description:__ detect whether an upload stalls
 * __mandatory:__ no
 * __type:__ boolean
@@ -789,9 +890,13 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 
 ---
 ---
+
 ## Download
+
 ---
+
 ### download_chunk_size
+
 * __description:__ the maximum amount of data that will be read into <span style="background-color:orange">(server or client side?)</span> memory at once during multi-file downloads (not single file?)
 * __mandatory:__ <span style="background-color:orange">?<span style="background-color:orange">
 * __type:__ int
@@ -801,6 +906,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### mac_unzip_name
+
 * __description:__ <span style="background-color:orange">per oktober 2014 the default Mac built-in unzip client is still 32 bits. This leads to problems if the zip file that's downloaded when downloading multiple-files-as-an-archive is larger than 2 GB: a user can click on the zip file but it won't expand into a folder. To prevent help desk calls we alert a user to this problem and give them a place where they can go for the solution. (need double check for Yosemite)</span>
 * __mandatory:__ <span style="background-color:orange">? Should be?)</span>
 * __type:__ string
@@ -810,6 +916,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### mac_unzip_link
+
 * __description:__ link in download form where user can download a 64 bit unzip utility for Mac OS-X
 * __mandatory:__ <span style="background-color:orange">? </span>
 * __type:__ string
@@ -820,9 +927,13 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 
 ---
 ---
+
 ## Guest use
+
 ---
+
 ### guest_options
+
 * __description:__ <span style="background-color:orange">are transfer options for guest invitations inherited from transfer_options?</span>this parameter controls which options a user has available in the Guest form to control the behaviour of guest invitations.  Options show up in the right hand side block in the Guest form. Options appear in the order they are specified in the config file. See below for details.
 * __mandatory:__ no
 * __type:__ array
@@ -860,6 +971,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 </PRE>
 
 ### default_guest_days_valid
+
 * __description:__ specifies the default expiry date value in the "Expiry date" date picker in the Guest form.  If a user doesn't do anything this becomes the expiry date for the guest invitation.  If this value is not configured, it is set to default_transfer_days_valid
 * __mandatory:__ no
 * __type:__ int
@@ -869,6 +981,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### max_guest_days_valid
+
 * __description:__ specifies the maximum expiry date for a guest invitation.  A user can not choose a larger value than this.
 * __mandatory:__ no
 * __type:__ int
@@ -878,6 +991,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### max_guest_recipients
+
 * __description:__ specifies how many recipients a guest can specify
 * __mandatory:__ no
 * __type:__ int
@@ -888,9 +1002,13 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 
 ---
 ---
+
 ## Authentication
+
 ---
+
 ### auth_sp_type
+
 * __description:__ which authentication library to use.  saml=SimpleSAMLphp, shibboleth=shibboleth, fake uses a local file.  Do not use the fakesp in production!
 * __mandatory:__ no
 * __type:__ string, keyword
@@ -901,6 +1019,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ <span style="background-color:orange">to use type "fake" you need ...</span>
 
 ### session_cookie_path
+
 * __description:__ Explicitly sets the session.cookie.path parameter for the authentication cookies.  You typically need this if you use SimpleSAMLphp for authentication and have multiple FileSender instances using the same SimpleSAMLphp installation.  Shibboleth has its own session identifier mechanism and you probably won't need to change the session_cookie_path when using Shibboleth.
 * __mandatory:__ no
 * __type:__ string
@@ -910,6 +1029,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: http://yourdomain.dom/filesender-beta and http://yourdomain.dom/simplesamlphp.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example "http://yourdomain.dom/".  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
 
 ### auth_sp_set_idp_as_user_organization
+
 * __description:__ saml_sp_idp (simplesaml), shib: (shib_identity_provider environment variable) takes sp identifier from sp if provided and save it in user preferences as organisation property.
 * __mandatory:__ no
 * __type:__ boolean
@@ -919,8 +1039,11 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ <span style="background-color:orange">is this still in use?  There is no code associated with it as far as I can tell</span>
 
 ## Authentication: SimpleSAMLphp
+
 ---
+
 ### auth_sp_saml_authentication_source
+
 * __description:__ which authentication source service provider to use. In SimpleSAMLphp you configure these in the configuration file <simplesamlphp>/config/authsources.php.
 * __mandatory:__ no
 * __type:__ string
@@ -930,6 +1053,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_saml_simplesamlphp_url
+
 * __description:__ which URL to find SimpleSAMLphp.
 * __mandatory:__ yes, if auth_sp_type is set to 'saml'
 * __type:__ string
@@ -939,6 +1063,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__ You will usually have something like 'http://<your-filesender-server>/simplesaml' here where 'simplesaml' is an alias defined as "Alias /simplesaml /usr/local/filesender/simplesaml/www" in your web server config.
 
 ### auth_sp_saml_simplesamlphp_location
+
 * __description:__ file system path to SimpleSAMLphp location
 * __mandatory:__ yes, if auth_sp_type is set to 'saml'
 * __type:__ string
@@ -948,6 +1073,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_saml_uid_attribute
+
 * __description:__ attribute for user's unique user identifier to get from authentication service provider.  Usually you would use either *eduPersonTargetedID* or *eduPersonPrincipalName* (watch the spelling!).  ePTID is an anonymous identifier making it hard to link FileSender logging to a specific user which may or may not be what you want.  ePTID will protect your users against rogue IdPs.  eduPersonPrincipalName will usually give you an identifier like <username>@<domain>.
 * __mandatory:__ no explicit configuration is needed when the default is used.  However, this value MUST be received from the Identity Provider, otherwise a user can not log on.
 * __type:__ string
@@ -957,6 +1083,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_saml_email_attribute
+
 * __description:__ attribute for user's mail address to get from authentication service provider
 * __mandatory:__ no explicit configuration is needed when the default is used.  However, this value MUST be received from the Identity Provider, otherwise a user can not log on.
 * __type:__ string
@@ -966,6 +1093,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_saml_name_attribute
+
 * __description:__ attribute for user's name to get from authentication service provider
 * __mandatory:__ no
 * __type:__ string
@@ -975,8 +1103,11 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ## Authentication: Shibboleth
+
 ---
+
 ### auth_sp_shibboleth_uid_attribute
+
 * __description:__ attribute for user's unique user identifier to get from authentication service provider.  Usually you would use either *eduPersonTargetedID* or *eduPersonPrincipalName* (watch the spelling!).  ePTID is an anonymous identifier making it hard to link FileSender logging to a specific user which may or may not be what you want.  ePTID will protect your users against rogue IdPs.  eduPersonPrincipalName will usually give you an identifier like <username>@<domain>.
 * __mandatory:__ no explicit configuration is needed when the default is used.  However, this value MUST be received from the Identity Provider, otherwise a user can not log on.
 * __type:__ string
@@ -986,6 +1117,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_shibboleth_email_attribute
+
 * __description:__ attribute for user's mail address to get from authentication service provider
 * __mandatory:__ no explicit configuration is needed when the default is used.  However, this value MUST be received from the Identity Provider, otherwise a user can not log on.
 * __type:__ string
@@ -995,6 +1127,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_shibboleth_name_attribute
+
 * __description:__ attribute for user's name to get from authentication service provider
 * __mandatory:__ no
 * __type:__ string
@@ -1004,6 +1137,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_shibboleth_login_url
+
 * __description:__ where to find the Shibboleth login URL
 * __mandatory:__ yes when using Shibboleth as authentication library
 * __type:__ string
@@ -1014,6 +1148,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __example:__ $prot.$_SERVER['SERVER_NAME'].'/Shibboleth.sso/Login?target={target}';
 
 ### auth_sp_shibboleth_logout_url
+
 * __description:__ where to find the Shibboleth logout URL
 * __mandatory:__ yes when using Shibboleth as authentication library
 * __type:__ string
@@ -1024,7 +1159,9 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __example:__ $prot.$_SERVER['SERVER_NAME'].'/Shibboleth.sso/Logout?return={target}';
 
 ## Authentication: SP_fake
+
 ### auth_sp_fake_authenticated
+
 * __description:__
 * __mandatory:__
 * __type:__ boolean
@@ -1034,6 +1171,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_fake_uid
+
 * __description:__ UID you want to have
 * __mandatory:__
 * __type:__ string
@@ -1043,6 +1181,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_fake_email
+
 * __description:__
 * __mandatory:__
 * __type:__
@@ -1052,6 +1191,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### auth_sp_fake_name
+
 * __description:__
 * __mandatory:__
 * __type:__
@@ -1062,9 +1202,13 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 
 ---
 ---
+
 ## Maintenance and logging
+
 ---
+
 ### failed_transfer_cleanup_days
+
 * __description:__ number of days after which chunks belonging to failed or interrupted uploads will be deleted from disk on the server. If some transfer was created say 7 days ago and still not completed, the associated data is removed after 7 days.
 * __mandatory:__ no
 * __type:__ int (days)
@@ -1074,6 +1218,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 ### log_facilities
+
 * __description:__ defines where FileSender logging is sent.  You can sent logging to a file, to syslog or to the default PHP log facility (as configured through your webserver's PHP module).  The directive takes an array of one or more logging targets. Logging can be sent to multiple targets simultaneously.  Each logging target is a list containing the name of the logging target and a number of attributes which vary per log target.  See below for the exact definiation of each log target.
 * __mandatory:__ no
 * __type:__ array of log targets.  Each target has a type and a number of parameters
@@ -1118,6 +1263,7 @@ callable (advanced): "I give you something you can call to log".  There is one m
 different options for different types.</span>
 
 ### maintenance
+
 * __description:__ when true, switches the FileSender instance in maintenance mode.  This allows to interrupt the service for a database upgrade or webserver restart without breaking ongoing uploads.
 	* all pages are replaced with the maintenance page
 	* webservice returns specific exception to all requests
@@ -1133,6 +1279,7 @@ different options for different types.</span>
 * __comment:__
 
 ### statlog_lifetime
+
 * __description:__ The statlog is kept in the database and contains everything needed to produce usage statistics.  This directive defines maximum lifetime of statslog entries (in days) after which they get deleted.  <span style="background-color:orange">point to more text detailing what is actuallly logged in the statlog!</span>
 * __mandatory:__ no
 * __type:__ int (days)
@@ -1142,6 +1289,7 @@ different options for different types.</span>
 * __comment:__ The statlog is always enabled.  If you don't want anything logged, set this lifetime to 0.  Use this setting to control the privacy footprint of your FileSender service.
 
 ### auth_sp_additional_attributes
+
 * __description:__ Allows to define additional user attributes that will be asked for, such as organisation, that can then be propagated to the statistic log table in the database for use in creating statistics.  This configuration parameter defines the additional attributes to get.
 definition of additional attributes to get, array of either attributes names or
 final name to raw attribute name pair or final name to callable getter pair
@@ -1154,6 +1302,7 @@ final name to raw attribute name pair or final name to callable getter pair
 * __example:__ <span style="background-color:orange">need an example here!</span>
 
 ### auth_sp_save_user_additional_attributes
+
 * __description:__ if set to true, the additional user attributes are saved in the userpreferences table.
 * __mandatory:__ no
 * __type:__ boolean
@@ -1164,6 +1313,7 @@ final name to raw attribute name pair or final name to callable getter pair
 * __example:__ ...
 
 ### statlog_log_user_additional_attributes
+
 * __description:__ if set to yes, the additional attributes defined in auth_sp_additional_attributes are logged in the statlog table.  This allows you to do e.g. per organisation statistics or show the use for students, employees, researchers.
 * __mandatory:__ no
 * __type:__ boolean
@@ -1174,6 +1324,7 @@ final name to raw attribute name pair or final name to callable getter pair
 * __example:__ ...
 
 ### auth_sp_fake_additional_attributes_values
+
 * __description:__ array of name to value pairs for fake sp authentication (testing
 only)
 * __mandatory:__ no
@@ -1185,6 +1336,7 @@ only)
 * __example:__ <span style="background-color:orange">needs example!</span>
 
 ### auditlog_lifetime
+
 * __description:__ The auditlog is kept in the database and contains all events for a transfer.  This information can be used to tell the user what happened to their transfer when.  This directive specifies the maximum lifetime of auditlog entries (in days).  If set to 0 we remove data when the transfer is closed, after sending reports (if user indicated they wanted).  As long as transfer is live you have this data, as soon as transfer expires the log disappears.  If you set it to "false" we don't log anything and a user can't even see the logs when a transfer is live.
 * __mandatory:__ no
 * __type:__ boolean/int (days).  Set to false to disable.
@@ -1194,6 +1346,7 @@ only)
 * __comment:__ Use this setting to control the privacy footprint of your FileSender service.
 
 ### report_format
+
 * __description:__ A user can ask for an audit report specifying what happened to a transfer when.  This can be done when initiating a transfer by ticking the checkbox or explicitly through MyTransfers (view audit log).  This setting specifies what type of report will be generated.
 * __mandatory:__ no
 * __type:__ keyword (string).
@@ -1205,9 +1358,13 @@ only)
 
 ---
 ---
+
 ## Webservices API
+
 ---
+
 ### auth_remote_application_enabled
+
 * __description:__ enable or disable remote application authentication.  Needed to let remote applications (API applications) authenticate
 * __mandatory:__ no
 * __type:__ boolean
@@ -1217,6 +1374,7 @@ only)
 * __comment:__ <span style="background-color:orange">needs to be elaborated more.  Consequences of setting to true</span>
 
 ### remote_applications
+
 * __description:__  list of remote applications.  This is an array where each entry includes an authentication secret, whether or not the application has admin rights and what methods the application is allowed to use:
 * __mandatory:__ no
 * __type:__ array
@@ -1227,6 +1385,7 @@ only)
 array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boolean OU array (pair de nom de méthode et de valeurs d'accès.  ex: get => TRUE, post => FALSE      Explained in more detail in API documentation page.</span>
 
 ### auth_remote_user_autogenerate_secret
+
 * __description:__ <span style="background-color:orange">ask etienne how this works</span>
 * __mandatory:__ no
 * __type:__ boolean
@@ -1236,6 +1395,7 @@ array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boo
 * __comment:__
 
 ### disclosed
+
 * __description:__ the webservice has an endpoint called "info" which discloses information about the FileSender instance.  By default it gives the URL of the FileSender instance.  This parameter allows you to add more info from the configuration file.  E.g. when using a remote client this client needs the chunk size.
 * __mandatory:__ no
 * __type:__ boolean/array of strings
@@ -1246,6 +1406,7 @@ array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boo
 * __example:__ <span style="background-color:orange">example comes here.</span>
 
 ### rest_allow_jsonp
+
 * __description:__ Define additional REST-API end points JSONP can be called upon. JSONP is typically used when using FileSender in an iframe. We limit which API end points you can reach in such a scenario but give you the option of enlarging that set of API end points in case you need this.
 * __mandatory:__ no
 * __type:__ boolean/array of strings
@@ -1270,9 +1431,13 @@ $config['rest_allow_jsonp'] = array(
 
 ---
 ---
+
 ## Other
+
 ---
+
 ### host_quota
+
 * __description:__ use this when your FileSender instance needs to share its storage with other applications.  If set to a positive value it defines the total amount of storage your FileSender instance can use for storing files.  New transfers that require more space than is available are rejected with an error message in the Web-UI.  Set to 0 to disable.
 * __mandatory:__ no
 * __type:__ int (in bytes)
@@ -1282,6 +1447,7 @@ $config['rest_allow_jsonp'] = array(
 * __comment:__
 
 ### config_overrides
+
 * experimental feature in 2.0, not tested
 * __description:__ <span style="background-color:orange">In version 2.0 you can create virtual FileSender instances (see the administrator guide.  Todo: write how to do this in the admin guide!)</span>.  With the config_overrides directive you specify the list of parameters an admin for a virtual FileSender instance you can override from admin interface.  When you set this parameter a "Config" tab becomes visible in the Admin tab in your FileSender UI. If you have one instance you can use this to separate roles between system admin and filesender admin.  You can also use this to automate FileSender virtual instance deployment.
 * __mandatory:__ no
@@ -1297,6 +1463,7 @@ $config['rest_allow_jsonp'] = array(
 Changes are saved in config_overrides.json in the config directory.  The config.php file is NOT modified.  This keeps overrides separated from the site config.  is_string, is_numeric (standard php validators) or a function of your own which returns a boolean indicating if the value is good or not.
 
 ### 
+
 * __description:__
 * __mandatory:__
 * __type:__
@@ -1306,7 +1473,9 @@ Changes are saved in config_overrides.json in the config directory.  The config.
 * __comment:__
 
 ---
+
 ### 
+
 * __description:__
 * __mandatory:__
 * __type:__
@@ -1318,6 +1487,7 @@ Changes are saved in config_overrides.json in the config directory.  The config.
 <span style="background-color:orange">
 
 # Available in 1.x, not in 2.0
+
 cron_shred: consolidated by having a parameter to specify which delete command to use.
 debug: use log_facilities to set a log level.
 max_email_recipients: replaced with max_transfer_recipients and max_guest_recipeints
@@ -1336,8 +1506,10 @@ openSSLKeyLength: generated in utility.  Method "generate_uid".  don't realy on 
 emailRegEx: now using PHP built-in facility for checking email address validity which these days works well.  Basic function is filter_var. Give it a variable and a filter to use.  Using filter FILTER_VALIDATE_EMAIL.
 
 # Changed defaults from 1.x to 2.0
+
 email_newline is now "\r\n", before \n
 terasender_enabled is now "true", before false
 
 # Relevant for security audits
+
 library included, dom pdf.
