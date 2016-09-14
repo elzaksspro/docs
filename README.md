@@ -1,7 +1,8 @@
-## The problem
+# The problem
+
 You know the problem.  You need to send a file larger than a couple of megabytes to someone and the email comes back: attachment too big.  Then what?
 
-## FileSender project
+# FileSender project
 
 FileSender is a web based application that allows authenticated users to securely and easily send arbitrarily large files to other users. Authentication of users is provided through [SimpleSAMLphp, supporting SAML2, LDAP and RADIUS and more](http://simplesamlphp.org/docs/stable/simplesamlphp-idp#section_2). Users without an account can be sent an upload voucher by an authenticated user. FileSender is developed to the requirements of the higher education and research community.
 

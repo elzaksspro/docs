@@ -1,6 +1,3 @@
-
-# How to read this document
----
 * This document is a work in progress.  If you are keen on seeing FileSender 2.0 released offer to help with (testing) the documentation.
 * mandatory configuration settings are <span style="background-color:red">marked in red</span>
 * sections <span style="background-color:orange">marked in orange</span> need to be double checked.
@@ -168,8 +165,7 @@
 
 ### admin_email
 
-* __description:__ email address of FileSender administrator(s).  Separate multiple addresses with a comma (',').
-Emails regarding disk full etc. are sent here. You should use a role-address here.
+* __description:__ email address of FileSender administrator(s).  Separate multiple addresses with a comma (','). Emails regarding disk full etc. are sent here. You should use a role-address here.
 * <span style="background-color:red">__mandatory:__ yes.  There must be at least one email address defined.</span>
 * __type:__ string.
 * __default:__ -
@@ -210,8 +206,8 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ Testing, ticket #1198
-* __comment:__ Be careful to include the entire URL path, like http://yourdomain.dom/!
-* __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: http://yourdomain.dom/filesender-beta and http://yourdomain.dom/simplesamlphp.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example "http://yourdomain.dom/".  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
+* __comment:__ Be careful to include the entire URL path, like `http://yourdomain.dom/`!
+* __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: `http://yourdomain.dom/filesender-beta` and `http://yourdomain.dom/simplesamlphp`.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example `http://yourdomain.dom/`.  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
 
 ### auth_remote_signature_algorithm
 
@@ -340,7 +336,6 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 * __1.x name:__
 * __comment:__ not tested
 * __comment:__ basically integer. use fileUID (which is used to create name on hard drive) + as many characters as the hashing value (if you set hashing to 2 you take the 2 first letters of the fileUID (big random string) and use these two characters to create a directory structure under the storage path. This avoids having all files in the same directory. If you set this to 1 you have 16 possible different values for the directory structure under the storage root. You'll have 16 folders under your storage root under which you'll have the files. This allows you to spread files over different file systems / hard drives. You can aggregate storage space without using things like LVM. If you set this to two you have 2 levels of subdirectories. For directory naming: first level, directory names has one letter. Second level has two: letter from upper level + own level. Temporary chunks are stored directly in the final file. No temp folder (!!) Benchmarking between writing small file in potentially huge directory and opening big file and seeking in it was negligable. Can just open final file, seek to location of chunk offset and write data. Removes need to move file in the end.  It can also be "callable". We call the function giving it the file object which hold all properties of the file. Reference to the transfer as well. The function has to return a path under the storage root. This is a path related to storage root. For example: if you want to store small files in a small file directory and big files in big directory. F.ex. if file->size < 100 MB store on fast small disk, if > 100 MB store on big slow disk. Can also be used for functions to store new files on new storage while the existing files remain on existing storage. Note: we need contributions for useful functions here :)
-</span>
 
 ---
 
@@ -417,6 +412,7 @@ Emails regarding disk full etc. are sent here. You should use a role-address her
 FileSender includes a translation engine which allows for flexible user language detection and customisation.  For more details check the [Translating FileSender 2.0 documentation](https://www.assembla.com/spaces/file_sender/wiki/Translating_FileSender)
 
 User language detection is done in the following order:
+
 1. From the url (`lang` url parameter) : allows for user language switching (only if `lang_url_enabled` set to true in config), if `lang_save_url_switch_in_userpref` is enabled in config and a user session exists the new language is saved in the user preferences so that he doesn't need to switch it again the nex time. If no user session is found the new choice is saved in the PhP session.
 2. From the browser's `Accept-Language` header : allows for automatic language detection base on the browser config (if `lang_browser_enabled` set to true in config)
 3. From `default_language` config parameter
@@ -529,7 +525,6 @@ User language detection is done in the following order:
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ To be SPF compliant set this to an address like "filesender-bounces@yourdomain.dom" and use the bounce-handler script to deal with email bounces.
-</span>
 
 ### email_subject_prefix
 
@@ -789,26 +784,26 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 	* __redirect_url_on_complete:__ When the transfer upload completes, instead of showing a success message, redirect the user to a URL. This interferes with __get\_a\_link__ in that the uploader will not see the link after the upload completes. Additionally, if the uploader is a guest, there is no way straightforward way for the uploader to learn the download link, although this must not be used as a security feature.
 
 * __*Configuration example:*__
-<PRE>
-	$config['transfer_options'] = array(
-		'email_upload_complete' => array(
-			'available' => true,
-			'advanced' => false,
-			'default' => false
-		),
-		'email_me_copies' => array(
-			'available' => true,
-			'advanced' => true,
-			'default' => false
+
+		$config['transfer_options'] = array(
+			'email_upload_complete' => array(
+				'available' => true,
+				'advanced' => false,
+				'default' => false
+			),
+			'email_me_copies' => array(
+				'available' => true,
+				'advanced' => true,
+				'default' => false
+			)
 		);
-</PRE>
 
 ### upload_chunk_size
 
 * __description:__ standard upload for FileSender is chunked upload.  This indicates how big each chunk is.  There is a certain optimal chunk size which depends largely on your bandwidth-delay product.  Usually you shouldn't have to touch this but if you're trying to serve special use cases you might want to experiment with this and see which value gives you the fastest upload times..
 * __mandatory:__ no
 * __type:__ int (bytes)
-* __default:__ 5 * 1024 * 1024 (5242880 bytes (5MB))
+* __default:__ 5 \* 1024 \* 1024 (5242880 bytes (5MB))
 * __available:__ since version 1.5
 * __1.x name:__
 * __comment:__ Please note that as of version 2.0 the terasender_chunksize and upload_chunk-size have been merged into one parameter.
@@ -869,6 +864,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__ when looking for a file to put a worker on in multiple mode we look at file which has compbination of least worker and least progress.  Try to put available worker on file that is the slowest.  In multiple-mode we try to make all files progress at about the same speed.
+
 <span style="background-color:orange">when set to "single" uploads don't work?  Bug?</span>
 
 ### stalling_detection
@@ -911,7 +907,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __description:__ link in download form where user can download a 64 bit unzip utility for Mac OS-X
 * __mandatory:__ <span style="background-color:orange">? </span>
 * __type:__ string
-* __default:__ http://unarchiver.c3.cx/unarchiver
+* __default:__ [http://unarchiver.c3.cx/unarchiver](http://unarchiver.c3.cx/unarchiver)
 * __available:__ since version 2.0
 * __1.x name:__
 * __comment:__
@@ -946,19 +942,19 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 	* __email_guest_expired:__ send the guest an email when the guest voucher is expired.
 
 * __*Configuration example:*__
-<PRE>
-	$config['guest_options'] = array(
-		'email_upload_started' => array(
-			'available' => true,
-			'advanced' => false,
-			'default' => false
-		),
-		'email_upload_page_access' => array(
-			'available' => true,
-			'advanced' => true,
-			'default' => false
+
+		$config['guest_options'] = array(
+			'email_upload_started' => array(
+				'available' => true,
+				'advanced' => false,
+				'default' => false
+			),
+			'email_upload_page_access' => array(
+				'available' => true,
+				'advanced' => true,
+				'default' => false
+			)
 		);
-</PRE>
 
 ### default_guest_days_valid
 
@@ -1015,7 +1011,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __default:__ if(!$session_cookie_path) $session_cookie_path = $site_url_parts['path'];
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: http://yourdomain.dom/filesender-beta and http://yourdomain.dom/simplesamlphp.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example "http://yourdomain.dom/".  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
+* __comment:__ When do you set this?  If you use SimpleSAMLphp for authentication there is one common scenario where you need to set this parameter: the URL space for your FileSender instance and your SimpleSAMLphp instance do not overlap.  This happens when you have multiple FileSender instances (one production, one beta) sharing the same SimpleSAMLphp installation. For example: `http://yourdomain.dom/filesender-beta` and `http://yourdomain.dom/simplesamlphp`.  Because SimpleSAMLphp and FileSender are both written in PHP they use the same mechanism for session identifiers.  They can share session identifiers but only if this is allowed by the session_cookie_path.  When you log on with SimpleSAMLphp a session identifier is created.  If this can not be shared with your FileSender instance you will notice a user can log on, only to be presented with the same logon form again.  A silent failure.  In this scenario you will either need to ensure your SimpleSAMLphp instance is available within the FileSender URL space, or you set the session cookie parameter to for example `http://yourdomain.dom/`.  Another workaround is to use memcache for SimpleSAMLphp's session identifiers but that would mean an extra package on your server.
 
 ### auth_sp_set_idp_as_user_organization
 
@@ -1049,7 +1045,7 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __default:__ -
 * __available:__ since version 1.0
 * __1.x name:__ site_simplesamlurl
-* __comment:__ You will usually have something like 'http://<your-filesender-server>/simplesaml' here where 'simplesaml' is an alias defined as "Alias /simplesaml /usr/local/filesender/simplesaml/www" in your web server config.
+* __comment:__ You will usually have something like `http://<your-filesender-server>/simplesaml` here where 'simplesaml' is an alias defined as `Alias /simplesaml /usr/local/filesender/simplesaml/www` in your web server config.
 
 ### auth_sp_saml_simplesamlphp_location
 
@@ -1216,12 +1212,12 @@ If you want to find out the expiry timer for your SAML Identity Provider install
 * __comment:__
 
 <span style="background-color:orange">if you define your own log_facilities, you will overwrite the default setting.  Make sure to include all log targets you wish to log to.
+
 * __*General format of log target:*__ array(('type' => string, <attribute1 => <value>, <attribute2> => <value>
 * __*Standard parameters for all options:*__
-	* __'level' (optional):*__ restricts loglevel of current facility.  Permissible values: debug, warning, info, error
-	* __'process' (optional): allows you to separate logs from different parts of FileSender into separate logfiles, for example the REST logfile gets huge.  Permissible values: CLI, GUI, REST, WEB, CRON, FEEDBACK, MISC, INSTALL, UPGRADE.  Comma-separated list.
-	* __'
-*__*Available targets:*__
+	* __'level'__ (optional): restricts loglevel of current facility.  Permissible values: debug, warning, info, error
+	* __'process'__ (optional): allows you to separate logs from different parts of FileSender into separate logfiles, for example the REST logfile gets huge.  Permissible values: CLI, GUI, REST, WEB, CRON, FEEDBACK, MISC, INSTALL, UPGRADE.  Comma-separated list.
+* __*Available targets:*__
 	* __'type' => 'file'__ logs to a file.  You must specify a path.  You can optionally specify log file rotation with 'rotate' => '<value>', where value can be hourly, daily, weekly, monthly, yearly.
 	* __'type' => 'syslog'__ logs to syslog.
 	* __'type' => 'errror_log'__ logs to the default PHP log facility as defined in your webserver's PHP module.</span>
@@ -1278,9 +1274,7 @@ different options for different types.</span>
 
 ### auth_sp_additional_attributes
 
-* __description:__ Allows to define additional user attributes that will be asked for, such as organisation, that can then be propagated to the statistic log table in the database for use in creating statistics.  This configuration parameter defines the additional attributes to get.
-definition of additional attributes to get, array of either attributes names or
-final name to raw attribute name pair or final name to callable getter pair
+* __description:__ Allows to define additional user attributes that will be asked for, such as organisation, that can then be propagated to the statistic log table in the database for use in creating statistics.  This configuration parameter defines the additional attributes to get. definition of additional attributes to get, array of either attributes names or final name to raw attribute name pair or final name to callable getter pair
 * __mandatory:__ no
 * __type:__ array of attribute names or name to raw attribute pair or name to callable getter pair
 * __default:__ - (which means do not get any additional attributes)
@@ -1313,8 +1307,7 @@ final name to raw attribute name pair or final name to callable getter pair
 
 ### auth_sp_fake_additional_attributes_values
 
-* __description:__ array of name to value pairs for fake sp authentication (testing
-only)
+* __description:__ array of name to value pairs for fake sp authentication (testing only)
 * __mandatory:__ no
 * __type:__ array of name-value pairs
 * __default:__ -
@@ -1368,8 +1361,7 @@ only)
 * __default:__
 * __available:__ since version 2.0
 * __1.x name:__
-* __comment:__ <span style="background-color:orange">needs more work.  Example:
-array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boolean OU array (pair de nom de méthode et de valeurs d'accès.  ex: get => TRUE, post => FALSE      Explained in more detail in API documentation page.</span>
+* __comment:__ <span style="background-color:orange">needs more work.  Example: array (idApp => secret(string), isAdmin(bool), acl (array (endpoint(ou *) => boolean OU array (pair de nom de méthode et de valeurs d'accès.  ex: get => TRUE, post => FALSE      Explained in more detail in API documentation page.</span>
 
 ### auth_remote_user_autogenerate_secret
 
@@ -1448,7 +1440,7 @@ $config['rest_allow_jsonp'] = array(
 
 Changes are saved in config_overrides.json in the config directory.  The config.php file is NOT modified.  This keeps overrides separated from the site config.  is_string, is_numeric (standard php validators) or a function of your own which returns a boolean indicating if the value is good or not.
 
-### 
+###
 
 * __description:__
 * __mandatory:__
@@ -1460,7 +1452,7 @@ Changes are saved in config_overrides.json in the config directory.  The config.
 
 ---
 
-### 
+###
 
 * __description:__
 * __mandatory:__

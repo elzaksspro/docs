@@ -1,3 +1,5 @@
+# FileSender 2.0
+
 <span style="background-color:orange">This is the documentation for FileSender 2.0-alpha.
 FileSender 2.0-alpha is a work in progress, so is
 this documentation.  If you find anything you'd like to improve, please improve it and send

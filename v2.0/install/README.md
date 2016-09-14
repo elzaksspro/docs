@@ -26,7 +26,7 @@ This is the installation documentation for installing the **FileSender 2.0-alpha
 * A PostgreSQL or MySQL database.
 * A big filesystem.
 
-See https://www.assembla.com/wiki/show/file_sender/Requirements for all requirements.
+See [Requirements](https://www.assembla.com/wiki/show/file_sender/Requirements) for all requirements.
 
 # Step 1 - Install Apache and PHP
 
@@ -275,7 +275,7 @@ Visit the URL to your FileSender instance.
 
 	https://<your site>/filesender/
 
-* **NOTE**: If you want your site to be available on https://<your site>/, without the /filesender, set `DocumentRoot /opt/filesender/filesender/www` in Apache and remember to update your `$config['site_url']` accordingly.
+* **NOTE**: If you want your site to be available on `https://<your site>/`, without the /filesender, set `DocumentRoot /opt/filesender/filesender/www` in Apache and remember to update your `$config['site_url']` accordingly.
 
 # Perfection
 

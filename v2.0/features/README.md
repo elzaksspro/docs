@@ -115,11 +115,7 @@ This document lists most of the features currently implemented in the 2.0-alpha1
 * Improved robustness (needs details)
 * Can be switched on and off (default on)
 * Server-side configurable worker count
-* Server-side configurable whether the user can specify the worker count in the upload
-form.  This is useful for those specific frequent very large file use cases where you
-really want to optimise the upload speed.  The user('s organisation) can then figure out
-what the best worker count for that particular setting is without burdening the
-FileSender service staff.
+* Server-side configurable whether the user can specify the worker count in the upload form.  This is useful for those specific frequent very large file use cases where you really want to optimise the upload speed.  The user('s organisation) can then figure out what the best worker count for that particular setting is without burdening the FileSender service staff.
 
 ## Authentication
 
@@ -136,7 +132,7 @@ FileSender service staff.
 
 ## RESTful Webservice API
 
-System administration support
+* System administration support
 * Force legacy upload mode for testing purposes
 * Maintenance mode allows to do quick maintenance without killing active transfers.  Active transfers are warned and will wait until the service is available again
 * Support for different types of back-end storage.  Currently implemented is filesystem support.   Extending this to for example object storage is now possible.

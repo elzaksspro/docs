@@ -49,7 +49,7 @@ Do <span style="background-color:#ff0">&lt;fill out here how to do this&gt;</spa
 Change the following language tags in your localised language file(s):
 	$lang['undergoing_maintenance'] = 'This application is under maintenance'; $lang['maintenance_autoresume'] = 'Your operations will automatically resume when maintenance ends.';
 
-## Sizing your installation — How much space do I need?
+## Sizing your installation — How much space do I need
 
 Just get something that can easily expand, preferably in a matter of hours :)
 
@@ -57,7 +57,7 @@ Just get something that can easily expand, preferably in a matter of hours :)
 
 FileSender has no user database and has no concept of user accounts.
 
-## What happens when a login session expires?
+## What happens when a login session expires
 
 There are two expiry timers on a user logon session.  One controlled by FileSender on its side, in its simplesamlphp or shibboleth configuration.  The other is controlled by the IdP the user uses to authenticate against.
 
@@ -222,13 +222,13 @@ PHP cannot magically consider a class to be part of a software from its name, no
 
 # Securing your FileSender instance
 
-security mechanisms
-* cross site scripting protection: csrf cookies (security-token)
-* sp-session (authentication)
-* chunk-upload-security token
-* fileUID random generated,
-* download URL protection
-* API: api access key
+* security mechanisms
+	* cross site scripting protection: csrf cookies (security-token)
+	* sp-session (authentication)
+	* chunk-upload-security token
+	* fileUID random generated,
+	* download URL protection
+	* API: api access key
 
-clickjacking
-* secure webserver config
+* clickjacking
+	* secure webserver config

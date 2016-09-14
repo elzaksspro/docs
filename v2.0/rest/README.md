@@ -671,6 +671,7 @@ Returns `object` :
 # Errors
 
 Errors (or exceptions) are returned in a structured format with the following fields :
+
 * `message` : (`string`) translatable id telling what happened
 * `uid` : (`string`) unique error identifier, is included in the logs
 * `details` : (`array of string`) details about the error (may be empty, null or even not set)
@@ -678,6 +679,7 @@ Errors (or exceptions) are returned in a structured format with the following fi
 All possible errors messages are not listed here but can be found in the files under `classes/exceptions/`.
 
 Common errors to all endpoints are :
+
 * `rest_authentication_required` : need an authenticated user
 * `rest_ownership_required` : need ownership of target resource (admin owns all)
 * `rest_admin_required` : need an authenticated admin
