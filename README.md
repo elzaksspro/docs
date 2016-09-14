@@ -10,22 +10,22 @@ The purpose of the software is to send a large file to someone, have that file a
 FileSender is released under the [BSD license](http://opensource.org/licenses/BSD-3-Clause). It is open source software and available for free.
 
 ## Availability and download
-The latest production release is [1.6.1, released on December 30th 2015](/wiki/show/file_sender/Release_1-6-1). The previous major release [1.5, released on March 3rd 2013](/wiki/show/file_sender/Release_1-5) is still supported. Releases [1.1.1, released on May 31st 2012](/wiki/show/file_sender/Release_1-1-1) using a Flash based UI for large uploads and [1.0.1, released on 18 May 2011](/wiki/show/file_sender/Release_1-0-1) using the deprecated Gears plugin are not supported anymore. Visit the [Download page](/wiki/show/file_sender/Download) for details about the general availability of the FileSender software.
+The latest production release is [1.6.1, released on December 30th 2015](https://app.assembla.com/wiki/show/file_sender/Release_1-6-1). The previous major release [1.5, released on March 3rd 2013](https://app.assembla.com/wiki/show/file_sender/Release_1-5) is still supported. Releases [1.1.1, released on May 31st 2012](https://app.assembla.com/wiki/show/file_sender/Release_1-1-1) using a Flash based UI for large uploads and [1.0.1, released on 18 May 2011](https://app.assembla.com/wiki/show/file_sender/Release_1-0-1) using the deprecated Gears plugin are not supported anymore. Visit the [Download page](https://app.assembla.com/wiki/show/file_sender/Download) for details about the general availability of the FileSender software.
 
 ## Development status
-The version currently under development is version 2.0. The alpha version can be installed from Git, see [the documentation for 2.0](v2.0/install/README.md) for details. Check the [Release Schedule](/wiki/show/file_sender/Release_Schedule) for the planning.
+The version currently under development is version 2.0. The alpha version can be installed from Git, see [the documentation for 2.0](v2.0/install/README.md) for details. Check the [Release Schedule](https://app.assembla.com/wiki/show/file_sender/Release_Schedule) for the planning.
 
 ## Blog
-The FileSender project has a [[Blog and News|Blog]], where news and status updates are posted.
+The FileSender project has a [Blog](https://app.assembla.com/spaces/file_sender/wiki/Blog_and_News), where news and status updates are posted.
 
 ## Mailing Lists
-The FileSender project uses a number of mailinglists to support people deploying FileSender software and to coordinate development. Please go to the [[Support and Mailinglists]] page and subscribe yourself to those lists relevant for you.
+The FileSender project uses a number of mailinglists to support people deploying FileSender software and to coordinate development. Please go to the [Support and Mailinglists](https://app.assembla.com/wiki/show/file_sender/Support_and_Mailinglists) page and subscribe yourself to those lists relevant for you.
 
 ## Feature Requests
-Go to [[Feature requests]] if you have a feature you would like to see added to FileSender.
+Go to [Feature requests](https://app.assembla.com/wiki/show/file_sender/Feature_requests) if you have a feature you would like to see added to FileSender.
 
 ## Features
-A snapshot of features for the latest 1.6(.x) release is located at [[Features]]. A snapshot of features for the previous 1.1(.x) release is located at [[Features_v1-1]].
+A snapshot of features for the latest 1.6(.x) release is located at [Features](https://app.assembla.com/wiki/show/file_sender/Features). A snapshot of features for the previous 1.1(.x) release is located at [Features_v1-1](https://app.assembla.com/wiki/show/file_sender/Features_v1-1).
 
 * light-weight server footprint, optimized for least possible dependencies
 * share arbitrarily large files from standard desktop environments, no client-side deployment required
@@ -44,13 +44,13 @@ A snapshot of features for the latest 1.6(.x) release is located at [[Features]]
 * Multi-language support. Out-of-the-box FileSender 1.6 supports Czech, Croatian, Dutch, English (Australian), Finnish, French, German, Hungarian, Italian, Norwegian (Bokmål), Serbian, Slovenian and Spanish. You can easily adapt relevant language labels to your local needs in an upgrade-friendly way, for example to localise the splash screen text. You can also easily modify which languages you make available to your users
 * PDO-based multi-database support for PostgreSQL, MySQL and sqlite
 
-FileSender's functionality is also described in [[End_User_Documentation_for_v1-6]](snapshot of features for the previous 1.1(.x)) release at [[End_User_Documentation_for_v1-1]] and [[Specifications]].
+FileSender's functionality is also described in [End_User_Documentation_for_v1-6](https://app.assembla.com/wiki/show/file_sender/End_User_Documentation_for_v1-6) snapshot of features for the previous 1.1(.x) release at [End_User_Documentation_for_v1-1](https://app.assembla.com/wiki/show/file_sender/End_User_Documentation_for_v1-1) and [Specifications](https://app.assembla.com/wiki/show/file_sender/Specifications).
 
 ## Requirements
-A snapshot of requirements for the latest 1.6(.x) release is located at [[Requirements]]. A snapshot of requirements for the previous 1.1(.x) release is located at [[Requirements_for_v1-1]].
+A snapshot of requirements for the latest 1.6(.x) release is located at [Requirements](https://app.assembla.com/wiki/show/file_sender/Requirements). A snapshot of requirements for the previous 1.1(.x) release is located at [Requirements_for_v1-1](https://app.assembla.com/wiki/show/file_sender/Requirements_for_v1-1).
 
 ##Documentation
-Installation and administrator documentation for the latest 1.6(.x) release is provided at [[Documentation_v1-6]](documentation for the previous 1.1(.x) release at [[Documentation_v1-1]]).
+Installation and administrator documentation for the latest 1.6(.x) release is provided at [Documentation_v1-6](https://app.assembla.com/wiki/show/file_sender/Documentation_v1-6) (documentation for the previous 1.1(.x) release at [Documentation_v1-1](https://app.assembla.com/wiki/show/file_sender/Documentation_v1-1)).
 
 ##Developer
-Development documentation is provided in the [[Developer|Developer section]].
+Development documentation is provided in the [Developer section](https://app.assembla.com/wiki/show/file_sender/Developer).
