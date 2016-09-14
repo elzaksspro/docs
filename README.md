@@ -49,8 +49,8 @@ FileSender's functionality is also described in [End_User_Documentation_for_v1-6
 ## Requirements
 A snapshot of requirements for the latest 1.6(.x) release is located at [Requirements](https://app.assembla.com/wiki/show/file_sender/Requirements). A snapshot of requirements for the previous 1.1(.x) release is located at [Requirements_for_v1-1](https://app.assembla.com/wiki/show/file_sender/Requirements_for_v1-1).
 
-##Documentation
+## Documentation
 Installation and administrator documentation for the latest 1.6(.x) release is provided at [Documentation_v1-6](https://app.assembla.com/wiki/show/file_sender/Documentation_v1-6) (documentation for the previous 1.1(.x) release at [Documentation_v1-1](https://app.assembla.com/wiki/show/file_sender/Documentation_v1-1)).
 
-##Developer
+## Developer
 Development documentation is provided in the [Developer section](https://app.assembla.com/wiki/show/file_sender/Developer).

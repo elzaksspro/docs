@@ -13,12 +13,12 @@ If you notice mistakes in this documentation, or if it took you more than an hou
 ## About this documentation
 This is the installation documentation for installing the **FileSender 2.0-alpha Git snapshot** on Linux. This guide is written for installation from source on the RedHat/CentOS or Debian platform but any Linux variant should work with some modifications (most notably about installing the required additional software packages).
 
-### This documentation was tested with:
+### This documentation was tested with
 
 * RedHat/CentOS (7)
 * Debian (8, Jessie)
 
-### FileSender depends on:
+### Dependencies
 
 * SimpleSamlPhp 1.13 or newer.
 * Apache and PHP from your distribution.
