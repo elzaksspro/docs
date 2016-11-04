@@ -287,3 +287,19 @@ Start the Firefox plugin ( by pressing the button in the Plug-in bar in the top 
 In the previous segment we discussed setting up an 'Anonymous Test'. This means that the user wasn't logged in when the test started. To start a test form the dashboard of a test user, we can create a 'User Test'. This can be created by first logging in in the Firefox window before creating the tests. The test can then be exported by going to File 'Export Test Case As' Php / Codebridge Tests User. The exported file can then be saved to the selenium_tests/user_tests folder. To configure under which user the tests should be running, you can modify the credentials in the doLogin function in selenium_tests/SeleniumUserTest.php
 
 Unfortunatly the test that are written by the Firefox Plug-in don't always work. The tests that are written by this plugin don't take into account the loading times between the actions the tests perform. To account for this, time-outs need to be set-up. Triggers can also be set so the test will wait for a certain element to become available. This as already been done in some of the current tests. There is also documentation available on-line on how to write Selenium Tests in Php.
+
+
+# End-to-End Encryption
+### Requirements
++ Modern browsers supporting the WebCryptoAPI
+
+### Process
++ File selection process remains the same
++ Encryption checkbox is checked, a password is chosen ( or generated ). The password distribution needs to be done by the users since we will not even receive it on the API
++ The encryption process encrypts each chunk as it is send to the API. Each chunk increases a little in size compared to the original. The WebCryptoAPI adds a checksum, no larger then 16 bytes and a IV (a salt, 16 bytes) is added to each chunk. 
++ The API saves the file(chunks) like usual and stores a encryption flag in the transfer
++ The download process is the encryption process in reverse. The file is downloaded as a whole, chunked, then decrypted with the password provided and the IV stored in each chunk
++ Once each chunk is decrypted the chunks are merged into a single blob wich is then handed to the browser as a file download
+
+### Limitations
++ RAM size is a limiting factor to decrypt each chunk and hand the download over as a single file since this happens in memory, in the future this can be enhanced and made streamable, however at the moment of writing only the latest dev version of chrome supports this feature
