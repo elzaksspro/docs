@@ -267,6 +267,22 @@ Add / replace the following values:
 `$config['sauce_username']    =  <User Name Sauce Labs>`
 `$config['sauce_access_key']  =  <Api key Sauce Labs>`
 
+###Other config settings
+The following configuration options need to be set in the config.php, these will be overwritten temporarily during the tests to check if the changes made by them still work
+
+`$config['site_url']`
+`$config['auth_sp_fake_email']`
+`$config['sauce_username']`
+`$config['sauce_access_key']`
+`$config['auth_sp_type']`
+`$config['admin']`
+`$config['user_page']`
+`$config['max_transfer_size']`
+`$config['ban_extension']`
+
+The values from these fields van be copied from the default values configuration located in '/includes/ConfigDefaults.php' or set to a desired value.
+
+
 ### Running tests
 Open a terminal window in the project
 
