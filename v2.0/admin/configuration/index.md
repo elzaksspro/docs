@@ -1,3 +1,7 @@
+---
+title: Configuration directives
+---
+
 * This document is a work in progress.  If you are keen on seeing FileSender 2.0 released offer to help with (testing) the documentation.
 * mandatory configuration settings are <span style="background-color:red">marked in red</span>
 * sections <span style="background-color:orange">marked in orange</span> need to be double checked.
