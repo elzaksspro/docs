@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <title>{{ page.title }}</title>
-<link rel="stylesheet" href="{{site.baseurl}}/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{site.baseurl}}/assets/css/bootstrap.min.css" media="screen">
 <style type="text/css">
 nav > ul {
 	padding-left: 0;
@@ -12,31 +12,25 @@ nav li {
 	list-style: none;
 	margin: 1em 0;
 }
+@media print {
+	.jumbotron, nav {
+		display: none;
+	}
+}
 </style>
 
-<div class="jumbotron jumbotron-fluid">
-	<div class="container">
-		<h1 class="display-3">FileSender Documentation</h1>
-		<p class="lead">
-			Official documentation for the FileSender project.<br>
-			<a href="https://downloads.filesender.org/" class="btn btn-outline-success">
-				<i class="glyphicon glyphicon-download-alt"></i>
-				Download FileSender</a>
-			<a href="https://downloads.filesender.org/" class="btn btn-outline-info">
-				<i class="glyphicon glyphicon-send"></i>
-				Browse source code</a>
-		</p>
-	</div>
-</div>
+{% include header.html %}
 
 <div class="container">
 	<div class="row">
-		<main class="col-lg-9 col-md-9 col-sm-8 col-xs-12 push-lg-3 push-md-3 push-sm-4">
-			{{ content }}
-		</main>
-
-		<div class="pull-lg-9 pull-md-9 pull-sm-8 col-lg-3 col-md-3 col-sm-4 col-xs-12">
-			{% include menu.html %}
+		<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 push-lg-3 push-md-3 push-sm-4">
+			<main>
+				{{ content }}
+			</main>
 		</div>
+
+		<nav class="pull-lg-9 pull-md-9 pull-sm-8 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+			{% include menu.html %}
+		</nav>
 	</div>
 </div>
